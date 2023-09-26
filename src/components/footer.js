@@ -1,4 +1,3 @@
-
 // import Footer from 'rc-footer';
 import React from "react";
 // import 'rc-footer/assets/index.css'; // import 'rc-footer/asssets/index.less';
@@ -6,7 +5,8 @@ import './footer.css'
 
 const SampleFooter = () => ( 
   
-  <div  className='footer'
+// should be Footer here but missing
+  <div className='footer'
   onClick
   autoFocus
   columns={[
