@@ -1,12 +1,12 @@
-// import Footer from 'rc-footer';
+import Footer from 'rc-footer';
 import React from "react";
-// import 'rc-footer/assets/index.css'; // import 'rc-footer/asssets/index.less';
+import 'rc-footer/assets/index.css'; // import 'rc-footer/asssets/index.less';
 import './footer.css'
 
 const SampleFooter = () => ( 
   
-// should be Footer here but missing
-  <div className='footer'
+// run <npm install rc-footer> and <npm install rc-switch> 
+  <Footer className='footer'
   onClick
   autoFocus
   columns={[
