@@ -7,7 +7,6 @@ import PaymentEntry from './components/paymentEntry';
 import ShippingEntry from './components/shippingEntry';
 import ViewOrder from './components/viewOrder';
 import ViewConfirmation from './components/viewConfirmation';
-
 import SampleFooter from "./components/footer";
 import Home from './components/home';
 import About from './components/about';
@@ -16,11 +15,10 @@ import Cart from './components/cart';
 
 function App() {
 
-
   return (
     <div className="App">
     <Router>
-    <Navbar />
+      <Navbar />
       <div className="content">
       <Routes>
       <Route path='/home' element={<Home/>} />

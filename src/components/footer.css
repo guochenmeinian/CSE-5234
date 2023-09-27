@@ -1,7 +1,9 @@
-.footer{
+.footer {
     position: fixed;
     bottom: 0;
-    height: 45%;
+    left: 0;
     width: 100%;
-    clip: rect(40px,2000px,260px,0px);
+    height: 35%; /* or whatever height you want */
+    z-index: 1000; /* optional, to ensure the footer stays above other content */
 }
+

@@ -6,7 +6,7 @@ import './footer.css'
 const SampleFooter = () => ( 
   
 // run <npm install rc-footer> and <npm install rc-switch> 
-  <Footer className='footer'
+<Footer className='footer'
   onClick
   autoFocus
   columns={[
