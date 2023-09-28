@@ -24,7 +24,8 @@ function PaymentEntry() {
         <Stack direction="column"
             justifyContent="center"
             alignItems="center"
-            spacing={2}>
+            spacing={2}
+            sx={{ m: 4 }} >
             <FormControl>
                 <InputLabel htmlFor="">Credit Card Nnumber</InputLabel>
                 <Input id="credit-card-number-input" onChange={(e) => {
