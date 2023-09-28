@@ -6,67 +6,30 @@ import './footer.css'
 const SampleFooter = () => ( 
   
 // run <npm install rc-footer> and <npm install rc-switch> 
-<Footer className='footer'
-  onClick
-  autoFocus
-  columns={[
-    {
-      title: 'contact us',
-      items: [
-        {
-          title: 'adress',
-          url: 'https://ceo/',
-          openExternal: true,
-        },
-        {
-          title: 'email',
-          url: 'https://ceo/',
-          openExternal: true,
-        },
-        {
-          title: 'phone',
-          url: 'https://ceo/',
-          openExternal: true,
-        },
-      ],
-    },
-    {
-      icon: (
-        <img
-          src="https://gw.alipayobjects.com/zos/rmsportal/nBVXkrFdWHxbZlmMbsaH.svg"
-          alt="more products"
-        />
-      ),
-      title: 'more info',
-      items: [
-        {
-          icon: (
-            <img
-              src="https://gw.alipayobjects.com/zos/rmsportal/XuVpGqBFxXplzvLjJBZB.svg"
-              alt="yuque"
-            />
-          ),
-          title: 'cse5234',
-          url: 'https://com',
-          description: 'cse5234',
-          openExternal: true,
-        },
-        {
-          icon: (
-            <img
-              src="https://gw.alipayobjects.com/zos/rmsportal/uHocHZfNWZOdsRUonZNr.png"
-              alt="yuque"
-            />
-          ),
-          title: 'cse5234',
-          url: 'https://com',
-          description: 'cse5234',
-          openExternal: true,
-        },
-      ],
-    },
-  ]}
-/>
+<footer>
+    <div class="footer">
+        <div class="row">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+
+        <div class="row">
+            <ul>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Our Services</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Career</a></li>
+            </ul>
+        </div>
+
+        <div class="row">
+            INFERNO Copyright © 2021 Inferno - All rights reserved || Designed By: Mahesh 
+        </div>
+    </div>
+</footer>
 
 );
 
