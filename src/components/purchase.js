@@ -23,7 +23,7 @@ function Purchase() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/purchase/paymentEntry', { state: { order: order } });
+    navigate('paymentEntry', { state: { order: order } });
   }
 
   const handleQuantityChange = (index, value) => {
