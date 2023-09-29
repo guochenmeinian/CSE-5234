@@ -8,7 +8,7 @@ const location = useLocation();
 const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate("purchase/shippingEntry", {
+        navigate("purchase/viewOrder", {
             order: location.state.order,
             setOrder: location.state.setOrder
         });
