@@ -3,20 +3,13 @@ import { useNavigate } from "react-router-dom";
 import "./purchase.css";
 import { TableRow, TableContainer, Table, TableBody, TableCell, Typography, Box } from '@mui/material';
 
+const productPrices = [100, 40, 20]; // Prices for Products
+
 function Purchase() {
 
   const [order, setOrder] = useState({
     buyQuantity: [0, 0, 0], 
-    credit_card_number: '', 
-    expr_date: '', 
-    cvv_code: '', 
-    card_holder_name: '', 
-    address: '', 
-    city: '', 
-    state: '', 
-    zip: '',
   });
-  const productPrices = [100, 40, 20]; // Prices for Products
   const [totalPrice, setTotalPrice] = useState(0);
 
   const navigate = useNavigate();

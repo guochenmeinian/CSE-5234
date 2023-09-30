@@ -12,12 +12,13 @@ const theme = createTheme({
     },
   });
 
+const productPrices = [100, 40, 20];
+
 function PaymentEntry() {
   const location = useLocation();
   const navigate = useNavigate();
 
   const productNames = ['Monitor', 'Keyboard', 'Mouse'];
-  const productPrices = [100, 40, 20];
 
   const orderData = location.state?.order || {};
 
@@ -50,7 +51,7 @@ function PaymentEntry() {
   };
 
   const handleSubmit = () => {
-    navigate('/payment/ShippingEntry', { state: { order: orderData, payment: paymentData } });
+    navigate('/purchase/shippingEntry', { state: { orderData: orderData, paymentData: paymentData } });
   };
 
   return (
