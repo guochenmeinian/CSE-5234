@@ -24,5 +24,5 @@ npm start
 
 ## Team Members
 Chenmeinian Guo
-Hannes Scutt
 Jiaqian Huang
+Hannes Scutt
