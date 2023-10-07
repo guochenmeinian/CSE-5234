@@ -56,8 +56,7 @@ const Home = () => {
             >
               <Typography variant="h5">Our Business Mission</Typography>
               <Typography variant="body2" paragraph>
-                We are committed to delivering the highest quality products while
-                maintaining our dedication to environmental sustainability.
+                At [Your Company Name], our mission is to enhance the lives of our customers by providing an unparalleled online shopping experience. We are dedicated to offering a diverse selection of high-quality products that cater to every need, taste, and lifestyle. Through innovation, transparency, and exceptional customer service, we aim to be your trusted destination for discovering, purchasing, and enjoying the latest trends and essentials. We are committed to fostering a vibrant and inclusive online community that celebrates diversity, creativity, and individuality. Our mission is to empower you to shop with confidence, knowing that we prioritize your satisfaction, convenience, and well-being at every step of your journey.
               </Typography>
             </motion.div>
           </Grid>
@@ -76,21 +75,6 @@ const Home = () => {
             </motion.div>
           </Grid>
         </Grid>
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-          transition={{ duration: 1 }}
-          style={{ marginTop: '40px' }}
-        >
-          <Typography variant="h4" gutterBottom>
-            Products and Services Offered
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Explore our range of products and services tailored to meet your
-            specific needs.
-          </Typography>
-        </motion.div>
       </Container>
     </div>
   );
