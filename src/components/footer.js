@@ -7,7 +7,7 @@ const SampleFooter = () => (
   
 // run <npm install rc-footer> and <npm install rc-switch> 
 <Footer className='footer'
-  onClick
+  onClick={() => {}}
   autoFocus
   columns={[
     {
@@ -15,17 +15,17 @@ const SampleFooter = () => (
       items: [
         {
           title: 'adress',
-          url: 'https://ceo/',
+          url: 'https://www.osu.edu/',
           openExternal: true,
         },
         {
           title: 'email',
-          url: 'https://ceo/',
+          url: 'mailto:guo.2034@osu.edu',
           openExternal: true,
         },
         {
           title: 'phone',
-          url: 'https://ceo/',
+          url: '/about',
           openExternal: true,
         },
       ],
@@ -43,11 +43,11 @@ const SampleFooter = () => (
           icon: (
             <img
               src="https://gw.alipayobjects.com/zos/rmsportal/XuVpGqBFxXplzvLjJBZB.svg"
-              alt="yuque"
+              alt="project repo"
             />
           ),
-          title: 'cse5234',
-          url: 'https://com',
+          title: 'deploy site',
+          url: 'https://main.d2v8q1c89t29jt.amplifyapp.com',
           description: 'cse5234',
           openExternal: true,
         },
@@ -58,8 +58,8 @@ const SampleFooter = () => (
               alt="yuque"
             />
           ),
-          title: 'cse5234',
-          url: 'https://com',
+          title: 'github repo',
+          url: 'https://github.com/guochenmeinian/CSE-5234',
           description: 'cse5234',
           openExternal: true,
         },
