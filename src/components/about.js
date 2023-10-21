@@ -4,13 +4,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid, Box } from '@mui/material';
+import Link from '@mui/material/Link'; // <-- Add this import at the top
 
 const teamMembers = [
     {
         name: "Chenmeinian Guo",
         title: "CEO",
         image: "/path_to_image_1.jpg",
-        description: "Chenmeinian has been leading the team since inception and has a knack for innovation."
+        description: "Chenmeinian has been leading the team since inception and has a knack for innovation.",
+        website: "https://github.com/guochenmeinian"
     },
     {
         name: "Jiaqian Huang",
@@ -34,33 +36,40 @@ const AboutUs = () => {
             alignItems="center"
             flexDirection="column"
             padding="2rem"
+            width="100%"
         >
-            <Typography variant="h4" gutterBottom>About Our Team</Typography><br/>
-            <Grid container spacing={3} justifyContent="center">
+            <Typography variant="h4" gutterBottom>About Our Team</Typography><br/><br/>
+            <Grid container spacing={3} justifyContent="center" display="flex" flexWrap="wrap">
                 {teamMembers.map(member => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={member.name}>
-                        <Card sx={{ maxWidth: 345 }}>
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    height="140"
-                                    image={member.image}
-                                    alt={member.name}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {member.name}
-                                    </Typography>
-                                    <Typography variant="subtitle1">
-                                        {member.title}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {member.description}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
+                    <Box 
+                        key={member.name}
+                        width={{ xs: "100%", sm: "50%", md: "25%", lg: "20%" }}
+                        p={1} 
+                    >
+                        <Link href={member.website} target="_blank" rel="noopener noreferrer" underline="none">
+                            <Card sx={{ maxWidth: 345 }}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        component="img"
+                                        height="140"
+                                        image={member.image}
+                                        alt={member.name}
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            {member.name}
+                                        </Typography>
+                                        <Typography variant="subtitle1">
+                                            {member.title}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {member.description}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Link>
+                    </Box>
                 ))}
             </Grid>
         </Box>

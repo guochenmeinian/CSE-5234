@@ -7,6 +7,17 @@ import {
   Box,
 } from '@mui/material';
 import { motion } from 'framer-motion';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#008080",
+      contrastText: "#fff",
+    },
+  },
+});
 
 const Home = () => {
   const fadeIn = {
@@ -20,33 +31,57 @@ const Home = () => {
   };
 
   return (
+    <ThemeProvider theme={theme}>
     <div>
+      {/* Background Image Section */}
       <Box
-        style={{
-          backgroundImage: `url('https://via.placeholder.com/1600x800')`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
+        sx={{
+          position: 'relative',
           height: '400px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           color: 'white',
+          marginBottom: '40px',
+          "&::before": {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
+              backgroundImage: `url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?fit=crop&w=1600&q=80')`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              opacity: '0.75',
+              zIndex: -1,
+          }
         }}
       >
         <Container>
-          <Typography variant="h3" style={{ fontWeight: 'bold' }}>
-            Big Title Here
-          </Typography>
-          <Typography variant="body1">
-            Subtitle Here
-          </Typography>
-          <Button variant="contained" color="primary">
-            Learn More
-          </Button>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            height="100%"
+          >
+          <br/><br/>
+            <Typography variant="h3" style={{ fontWeight: 'bold', color: 'black' }}>
+              Distributed Enterprise Computing 
+            </Typography>
+            <br/>
+            <Typography variant="body1" gutterBottom style={{ color: 'black' }}>
+              This is company based on OSU CSE 5234 course
+            </Typography>
+            <br/>
+            <Button variant="contained" color="primary">
+              Learn More
+            </Button>
+          </Box>
         </Container>
       </Box>
+
+      {/* Content Section */}
       <Container>
-        <Grid container spacing={4} style={{ marginTop: '40px' }}>
+        <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <motion.div
               initial="hidden"
@@ -56,7 +91,7 @@ const Home = () => {
             >
               <Typography variant="h5">Our Business Mission</Typography>
               <Typography variant="body2" paragraph>
-                At [Your Company Name], our mission is to enhance the lives of our customers by providing an unparalleled online shopping experience. We are dedicated to offering a diverse selection of high-quality products that cater to every need, taste, and lifestyle. Through innovation, transparency, and exceptional customer service, we aim to be your trusted destination for discovering, purchasing, and enjoying the latest trends and essentials. We are committed to fostering a vibrant and inclusive online community that celebrates diversity, creativity, and individuality. Our mission is to empower you to shop with confidence, knowing that we prioritize your satisfaction, convenience, and well-being at every step of your journey.
+              At [Your Company Name], our mission is to enhance the lives of our customers by providing an unparalleled online shopping experience. We are dedicated to offering a diverse selection of high-quality products that cater to every need, taste, and lifestyle. Through innovation, transparency, and exceptional customer service, we aim to be your trusted destination for discovering, purchasing, and enjoying the latest trends and essentials. We are committed to fostering a vibrant and inclusive online community that celebrates diversity, creativity, and individuality. Our mission is to empower you to shop with confidence, knowing that we prioritize your satisfaction, convenience, and well-being at every step of your journey.
               </Typography>
             </motion.div>
           </Grid>
@@ -77,6 +112,7 @@ const Home = () => {
         </Grid>
       </Container>
     </div>
+    </ThemeProvider>
   );
 };
 
