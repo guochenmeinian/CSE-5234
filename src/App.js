@@ -30,7 +30,7 @@ function App() {
             <Route path='/purchase/viewConfirmation' element={<ViewConfirmationPanel />} />
           </Routes>
         </div>
-        <SampleFooter />
+        <AppFooter />
       </Router>
     </div>
   );
