@@ -1,6 +1,7 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Typography, Stack, ThemeProvider, createTheme } from "@mui/material";
+import axios from "axios";
 
 const theme = createTheme({
   palette: {
@@ -11,19 +12,17 @@ const theme = createTheme({
   },
 });
 
-function ViewOrder() {
+function ViewOrderPanel() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [items, setItems] = useState([]);
   const { orderData, paymentData, shippingData } = location.state || {};
-
-  // Prices for Products (you can also import this from a constants file if needed)
-  const productPrices = [100, 40, 20];
 
   const calculateTotalPrice = () => {
     let total = 0;
     if (orderData && orderData.buyQuantity) {
       for (let i = 0; i < orderData.buyQuantity.length; i++) {
-        total += orderData.buyQuantity[i] * (productPrices[i] || 0);
+        total += orderData.buyQuantity[i] * (items[i]?.price || 0);
       }
     }
     return total;
@@ -33,7 +32,15 @@ function ViewOrder() {
     navigate('/purchase/viewConfirmation', { state: { orderData, paymentData, shippingData } });
   };
 
-  console.log(paymentData)
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/inventory/items')
+      .then((response) => {
+        setItems(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -43,20 +50,20 @@ function ViewOrder() {
         <Typography variant="h6">Products:</Typography>
         {orderData?.buyQuantity.map((quantity, index) => (
           <Typography key={index}>
-            {["Monitor", "Keyboard", "Mouse"][index]} - ${productPrices[index]} x {quantity} = ${productPrices[index] * quantity}
+            {items[index]?.name} - ${items[index]?.price} x {quantity} = ${items[index]?.price * quantity}
           </Typography>
         ))}
-        
+
         <Typography variant="h6">Total: ${calculateTotalPrice()}</Typography>
 
         <Typography variant="h6">Payment Details:</Typography>
-        {paymentData.creditCardNumber?
-        <div>
-          <Typography>Card Holder Name: {paymentData.cardHolderName}</Typography> <br />
-          <Typography>Credit Card: **** **** **** {paymentData.creditCardNumber.slice(-4)}</Typography>
-        </div>
-        : 
-        <Typography>No payment information provided.</Typography>
+        {paymentData.creditCardNumber ?
+          <div>
+            <Typography>Card Holder Name: {paymentData.cardHolderName}</Typography> <br />
+            <Typography>Credit Card: **** **** **** {paymentData.creditCardNumber.slice(-4)}</Typography>
+          </div>
+          :
+          <Typography>No payment information provided.</Typography>
         }
 
 
@@ -74,4 +81,4 @@ function ViewOrder() {
   );
 }
 
-export default ViewOrder;
+export default ViewOrderPanel;

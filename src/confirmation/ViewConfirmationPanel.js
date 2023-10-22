@@ -5,7 +5,7 @@ import { TableRow, TableContainer, Table, TableBody, TableCell, Typography, Box,
 const productNames = ["Monitor", "Keyboard", "Mouse"];
 const productPrices = [100, 40, 20];
 
-function ViewConfirmation() {
+function ViewConfirmationPanel() {
   
     const location = useLocation();
     const { orderData, paymentData, shippingData } = location.state || {};
@@ -65,4 +65,4 @@ function ViewConfirmation() {
     );
 }
 
-export default ViewConfirmation;
+export default ViewConfirmationPanel;
