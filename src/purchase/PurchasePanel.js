@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./purchase.css";
 import { TableRow, TableContainer, Table, TableBody, TableCell, Typography, Box } from '@mui/material';
 
-function Purchase() {
+function PurchasePanel() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState({
     buyQuantity: [0, 0, 0],
@@ -89,4 +89,4 @@ function Purchase() {
   );
 }
 
-export default Purchase;
+export default PurchasePanel;

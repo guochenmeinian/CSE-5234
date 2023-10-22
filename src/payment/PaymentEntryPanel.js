@@ -14,7 +14,7 @@ const theme = createTheme({
 
 const productPrices = [100, 40, 20];
 
-function PaymentEntry() {
+function PaymentEntryPanel() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -132,4 +132,4 @@ function PaymentEntry() {
   );
 }
 
-export default PaymentEntry;
+export default PaymentEntryPanel;
