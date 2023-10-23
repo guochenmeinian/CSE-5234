@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "./purchase.css";
 import { TableRow, TableContainer, Table, TableBody, TableCell, Typography, Box } from '@mui/material';
 
-const productPrices = [100, 40, 20]; // Prices for Products
-
-function Purchase() {
-
+function PurchasePanel() {
+  const [items, setItems] = useState([]);
   const [order, setOrder] = useState({
-    buyQuantity: [0, 0, 0], 
+    buyQuantity: [0, 0, 0],
   });
-  const [totalPrice, setTotalPrice] = useState(0);
 
   const navigate = useNavigate();
 
@@ -23,17 +21,24 @@ function Purchase() {
     setOrder(prevOrder => {
       let newBuyQuantity = [...prevOrder.buyQuantity];
       newBuyQuantity[index] = value;
-      return {...prevOrder, buyQuantity: newBuyQuantity};
+      return { ...prevOrder, buyQuantity: newBuyQuantity };
     });
   }
 
   useEffect(() => {
-    let total = 0;
-    for (let i = 0; i < order.buyQuantity.length; i++) {
-      total += order.buyQuantity[i] * (productPrices[i] || 0);
-    }
-    setTotalPrice(total);
-  }, [order.buyQuantity]);
+    axios.get('http://localhost:5000/api/inventory/items')
+      .then((response) => {
+        setItems(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  let totalPrice = 0;
+  for (let i = 0; i < order.buyQuantity.length; i++) {
+    totalPrice += order.buyQuantity[i] * (items[i]?.price || 0);
+  }
 
   return (
     <TableContainer className="container">
@@ -49,12 +54,12 @@ function Purchase() {
       <form onSubmit={handleSubmit}>
         <Table>
           <TableBody>
-            {productPrices.map((price, index) => (
+            {items.map((item, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <Box display="flex" alignItems="center">
                     <Typography variant="body1" style={{ marginRight: "10px" }}>
-                      {["Monitor", "Keyboard", "Mouse"][index]} - ${price} each, Quantity:
+                      {item.name} - ${item.price} each, Quantity:
                     </Typography>
                     <input
                       type="number"
@@ -84,4 +89,4 @@ function Purchase() {
   );
 }
 
-export default Purchase;
+export default PurchasePanel;

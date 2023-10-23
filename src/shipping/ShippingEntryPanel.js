@@ -11,7 +11,7 @@ const theme = createTheme({
   },
 });
 
-function ShippingEntry() {
+function ShippingEntryPanel() {
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -66,4 +66,4 @@ function ShippingEntry() {
   );
 }
 
-export default ShippingEntry;
+export default ShippingEntryPanel;
