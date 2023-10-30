@@ -4,26 +4,26 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid, Box } from '@mui/material';
-import Link from '@mui/material/Link'; // <-- Add this import at the top
+import Link from '@mui/material/Link';
 
 const teamMembers = [
     {
         name: "Chenmeinian Guo",
         title: "CEO",
-        image: "/path_to_image_1.jpg",
+        image: "/morty1.png",
         description: "Chenmeinian has been leading the team since inception and has a knack for innovation.",
         website: "https://github.com/guochenmeinian"
     },
     {
         name: "Jiaqian Huang",
         title: "CTO",
-        image: "/path_to_image_2.jpg",
+        image: "/morty2.png",
         description: "Jiaqian has a vast experience in tech and has been pivotal to our technical strategies."
     },
     {
         name: "Hannes Scutt",
         title: "COO",
-        image: "/path_to_image_3.jpg",
+        image: "/morty3.png",
         description: "Hannes ensures smooth operations and execution of our day-to-day activities."
     }
 ];

@@ -3,7 +3,6 @@ import {
   Container,
   Typography,
   Grid,
-  Button,
   Box,
 } from '@mui/material';
 import { motion } from 'framer-motion';
@@ -63,18 +62,9 @@ const Home = () => {
             justifyContent="center"
             height="100%"
           >
-          <br/><br/>
             <Typography variant="h3" style={{ fontWeight: 'bold', color: 'black' }}>
-              Distributed Enterprise Computing 
+                GizmoHub
             </Typography>
-            <br/>
-            <Typography variant="body1" gutterBottom style={{ color: 'black' }}>
-              This is company based on OSU CSE 5234 course
-            </Typography>
-            <br/>
-            <Button variant="contained" color="primary">
-              Learn More
-            </Button>
           </Box>
         </Container>
       </Box>
@@ -91,7 +81,7 @@ const Home = () => {
             >
               <Typography variant="h5">Our Business Mission</Typography>
               <Typography variant="body2" paragraph>
-              At [Your Company Name], our mission is to enhance the lives of our customers by providing an unparalleled online shopping experience. We are dedicated to offering a diverse selection of high-quality products that cater to every need, taste, and lifestyle. Through innovation, transparency, and exceptional customer service, we aim to be your trusted destination for discovering, purchasing, and enjoying the latest trends and essentials. We are committed to fostering a vibrant and inclusive online community that celebrates diversity, creativity, and individuality. Our mission is to empower you to shop with confidence, knowing that we prioritize your satisfaction, convenience, and well-being at every step of your journey.
+              At GizmoHub, our mission is to enhance the lives of our customers by providing an unparalleled online shopping experience. We are dedicated to offering a diverse selection of high-quality products that cater to every need, taste, and lifestyle. Through innovation, transparency, and exceptional customer service, we aim to be your trusted destination for discovering, purchasing, and enjoying the latest trends and essentials. We are committed to fostering a vibrant and inclusive online community that celebrates diversity, creativity, and individuality. Our mission is to empower you to shop with confidence, knowing that we prioritize your satisfaction, convenience, and well-being at every step of your journey.
               </Typography>
             </motion.div>
           </Grid>
