@@ -7,7 +7,7 @@ import PaymentEntryPanel from './payment/PaymentEntryPanel';
 import ShippingEntryPanel from './shipping/ShippingEntryPanel';
 import ViewOrderPanel from './order/ViewOrderPanel';
 import ViewConfirmationPanel from './confirmation/ViewConfirmationPanel';
-import SampleFooter from "./components/footer";
+import AppFooter from "./components/footer";
 import Home from './home';
 import About from './about';
 import Cart from './cart';
