@@ -1,8 +1,16 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-import "./purchase.css";
-import { TableRow, TableContainer, Table, TableBody, TableCell, Typography, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import './purchase.css';
+import {
+  TableRow,
+  TableContainer,
+  Table,
+  TableBody,
+  TableCell,
+  Typography,
+  Box,
+} from '@mui/material';
 
 function PurchasePanel() {
   const [items, setItems] = useState([]);
@@ -15,18 +23,19 @@ function PurchasePanel() {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate('/purchase/paymentEntry', { state: { order: order } });
-  }
+  };
 
   const handleQuantityChange = (index, value) => {
-    setOrder(prevOrder => {
+    setOrder((prevOrder) => {
       let newBuyQuantity = [...prevOrder.buyQuantity];
       newBuyQuantity[index] = value;
       return { ...prevOrder, buyQuantity: newBuyQuantity };
     });
-  }
+  };
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/inventory/items')
+    axios
+      .get('http://localhost:5000/api/inventory/items')
       .then((response) => {
         setItems(response.data);
       })
@@ -58,14 +67,19 @@ function PurchasePanel() {
               <TableRow key={index}>
                 <TableCell>
                   <Box display="flex" alignItems="center">
-                    <Typography variant="body1" style={{ marginRight: "10px" }}>
+                    <Typography variant="body1" style={{ marginRight: '10px' }}>
                       {item.name} - ${item.price} each, Quantity:
                     </Typography>
                     <input
                       type="number"
                       required
                       min="0"
-                      onChange={(e) => handleQuantityChange(index, parseInt(e.target.value, 10))}
+                      onChange={(e) =>
+                        handleQuantityChange(
+                          index,
+                          parseInt(e.target.value, 10),
+                        )
+                      }
                     />
                   </Box>
                 </TableCell>
