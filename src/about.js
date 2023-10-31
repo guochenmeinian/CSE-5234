@@ -1,10 +1,15 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, Grid, Box } from '@mui/material';
-import Link from '@mui/material/Link';
+import {
+  Typography,
+  Grid,
+  Box,
+  Stack,
+  Card,
+  CardContent,
+  CardMedia,
+  CardActionArea,
+  Link,
+} from '@mui/material';
 
 const teamMembers = [
   {
@@ -21,6 +26,7 @@ const teamMembers = [
     image: '/morty2.png',
     description:
       'Jiaqian has a vast experience in tech and has been pivotal to our technical strategies.',
+    website: 'https://github.com/authordottle',
   },
   {
     name: 'Hannes Scutt',
@@ -33,17 +39,13 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <Box
-      display="flex"
+    <Stack
+      direction="column"
       justifyContent="center"
       alignItems="center"
-      flexDirection="column"
-      padding="2rem"
-      width="100%"
+      spacing={2}
     >
-      <Typography variant="h4" gutterBottom>
-        About Us
-      </Typography>
+      <Typography variant="h4">About Us</Typography>
       <Grid
         container
         spacing={3}
@@ -86,7 +88,7 @@ const AboutUs = () => {
           </Box>
         ))}
       </Grid>
-    </Box>
+    </Stack>
   );
 };
 
