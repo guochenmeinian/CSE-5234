@@ -14,7 +14,7 @@ import {
 const productNames = ['Monitor', 'Keyboard', 'Mouse'];
 const productPrices = [100, 40, 20];
 
-function ViewConfirmationPanel() {
+function Confirmation() {
   const location = useLocation();
   const { orderData, paymentData, shippingData } = location.state || {};
 
@@ -85,4 +85,4 @@ function ViewConfirmationPanel() {
   );
 }
 
-export default ViewConfirmationPanel;
+export default Confirmation;

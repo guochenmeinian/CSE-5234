@@ -18,7 +18,7 @@ const theme = createTheme({
   },
 });
 
-function ViewOrderPanel() {
+function OrderSummary() {
   const navigate = useNavigate();
   const location = useLocation();
   const [items, setItems] = useState([]);
@@ -102,4 +102,4 @@ function ViewOrderPanel() {
   );
 }
 
-export default ViewOrderPanel;
+export default OrderSummary;

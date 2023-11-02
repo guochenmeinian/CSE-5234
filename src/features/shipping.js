@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
+  Container,
   Button,
   FormControl,
   InputLabel,
   Input,
   Stack,
-  ThemeProvider,
-  createTheme,
 } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import customTheme from "../constants/customTheme"
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#f5b921',
-      contrastText: '#fff',
-    },
-  },
-});
-
-function ShippingEntryPanel() {
+function Shipping() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -50,7 +42,7 @@ function ShippingEntryPanel() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Stack
         direction="column"
         justifyContent="center"
@@ -98,4 +90,4 @@ function ShippingEntryPanel() {
   );
 }
 
-export default ShippingEntryPanel;
+export default Shipping;

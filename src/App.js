@@ -12,10 +12,10 @@ import Cart from './features/cart';
 import Categories from './features/categories';
 import Items from './features/items';
 import Item from './features/item';
-import PaymentEntryPanel from './features/order/PaymentEntryPanel';
-import ShippingEntryPanel from './features/order/ShippingEntryPanel';
-import ViewOrderPanel from './features/order/ViewOrderPanel';
-import ViewConfirmationPanel from './features/order/ViewConfirmationPanel';
+import Payment from './features/payment';
+import Shipping from './features/shipping';
+import OrderSummary from './features/orderSummary';
+import Confirmation from './features/confirmation';
 import AppFooter from './components/footer';
 import Home from './home';
 
@@ -33,18 +33,15 @@ function App() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:id/items" element={<Items />} />
             <Route path="/items/:id" element={<Item />} />
+            <Route path="/purchase/payment" element={<Payment />} />
             <Route
-              path="/purchase/paymentEntry"
-              element={<PaymentEntryPanel />}
+              path="/purchase/shipping"
+              element={<Shipping />}
             />
+            <Route path="/purchase/summary" element={<OrderSummary />} />
             <Route
-              path="/purchase/shippingEntry"
-              element={<ShippingEntryPanel />}
-            />
-            <Route path="/purchase/viewOrder" element={<ViewOrderPanel />} />
-            <Route
-              path="/purchase/viewConfirmation"
-              element={<ViewConfirmationPanel />}
+              path="/purchase/confirmation"
+              element={<Confirmation />}
             />
           </Routes>
         </div>
