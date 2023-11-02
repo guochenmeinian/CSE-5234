@@ -19,7 +19,7 @@ function Items() {
     axios
       .get(`http://localhost:5000/api/inventory/categories/${id}/items`)
       .then((response) => {
-        setItems(response.data["items"]);
+        setItems(response.data.items);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
