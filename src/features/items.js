@@ -8,40 +8,8 @@ import {
   ImageListItemBar,
 } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#f5b921',
-      contrastText: '#fff',
-    },
-    secondary: {
-      main: '#333',
-    }
-  },
-  typography: {
-    h4: {
-      fontSize: '1.5rem',
-    },
-    h5: {
-      fontSize: '1.5rem',
-    },
-    h6: {
-      fontSize: '1.5rem',
-    },
-    body1: {
-      fontSize: '1rem',
-    },
-    body2: {
-      fontSize: '1rem',
-    },
-    overline: {
-      fontSize: '0.875rem',
-    }
-  }
-});
+import { ThemeProvider } from '@mui/material/styles';
+import customTheme from "../constants/customTheme"
 
 function Items() {
   const { id } = useParams();
@@ -59,7 +27,7 @@ function Items() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Container>
         <Box
           spacing={{ xs: 1, sm: 2, md: 4 }}

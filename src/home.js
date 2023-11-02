@@ -3,41 +3,9 @@ import {
   Container, Typography, Button, Icon, Box, Grid, Paper
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#f5b921',
-      contrastText: '#fff',
-    },
-    secondary: {
-      main: '#333',
-    }
-  },
-  typography: {
-    h4: {
-      fontSize: '1.5rem',
-    },
-    h5: {
-      fontSize: '1.5rem',
-    },
-    h6: {
-      fontSize: '1.5rem',
-    },
-    body1: {
-      fontSize: '1rem',
-    },
-    body2: {
-      fontSize: '1rem',
-    },
-    overline: {
-      fontSize: '0.875rem',
-    }
-  }
-});
+import { ThemeProvider } from '@mui/material/styles';
+import customTheme from "./constants/customTheme"
 
 const Home = () => {
   const slideIn = {
@@ -48,10 +16,10 @@ const Home = () => {
   const rickAndMortyImageUrl = "https://wallpaperaccess.com/full/5112240.jpg";
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Container>
         <Box mt={5} mb={5}>
-          <Typography variant="h3" align="center" gutterBottom style={{ fontWeight: 'bold', color: theme.palette.primary.main }}>
+          <Typography variant="h3" align="center" gutterBottom style={{ fontWeight: 'bold', color: customTheme.palette.primary.main }}>
             Welcome to RM Hub
           </Typography>
         </Box>
