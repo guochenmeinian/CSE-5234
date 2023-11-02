@@ -1,0 +1,47 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "name": "Rick and Morty: The Pickle Rick Game",
+        "description": "A board game where players take on the roles of different Ricks and compete in a Pickle Rick-themed adventure.",
+        "price": "$29.99"
+      },
+      {
+        "id": 2,
+        "name": "Rick and Morty: Total Rickall Card Game",
+        "description": "A card game based on the 'Total Rickall' episode, where players must figure out who among them is a parasite.",
+        "price": "$15.99"
+      },
+      {
+        "id": 3,
+        "name": "Rick and Morty: Anatomy Park: The Game",
+        "description": "A strategy board game where players build a theme park inside the body of Ruben, a homeless man.",
+        "price": "$34.99"
+      },
+      {
+        "id": 4,
+        "name": "Rick and Morty: Close Rick-Counters of the Rick Kind Deck-Building Game",
+        "description": "A deck-building card game where players take on the roles of different Ricks, battling for supremacy.",
+        "price": "$39.99"
+      },
+      {
+        "id": 5,
+        "name": "Rick and Morty: The Ricks Must Be Crazy Multiverse Game",
+        "description": "A strategy game that lets players create and control their own mini-universe.",
+        "price": "$49.99"
+      },
+      {
+        "id": 6,
+        "name": "Rick and Morty 1000-Piece Jigsaw Puzzle",
+        "description": "A jigsaw puzzle featuring a colorful and detailed design inspired by the show.",
+        "price": "$19.99"
+      },
+      {
+        "id": 7,
+        "name": "Rick and Morty: Shy Pooper 1000-Piece Puzzle",
+        "description": "A puzzle featuring the 'Shy Pooper' character from the show, with 1000 pieces for a challenge.",
+        "price": "$22.99"
+      }
+    ]
+  }
+  

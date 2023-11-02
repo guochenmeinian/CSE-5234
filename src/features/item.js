@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Stack, Typography, Box, Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
-function SingleItemPanel() {
+function Item() {
   const [item, setItem] = useState([]);
   const { id } = useParams();
 
@@ -55,4 +55,4 @@ function SingleItemPanel() {
   );
 }
 
-export default SingleItemPanel;
+export default Item;

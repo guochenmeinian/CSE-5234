@@ -30,18 +30,18 @@ const AppFooter = () => (
         ],
       },
       {
-        icon: <img src="/footer-more-info-icon.png" alt="More Info" />,
+        icon: <img src="/other-images/footer-more-info-icon.png" alt="More Info" />,
         title: 'More Info',
         items: [
           {
-            icon: <img src="/footer-deploy-site-icon.png" alt="Deploy Site" />,
+            icon: <img src="/other-images/footer-deploy-site-icon.png" alt="Deploy Site" />,
             title: 'Deploy Site',
             url: 'https://main.d2v8q1c89t29jt.amplifyapp.com',
             description: '',
             openExternal: true,
           },
           {
-            icon: <img src="/footer-github-repo-icon.png" alt="Github Repo" />,
+            icon: <img src="/other-images/footer-github-repo-icon.png" alt="Github Repo" />,
             title: 'Github Repo',
             url: 'https://github.com/guochenmeinian/CSE-5234',
             description: '',

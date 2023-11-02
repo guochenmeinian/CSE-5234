@@ -3,6 +3,8 @@ const cors = require('cors');
 const app = apiServer();
 const port = 5000; // Choose desired port
 const db = require('./db');
+const fs = require('fs');
+const path = require('path');
 
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -21,12 +23,12 @@ app.use(apiServer.json());
 // todo: connect with database and replace the sample data
 app.get('/api/inventory/categories', (req, res) => {
   const categories = [
-    { id: 1, name: 'accessories', image: '/category-icons/accessories.png' },
-    { id: 2, name: 'books-and-comics', image: '/category-icons/books-and-comics.png' },
-    { id: 3, name: 'clothing-and-apparel', image: '/category-icons/clothing-and-apparel.png' },
-    { id: 4, name: 'games-and-puzzles', image: '/category-icons/games-and-puzzles.png' },
-    { id: 5, name: 'home-and-kitchenware', image: '/category-icons/home-and-kitchenware.png' },
-    { id: 6, name: 'toys-and-collectibles', image: '/category-icons/toys-and-collectibles.png' },
+    { id: 1, name: 'Accessories', image: '/category-icons/accessories.png' },
+    { id: 2, name: 'Books And Comics', image: '/category-icons/books-and-comics.png' },
+    { id: 3, name: 'Clothing And Apparel', image: '/category-icons/clothing-and-apparel.png' },
+    { id: 4, name: 'Games And Puzzles', image: '/category-icons/games-and-puzzles.png' },
+    { id: 5, name: 'Home And Kitchenware', image: '/category-icons/home-and-kitchenware.png' },
+    { id: 6, name: 'Toys And Collectibles', image: '/category-icons/toys-and-collectibles.png' },
   ];
 
   res.json(categories);
@@ -34,14 +36,38 @@ app.get('/api/inventory/categories', (req, res) => {
 
 // Get all items from inventory
 // todo: connect with database and replace the sample data
-app.get('/api/inventory/items', (req, res) => {
-  const items = [
-    { id: 1, name: 'Monitor', price: '100', image: '/rick1.png' },
-    { id: 2, name: 'Keyboard', price: '40', image: '/rick2.png' },
-    { id: 3, name: 'Mouse', price: '20', image: '/rick3.png' },
-  ];
-
-  res.json(items);
+app.get('/api/inventory/categories/:id/items', (req, res) => {
+  const categoryId = req.params.id;
+  let jsonFileName = "";
+  switch (categoryId) {
+    case "1":
+      jsonFileName = "accessories";
+      break;
+    case "2":
+      jsonFileName = "books-and-comics";
+      break;
+    case "3":
+      jsonFileName = "clothing-and-apparel";
+      break;
+    case "4":
+      jsonFileName = "games-and-puzzles";
+      break;
+    case "5":
+      jsonFileName = "home-and-kitchenware";
+      break;
+    case "6":
+      jsonFileName = "toys-and-collectibles";
+      break;
+  }
+  const jsonFilePath = path.join(__dirname, "..", 'public/database', `${jsonFileName}.json`);
+  fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading JSON file:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.json(JSON.parse(data));
+    }
+  });
 });
 
 // Get one item from inventory

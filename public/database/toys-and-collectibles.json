@@ -1,0 +1,40 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "name": "Funko Pop! Rick and Morty Vinyl Figures",
+            "description": "A collection of vinyl figures featuring various characters from the show, perfect for collectors.",
+            "price": "$12.99"
+        },
+        {
+            "id": 2,
+            "name": "Rick and Morty Collectible Pins Set",
+            "description": "A set of enamel pins featuring different show-related designs to adorn your clothing or accessories.",
+            "price": "$7.99"
+        },
+        {
+            "id": 3,
+            "name": "Rick and Morty Plushies",
+            "description": "Soft and huggable plush toys in the likeness of Rick, Morty, and other characters.",
+            "price": "$9.99"
+        },
+        {
+            "id": 4,
+            "name": "Portal Gun Prop Replica",
+            "description": "A high-quality prop replica of Rick's portal gun for cosplayers and collectors.",
+            "price": "$59.99"
+        },
+        {
+            "id": 5,
+            "name": "Rick and Morty Action Figures",
+            "description": "Poseable action figures of Rick and Morty, complete with accessories and detailed designs.",
+            "price": "$19.99"
+        },
+        {
+            "id": 6,
+            "name": "Rick and Morty Mystery Mini Figures",
+            "description": "Blind-boxed mini figures of various characters for collecting and trading.",
+            "price": "$4.99"
+        }
+    ]
+}

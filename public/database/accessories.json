@@ -1,0 +1,125 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "name": "Portal Gun Replica",
+        "description": "A handheld device that lets you create portals to other dimensions.",
+        "price": "$99.99"
+      },
+      {
+        "id": 2,
+        "name": "Mr. Meeseeks Box",
+        "description": "A box that summons a helpful but short-lived Mr. Meeseeks to assist with tasks.",
+        "price": "$19.99"
+      },
+      {
+        "id": 3,
+        "name": "Plumbus",
+        "description": "A versatile and mysterious household item, as seen in the show.",
+        "price": "$14.99"
+      },
+      {
+        "id": 4,
+        "name": "Interdimensional Cable Box",
+        "description": "A device that allows you to watch television from alternate realities.",
+        "price": "$49.99"
+      },
+      {
+        "id": 5,
+        "name": "Pickle Rick Keychain",
+        "description": "A miniature version of Pickle Rick, a fan-favorite character.",
+        "price": "$9.99"
+      },
+      {
+        "id": 6,
+        "name": "Meeseeks Socks",
+        "description": "Socks featuring the face of Mr. Meeseeks.",
+        "price": "$7.99"
+      },
+      {
+        "id": 7,
+        "name": "Morty's Portal Gun Necklace",
+        "description": "A pendant in the shape of Morty's portal gun.",
+        "price": "$29.99"
+      },
+      {
+        "id": 8,
+        "name": "Schmeckle Coins",
+        "description": "Coins from the dimension of Rick and Morty.",
+        "price": "$5.99"
+      },
+      {
+        "id": 9,
+        "name": "Tiny Rick T-Shirt",
+        "description": "A shirt with a design of Tiny Rick from one of the episodes.",
+        "price": "$17.99"
+      },
+      {
+        "id": 10,
+        "name": "Rick's Lab Coat",
+        "description": "A white lab coat similar to what Rick wears in the show.",
+        "price": "$39.99"
+      },
+      {
+        "id": 11,
+        "name": "Eyehole Man Mask",
+        "description": "A mask of the Eyehole Man, known for his hilarious TV commercial.",
+        "price": "$12.99"
+      },
+      {
+        "id": 12,
+        "name": "Squanchy Flask",
+        "description": "A flask with Squanchy, the cat-like character, on it.",
+        "price": "$15.99"
+      },
+      {
+        "id": 13,
+        "name": "Anatomy Park Tote Bag",
+        "description": "A bag featuring the theme park from the episode 'Anatomy Park.'",
+        "price": "$19.99"
+      },
+      {
+        "id": 14,
+        "name": "Council of Ricks Pin",
+        "description": "A pin that displays the Council of Ricks logo.",
+        "price": "$6.99"
+      },
+      {
+        "id": 15,
+        "name": "Birdperson's Feather Earrings",
+        "description": "Earrings inspired by Birdperson's distinctive feathers.",
+        "price": "$11.99"
+      },
+      {
+        "id": 16,
+        "name": "Unity Pendant",
+        "description": "A pendant featuring Unity, one of Rick's love interests.",
+        "price": "$14.99"
+      },
+      {
+        "id": 17,
+        "name": "Cromulon Head Hat",
+        "description": "A hat in the shape of the Cromulon head from the 'Get Schwifty' episode.",
+        "price": "$8.99"
+      },
+      {
+        "id": 18,
+        "name": "Scary Terry Slippers",
+        "description": "Slippers resembling Scary Terry's face.",
+        "price": "$12.99"
+      },
+      {
+        "id": 19,
+        "name": "Get Schwifty Phone Case",
+        "description": "A phone case with the 'Get Schwifty' design.",
+        "price": "$9.99"
+      },
+      {
+        "id": 20,
+        "name": "Toxic Flask",
+        "description": "A flask inspired by the 'Toxic Rick and Morty' episode.",
+        "price": "$13.99"
+      }
+    ]
+  }
+  

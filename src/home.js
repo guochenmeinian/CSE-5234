@@ -63,7 +63,7 @@ const Home = () => {
             <Typography variant="body1" paragraph>
               Here at RickAndMorty (RM) Hub, our mission is to be the premier destination for all things related to the universe of "Rick and Morty." Dive deep into the multiverse with our curated collection of merchandise, and stay updated with the latest episodes, theories, and interdimensional news.
             </Typography>
-            <Link to="/purchase" style={{ textDecoration: 'none' }}>
+            <Link to="/categories" style={{ textDecoration: 'none' }}>
               <Button variant="contained" color="primary" startIcon={<Icon>shopping_cart</Icon>}>
                 Explore Merchandise
               </Button>
@@ -125,7 +125,7 @@ const Home = () => {
                     icon: "star", 
                     variant: "contained", 
                     color: "secondary", 
-                    link: "/purchase",
+                    link: "/categories",
                     type: "internal"
                 }
               }
