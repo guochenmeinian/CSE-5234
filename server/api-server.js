@@ -17,13 +17,28 @@ app.use(cors(corsOptions));
 app.use(apiServer.json());
 
 // API endpoints
+// Get all categories from inventory
+// todo: connect with database and replace the sample data
+app.get('/api/inventory/categories', (req, res) => {
+  const categories = [
+    { id: 1, name: 'accessories', image: '/category-icons/accessories.png' },
+    { id: 2, name: 'books-and-comics', image: '/category-icons/books-and-comics.png' },
+    { id: 3, name: 'clothing-and-apparel', image: '/category-icons/clothing-and-apparel.png' },
+    { id: 4, name: 'games-and-puzzles', image: '/category-icons/games-and-puzzles.png' },
+    { id: 5, name: 'home-and-kitchenware', image: '/category-icons/home-and-kitchenware.png' },
+    { id: 6, name: 'toys-and-collectibles', image: '/category-icons/toys-and-collectibles.png' },
+  ];
+
+  res.json(categories);
+});
+
 // Get all items from inventory
 // todo: connect with database and replace the sample data
 app.get('/api/inventory/items', (req, res) => {
   const items = [
-    { id: 1, name: 'Monitor', price: '100' },
-    { id: 2, name: 'Keyboard', price: '40' },
-    { id: 3, name: 'Mouse', price: '20' },
+    { id: 1, name: 'Monitor', price: '100', image: '/rick1.png' },
+    { id: 2, name: 'Keyboard', price: '40', image: '/rick2.png' },
+    { id: 3, name: 'Mouse', price: '20', image: '/rick3.png' },
   ];
 
   res.json(items);
@@ -31,8 +46,8 @@ app.get('/api/inventory/items', (req, res) => {
 
 // Get one item from inventory
 // todo: connect with database and replace the sample data
-app.get('/api/inventory/items/{id}', (req, res) => {
-  const item = [{ id: 1, name: 'Monitor', price: '100' }];
+app.get('/api/inventory/items/:id', (req, res) => {
+  const item = [{ id: 1, name: 'Monitor', price: '100', image: '/rick1.png' }];
 
   res.json(item);
 });

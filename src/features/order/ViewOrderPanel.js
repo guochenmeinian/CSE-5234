@@ -35,7 +35,7 @@ function ViewOrderPanel() {
   };
 
   const handleConfirmOrder = () => {
-    navigate('/purchase/viewConfirmation', {
+    navigate('/items/viewConfirmation', {
       state: { orderData, paymentData, shippingData },
     });
   };

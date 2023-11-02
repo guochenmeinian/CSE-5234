@@ -15,7 +15,7 @@ const teamMembers = [
   {
     name: 'Chenmeinian Guo',
     title: 'CEO',
-    image: '/morty1.png',
+    image: '/avator-icons/morty1.png',
     description:
       'Chenmeinian has been leading the team since inception and has a knack for innovation.',
     website: 'https://github.com/guochenmeinian',
@@ -23,7 +23,7 @@ const teamMembers = [
   {
     name: 'Jiaqian Huang',
     title: 'CTO',
-    image: '/morty2.png',
+    image: '/avator-icons/morty2.png',
     description:
       'Jiaqian has a vast experience in tech and has been pivotal to our technical strategies.',
     website: 'https://github.com/authordottle',
@@ -31,7 +31,7 @@ const teamMembers = [
   {
     name: 'Hannes Scutt',
     title: 'COO',
-    image: '/morty3.png',
+    image: '/avator-icons/morty3.png',
     description:
       'Hannes ensures smooth operations and execution of our day-to-day activities.',
   },

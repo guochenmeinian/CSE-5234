@@ -11,6 +11,7 @@ import {
   Divider,
 } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import OrderSection from "../../components/OrderSection";
 
 const theme = createTheme({
   palette: {
@@ -60,7 +61,7 @@ function PaymentEntryPanel() {
   };
 
   const handleSubmit = () => {
-    navigate('/purchase/shippingEntry', {
+    navigate('/items/shippingEntry', {
       state: { orderData: orderData, paymentData: paymentData },
     });
   };
@@ -74,26 +75,12 @@ function PaymentEntryPanel() {
         spacing={2}
         sx={{ m: 4 }}
       >
-        {/* Orders section */}
-        <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-          <Typography variant="h6" gutterBottom>
-            Your Orders:
-          </Typography>
-          <Divider />
-          {orderData &&
-            orderData.buyQuantity.map((quantity, index) => (
-              <Box key={index} mt={2}>
-                <Typography>
-                  {productNames[index]}: {quantity} x ${productPrices[index]} =
-                  ${quantity * productPrices[index]}
-                </Typography>
-              </Box>
-            ))}
-          <Divider sx={{ mt: 2 }} />
-          <Box mt={2}>
-            <Typography variant="h6">Total Price: ${totalPrice}</Typography>
-          </Box>
-        </Box>
+        <OrderSection
+            orderData={orderData}
+            productNames={productNames}
+            productPrices={productPrices}
+            totalPrice={totalPrice}
+        />
 
         {/* Payment Info section */}
         <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>

@@ -40,7 +40,7 @@ function ShippingEntryPanel() {
   };
 
   const handleSubmit = () => {
-    navigate('/purchase/viewOrder', {
+    navigate('/items/viewOrder', {
       state: {
         orderData: orderData,
         paymentData: paymentData,
