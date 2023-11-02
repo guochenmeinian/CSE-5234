@@ -68,17 +68,23 @@ function Items() {
           <ImageList cols={5}>
             {items.map((item) => (
               <Link key={item.id} to={`/items/${item.id}`}
-                style={{ textDecoration: 'none', color: 'black' }}>
-                <ImageListItem key={item.image}>
+                style={{
+                  textDecoration: 'none',
+                  color: 'black',
+                  border: "1px solid #f5f5f5",
+                  whiteSpace: "normal",
+                  overflow: "hidden"
+                }}>
+                <ImageListItem key={item.thumbnailiImage}>
                   <img
-                    srcSet={`${item.image}?fit=crop&auto=format&dpr=2 2x`}
-                    src={`${item.image}?fit=crop&auto=format`}
+                    srcSet={`${item.thumbnailiImage}?fit=crop&auto=format&dpr=2 2x`}
+                    src={`${item.thumbnailiImage}?fit=crop&auto=format`}
                     alt={item.name}
                     loading="lazy"
                   />
                   <ImageListItemBar
                     title={item.name}
-                    subtitle={`$${item.price}`}
+                    subtitle={item.price}
                     position="below"
                   />
                 </ImageListItem>

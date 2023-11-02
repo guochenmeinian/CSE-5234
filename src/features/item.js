@@ -12,7 +12,7 @@ function Item() {
       .get(`http://localhost:5000/api/inventory/items/${id}`)
       .then((response) => {
         const data = response.data;
-        setItem(data[0]);
+        setItem(data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -31,8 +31,8 @@ function Item() {
       flexWrap="wrap"
     >
       <img
-        srcSet={`http://localhost:3000/${item.image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-        src={`http://localhost:3000/${item.image}?w=164&h=164&fit=crop&auto=format`}
+        srcSet={`http://localhost:3000/${item.actualImage}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+        src={`http://localhost:3000/${item.actualImage}?w=164&h=164&fit=crop&auto=format`}
         alt={item.name}
         loading="lazy"
       />
@@ -43,7 +43,7 @@ function Item() {
       </Box>
       <Box>
         <Typography variant="body2" color="text.secondary">
-          ${item.price}
+          {item.price}
         </Typography>
       </Box>
       <Box>
