@@ -1,15 +1,42 @@
 import React from 'react';
-import { Container, Typography, Grid, Box, Stack } from '@mui/material';
+import {
+  Container, Typography, Button, Icon, Box, Grid, Paper
+} from '@mui/material';
 import { motion } from 'framer-motion';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#008080',
+      main: '#f5b921',
       contrastText: '#fff',
     },
+    secondary: {
+      main: '#333',
+    }
   },
+  typography: {
+    h4: {
+      fontSize: '1.5rem',
+    },
+    h5: {
+      fontSize: '1.5rem',
+    },
+    h6: {
+      fontSize: '1.5rem',
+    },
+    body1: {
+      fontSize: '1rem',
+    },
+    body2: {
+      fontSize: '1rem',
+    },
+    overline: {
+      fontSize: '0.875rem',
+    }
+  }
 });
 
 const Home = () => {
@@ -18,91 +45,117 @@ const Home = () => {
     visible: { x: 0 },
   };
 
+  const rickAndMortyImageUrl = "https://wallpaperaccess.com/full/5112240.jpg";
+
   return (
     <ThemeProvider theme={theme}>
-      {/* Background Image Section */}
-      <Box
-        sx={{
-          position: 'relative',
-          height: '400px',
-          color: 'white',
-          marginBottom: '40px',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-            backgroundImage: `url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?fit=crop&w=1600&q=80')`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            opacity: '0.75',
-            zIndex: -1,
-          },
-        }}
-      >
-        <Stack
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          height="100%"
-        >
-          <Typography
-            variant="h3"
-            style={{ fontWeight: 'bold', color: 'black' }}
-          >
-            GizmoHub
-          </Typography>
-        </Stack>
-      </Box>
-
-      {/* Content Section */}
       <Container>
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={slideIn}
-              transition={{ duration: 1 }}
-            >
-              <Typography variant="h5">Our Business Mission</Typography>
-              <Typography variant="body2" paragraph>
-                At GizmoHub, our mission is to enhance the lives of our
-                customers by providing an unparalleled online shopping
-                experience. We are dedicated to offering a diverse selection of
-                high-quality products that cater to every need, taste, and
-                lifestyle. Through innovation, transparency, and exceptional
-                customer service, we aim to be your trusted destination for
-                discovering, purchasing, and enjoying the latest trends and
-                essentials. We are committed to fostering a vibrant and
-                inclusive online community that celebrates diversity,
-                creativity, and individuality. Our mission is to empower you to
-                shop with confidence, knowing that we prioritize your
-                satisfaction, convenience, and well-being at every step of your
-                journey.
-              </Typography>
-            </motion.div>
+        <Box mt={5} mb={5}>
+          <Typography variant="h3" align="center" gutterBottom style={{ fontWeight: 'bold', color: theme.palette.primary.main }}>
+            Welcome to RM Hub
+          </Typography>
+        </Box>
+
+        {/* Company Mission and Image */}
+        <Box my={5}>
+          <motion.div initial="hidden" animate="visible" variants={slideIn} transition={{ duration: 1 }}>
+            <Typography variant="h5" gutterBottom color="secondary">Our Interdimensional Mission</Typography>
+            <Typography variant="body1" paragraph>
+              Here at RickAndMorty (RM) Hub, our mission is to be the premier destination for all things related to the universe of "Rick and Morty." Dive deep into the multiverse with our curated collection of merchandise, and stay updated with the latest episodes, theories, and interdimensional news.
+            </Typography>
+            <Link to="/purchase" style={{ textDecoration: 'none' }}>
+              <Button variant="contained" color="primary" startIcon={<Icon>shopping_cart</Icon>}>
+                Explore Merchandise
+              </Button>
+            </Link>
+          </motion.div>
+          <Box mt={4}>
+            <Link to="/rick-and-morty-gallery">
+              <img src={rickAndMortyImageUrl} alt="Rick and Morty" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }} />
+            </Link>
+          </Box>
+        </Box>
+
+
+        {/* Subsequent Sections Flexed Horizontally */}
+        <Box my={5}>
+          <Grid container spacing={4}>
+            {[
+              {
+                title: "Dive into the Lore",
+                content: "Discover the mysteries, theories, and backstories of each character and episode.",
+                button: { 
+                    label: "Discover More", 
+                    icon: "book_online", 
+                    variant: "outlined", 
+                    color: "secondary", 
+                    link: "https://en.wikipedia.org/wiki/Rick_and_Morty",
+                    type: "external"
+                }
+              },
+              {
+                title: "Latest Episode Updates",
+                content: "Never miss an adventure! Stay updated with episode recaps, reviews, and discussions.",
+                button: { 
+                    label: "View Episodes", 
+                    icon: "movie", 
+                    variant: "outlined", 
+                    color: "primary", 
+                    link: "https://www.adultswim.com/streams/rick-and-morty",
+                    type: "external"
+                }
+              },
+              {
+                title: "Join the Interdimensional Community",
+                content: "Engage with fans, theorists, and fellow adventurers from across the multiverse.",
+                button: { 
+                    label: "Join the Discussion", 
+                    icon: "group", 
+                    variant: "contained", 
+                    color: "primary", 
+                    link: "https://discord.com/invite/rickandmorty",
+                    type: "external"
+                }
+              },
+              {
+                title: "Exclusive Schwifty Deals",
+                content: "Get your hands on limited edition merchandise and interdimensional exclusives.",
+                button: { 
+                    label: "Get Schwifty", 
+                    icon: "star", 
+                    variant: "contained", 
+                    color: "secondary", 
+                    link: "/purchase",
+                    type: "internal"
+                }
+              }
+            ].map((section, index) => (
+              <Grid item xs={12} md={6} key={index}>
+                <motion.div initial="hidden" animate="visible" variants={slideIn} transition={{ duration: 1 + index * 0.1 }}>
+                  <Paper elevation={3} style={{ padding: '20px', borderRadius: '8px' }}>
+                    <Typography variant="h5" gutterBottom color="secondary">{section.title}</Typography>
+                    <Typography variant="body1" paragraph>{section.content}</Typography>
+                    
+                    {section.button.type === "external" ? (
+                      <a href={section.button.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                          <Button variant={section.button.variant} color={section.button.color} startIcon={section.button.icon && <Icon>{section.button.icon}</Icon>}>
+                              {section.button.label}
+                          </Button>
+                      </a>
+                    ) : (
+                      <Link to={section.button.link} style={{ textDecoration: 'none' }}>
+                          <Button variant={section.button.variant} color={section.button.color} startIcon={section.button.icon && <Icon>{section.button.icon}</Icon>}>
+                              {section.button.label}
+                          </Button>
+                      </Link>
+                    )}
+
+                  </Paper>
+                </motion.div>
+              </Grid>
+            ))}
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={slideIn}
-              transition={{ duration: 1 }}
-            >
-              <Typography variant="h5">
-                Product and Services Strategy
-              </Typography>
-              <Typography variant="body2" paragraph>
-                Our strategy focuses on innovation, customer satisfaction, and
-                sustainable growth in providing the best products and services.
-              </Typography>
-            </motion.div>
-          </Grid>
-        </Grid>
+        </Box>
       </Container>
     </ThemeProvider>
   );
