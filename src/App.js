@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import Navbar from './components/Navbar';
 import {
@@ -18,13 +17,16 @@ import OrderSummary from './features/orderSummary';
 import Confirmation from './features/confirmation';
 import AppFooter from './components/footer';
 import Home from './home';
+import { Container } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import customTheme from "./constants/customTheme"
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <div className="content">
+    <Router>
+      <Navbar />
+      <ThemeProvider theme={customTheme}>
+        <Container sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <Routes>
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/home" element={<Home />} />
@@ -44,10 +46,10 @@ function App() {
               element={<Confirmation />}
             />
           </Routes>
-        </div>
-        <AppFooter />
-      </Router>
-    </div>
+        </Container>
+      </ThemeProvider>
+      <AppFooter />
+    </Router >
   );
 }
 

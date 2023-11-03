@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  Container,
   Button,
   FormControl,
   InputLabel,
   Input,
   Stack,
+  Box,
+  Typography
 } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import customTheme from "../constants/customTheme"
+
 
 function Shipping() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { orderData, paymentData } = location.state || {};
+  const { order: orderData, payment: paymentData } = location.state || {};
 
   const [shippingData, setShippingData] = useState({
     address: '',
@@ -31,62 +31,70 @@ function Shipping() {
     });
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   const handleSubmit = () => {
-    navigate('/items/viewOrder', {
+    navigate('/purchase/summary', {
       state: {
-        orderData: orderData,
-        paymentData: paymentData,
-        shippingData: shippingData,
+        order: orderData,
+        payment: paymentData,
+        shipping: shippingData,
       },
     });
   };
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-        sx={{ m: 4 }}
-      >
-        <FormControl>
-          <InputLabel>Address</InputLabel>
-          <Input
-            value={shippingData.address}
-            onChange={handleUpdateShipping('address')}
-          />
-        </FormControl>
-
-        <FormControl>
-          <InputLabel>City</InputLabel>
-          <Input
-            value={shippingData.city}
-            onChange={handleUpdateShipping('city')}
-          />
-        </FormControl>
-
-        <FormControl>
-          <InputLabel>Postal Code</InputLabel>
-          <Input
-            value={shippingData.postalCode}
-            onChange={handleUpdateShipping('postalCode')}
-          />
-        </FormControl>
-
-        <FormControl>
-          <InputLabel>Country</InputLabel>
-          <Input
-            value={shippingData.country}
-            onChange={handleUpdateShipping('country')}
-          />
-        </FormControl>
-
-        <Button variant="contained" onClick={handleSubmit}>
-          Continue to Confirmation
-        </Button>
-      </Stack>
-    </ThemeProvider>
+    <Box my={5}>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+        Shipping Info
+      </Typography>
+      <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
+        <Stack spacing={2} mt={2}>
+          <FormControl>
+            <InputLabel>Address</InputLabel>
+            <Input
+              value={shippingData.address}
+              onChange={handleUpdateShipping('address')}
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel>City</InputLabel>
+            <Input
+              value={shippingData.city}
+              onChange={handleUpdateShipping('city')}
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel>Postal Code</InputLabel>
+            <Input
+              value={shippingData.postalCode}
+              onChange={handleUpdateShipping('postalCode')}
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel>Country</InputLabel>
+            <Input
+              value={shippingData.country}
+              onChange={handleUpdateShipping('country')}
+            />
+          </FormControl>
+          <Stack direction="row" justifyContent="space-between" mt={2}>
+            <Button variant="outlined" onClick={handleGoBack}>
+              Go Back
+            </Button>
+            <Button variant="contained" onClick={handleSubmit}>
+              Confirm
+            </Button>
+          </Stack>
+        </Stack>
+      </Box>
+    </Box>
   );
 }
 

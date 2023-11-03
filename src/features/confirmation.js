@@ -1,24 +1,20 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import {
-  TableRow,
-  TableContainer,
-  Table,
-  TableBody,
-  TableCell,
   Typography,
-  Box,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
   Paper,
 } from '@mui/material';
-
-const productNames = ['Monitor', 'Keyboard', 'Mouse'];
-const productPrices = [100, 40, 20];
+import { Link } from 'react-router-dom';
 
 function Confirmation() {
   const location = useLocation();
-  const { orderData, paymentData, shippingData } = location.state || {};
 
-  if (!orderData || !orderData.buyQuantity) {
+  const { order: orderData } = location.state || {};
+
+  if (!orderData) {
     return (
       <Typography variant="h6">
         Error: Order information not available.
@@ -26,62 +22,48 @@ function Confirmation() {
     );
   }
 
-  const totalItems = orderData.buyQuantity.reduce((acc, qty) => acc + qty, 0);
-
-  if (totalItems === 0) {
-    return <Typography variant="h6">You haven't ordered any items.</Typography>;
-  }
+  const getTotalPrice = () => {
+    return orderData.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2);
+  };
 
   return (
-    <Box p={4}>
-      <Typography variant="h4" gutterBottom>
-        Thank you, {shippingData?.name}!
-      </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+    <Paper my={5} elevation={3}>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
         Your order has been received. Here are the details:
       </Typography>
-
-      <Paper elevation={3}>
-        <TableContainer>
-          <Box mb={4}>
-            <Typography variant="h5" component="div" gutterBottom>
-              Order Confirmation
-            </Typography>
-          </Box>
-
-          <Table>
-            <TableBody>
-              {orderData.buyQuantity.map(
-                (quantity, index) =>
-                  quantity > 0 && (
-                    <TableRow key={index}>
-                      <TableCell>
-                        {productNames[index]} x{quantity} @ $
-                        {productPrices[index]} each
-                      </TableCell>
-                      <TableCell>${quantity * productPrices[index]}</TableCell>
-                    </TableRow>
-                  ),
-              )}
-              <TableRow>
-                <TableCell>
-                  <strong>Total</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>
-                    $
-                    {orderData.buyQuantity.reduce(
-                      (total, qty, idx) => total + qty * productPrices[idx],
-                      0,
-                    )}
-                  </strong>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
-    </Box>
+      <ImageList cols={5}>
+        {orderData.map((item) => (
+          <Link key={item.id} to={`/items/${item.id}`}
+            style={{
+              textDecoration: 'none',
+              color: 'black',
+              border: "1px solid #f5f5f5",
+              whiteSpace: "normal",
+              overflow: "hidden"
+            }}>
+            <ImageListItem key={item.thumbnailImage}>
+              <img
+                srcSet={`${item.thumbnailImage}?fit=crop&auto=format&dpr=2 2x`}
+                src={`${item.thumbnailImage}?fit=crop&auto=format`}
+                alt={item.name}
+                loading="lazy"
+              />
+              <ImageListItemBar
+                title={item.name}
+                subtitle={`$${item.price}`}
+                position="below"
+              />
+            </ImageListItem>
+          </Link>
+        ))}
+      </ImageList>
+      <Typography variant="h5">Total:</Typography>
+      <Typography variant="h5">{getTotalPrice()}</Typography>
+    </Paper>
   );
 }
 

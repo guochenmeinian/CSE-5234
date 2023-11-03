@@ -44,8 +44,15 @@ const AboutUs = () => {
       justifyContent="center"
       alignItems="center"
       spacing={2}
+      my={5}
     >
-      <Typography variant="h4">About Us</Typography>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+        About Us
+      </Typography>
       <Grid
         container
         spacing={3}

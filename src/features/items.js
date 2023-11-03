@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  Container,
   Box,
   ImageList,
   ImageListItem,
   ImageListItemBar,
 } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material/styles';
-import customTheme from "../constants/customTheme"
+
 
 function Items() {
   const { id } = useParams();
@@ -27,41 +25,38 @@ function Items() {
   }, []);
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <Container>
-        <Box
-          spacing={{ xs: 1, sm: 2, md: 4 }}
-          sx={{ p: 2, m: 2 }}
-        >
-          <ImageList cols={5}>
-            {items.map((item) => (
-              <Link key={item.id} to={`/items/${item.id}`}
-                style={{
-                  textDecoration: 'none',
-                  color: 'black',
-                  border: "1px solid #f5f5f5",
-                  whiteSpace: "normal",
-                  overflow: "hidden"
-                }}>
-                <ImageListItem key={item.thumbnailiImage}>
-                  <img
-                    srcSet={`${item.thumbnailiImage}?fit=crop&auto=format&dpr=2 2x`}
-                    src={`${item.thumbnailiImage}?fit=crop&auto=format`}
-                    alt={item.name}
-                    loading="lazy"
-                  />
-                  <ImageListItemBar
-                    title={item.name}
-                    subtitle={item.price}
-                    position="below"
-                  />
-                </ImageListItem>
-              </Link>
-            ))}
-          </ImageList>
-        </Box>
-      </Container>
-    </ThemeProvider>
+    <Box
+      spacing={{ xs: 1, sm: 2, md: 4 }}
+      sx={{ p: 2 }}
+      my={5}
+    >
+      <ImageList cols={5}>
+        {items.map((item) => (
+          <Link key={item.id} to={`/items/${item.id}`}
+            style={{
+              textDecoration: 'none',
+              color: 'black',
+              border: "1px solid #f5f5f5",
+              whiteSpace: "normal",
+              overflow: "hidden"
+            }}>
+            <ImageListItem key={item.thumbnailImage}>
+              <img
+                srcSet={`${item.thumbnailImage}?fit=crop&auto=format&dpr=2 2x`}
+                src={`${item.thumbnailImage}?fit=crop&auto=format`}
+                alt={item.name}
+                loading="lazy"
+              />
+              <ImageListItemBar
+                title={item.name}
+                subtitle={`$${item.price}`}
+                position="below"
+              />
+            </ImageListItem>
+          </Link>
+        ))}
+      </ImageList>
+    </Box>
   );
 }
 

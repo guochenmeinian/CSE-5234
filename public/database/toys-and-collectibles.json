@@ -4,24 +4,24 @@
             "id": 81,
             "name": "Funko Pop! Vinyl Figures",
             "description": "A collection of vinyl figures featuring various characters from the show, perfect for collectors.",
-            "price": "$12.99",
-            "thumbnailiImage": "/items-icons/thumbnail-funko-pop!-rick-and-morty-vinyl-figures.png",
+            "price": "12.99",
+            "thumbnailImage": "/items-icons/thumbnail-funko-pop!-rick-and-morty-vinyl-figures.png",
             "actualImage": "/items-icons/funko-pop!-rick-and-morty-vinyl-figures.png"
         },
         {
             "id": 82,
             "name": "Portal Gun Prop Replica",
             "description": "A high-quality prop replica of Rick's portal gun for cosplayers and collectors.",
-            "price": "$59.99",
-            "thumbnailiImage": "/items-icons/thumbnail-portal-gun-prop-replica.png",
+            "price": "59.99",
+            "thumbnailImage": "/items-icons/thumbnail-portal-gun-prop-replica.png",
             "actualImage": "/items-icons/portal-gun-prop-replica.png"
         },
         {
             "id": 83,
             "name": "Rick and Morty Plushies",
             "description": "Soft and huggable plush toys in the likeness of Rick, Morty, and other characters.",
-            "price": "$9.99",
-            "thumbnailiImage": "/items-icons/thumbnail-rick-and-morty-plushies.png",
+            "price": "9.99",
+            "thumbnailImage": "/items-icons/thumbnail-rick-and-morty-plushies.png",
             "actualImage": "/items-icons/rick-and-morty-plushies.png"
         }
     ]
