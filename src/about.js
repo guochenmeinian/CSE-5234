@@ -15,7 +15,7 @@ const teamMembers = [
   {
     name: 'Chenmeinian Guo',
     title: 'CEO',
-    image: '/morty1.png',
+    image: '/avatar-icons/rick.png',
     description:
       'Chenmeinian has been leading the team since inception and has a knack for innovation.',
     website: 'https://github.com/guochenmeinian',
@@ -23,7 +23,7 @@ const teamMembers = [
   {
     name: 'Jiaqian Huang',
     title: 'CTO',
-    image: '/morty2.png',
+    image: '/avatar-icons/summer.png',
     description:
       'Jiaqian has a vast experience in tech and has been pivotal to our technical strategies.',
     website: 'https://github.com/authordottle',
@@ -31,7 +31,7 @@ const teamMembers = [
   {
     name: 'Hannes Scutt',
     title: 'COO',
-    image: '/morty3.png',
+    image: '/avatar-icons/morty.png',
     description:
       'Hannes ensures smooth operations and execution of our day-to-day activities.',
   },
@@ -44,8 +44,15 @@ const AboutUs = () => {
       justifyContent="center"
       alignItems="center"
       spacing={2}
+      my={5}
     >
-      <Typography variant="h4">About Us</Typography>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+        About Us
+      </Typography>
       <Grid
         container
         spacing={3}

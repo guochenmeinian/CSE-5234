@@ -3,6 +3,8 @@ const cors = require('cors');
 const app = apiServer();
 const port = 5000; // Choose desired port
 const db = require('./db');
+const fs = require('fs');
+const path = require('path');
 
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -17,43 +19,98 @@ app.use(cors(corsOptions));
 app.use(apiServer.json());
 
 // API endpoints
-// Get all items from inventory
+// Get all categories from inventory
 // todo: connect with database and replace the sample data
-app.get('/api/inventory/items', (req, res) => {
-  const items = [
-    { id: 1, name: 'Monitor', price: '100' },
-    { id: 2, name: 'Keyboard', price: '40' },
-    { id: 3, name: 'Mouse', price: '20' },
+app.get('/api/inventory/categories', (req, res) => {
+  const categories = [
+    { id: 1, name: 'Accessories', image: '/category-icons/accessories.png' },
+    { id: 2, name: 'Books And Comics', image: '/category-icons/books-and-comics.png' },
+    { id: 3, name: 'Clothing And Apparel', image: '/category-icons/clothing-and-apparel.png' },
+    { id: 4, name: 'Games And Puzzles', image: '/category-icons/games-and-puzzles.png' },
+    { id: 5, name: 'Home And Kitchenware', image: '/category-icons/home-and-kitchenware.png' },
+    { id: 6, name: 'Toys And Collectibles', image: '/category-icons/toys-and-collectibles.png' },
   ];
 
-  res.json(items);
+  res.json(categories);
+});
+
+// Get all items from inventory
+// todo: connect with database and replace the sample data
+app.get('/api/inventory/categories/:id/items', (req, res) => {
+  const categoryId = req.params.id;
+  let jsonFileName = "";
+  switch (categoryId) {
+    case "1":
+      jsonFileName = "accessories";
+      break;
+    case "2":
+      jsonFileName = "books-and-comics";
+      break;
+    case "3":
+      jsonFileName = "clothing-and-apparel";
+      break;
+    case "4":
+      jsonFileName = "games-and-puzzles";
+      break;
+    case "5":
+      jsonFileName = "home-and-kitchenware";
+      break;
+    case "6":
+      jsonFileName = "toys-and-collectibles";
+      break;
+  }
+  const jsonFilePath = path.join(__dirname, "..", 'public/database', `${jsonFileName}.json`);
+  fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading JSON file:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.json(JSON.parse(data));
+    }
+  });
 });
 
 // Get one item from inventory
 // todo: connect with database and replace the sample data
-app.get('/api/inventory/items/{id}', (req, res) => {
-  const item = [{ id: 1, name: 'Monitor', price: '100' }];
+app.get('/api/inventory/items/:id', (req, res) => {
+  const idToFind = parseInt(req.params.id);
+  let jsonFileName = "";
+  if (idToFind <= 20) {
+    jsonFileName = "accessories";
+  }
+  else if (idToFind <= 40) {
+    jsonFileName = "books-and-comics";
+  }
+  else if (idToFind <= 60) {
+    jsonFileName = "clothing-and-apparel";
+  }
+  else if (idToFind <= 70) {
+    jsonFileName = "games-and-puzzles";
+  }
+  else if (idToFind <= 80) {
+    jsonFileName = "home-and-kitchenware";
+  }
+  else if (idToFind <= 90) {
+    jsonFileName = "toys-and-collectibles";
+  }
+  const jsonFilePath = path.join(__dirname, "..", 'public/database', `${jsonFileName}.json`);
+  fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading JSON file:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      const records = JSON.parse(data);
 
-  res.json(item);
-});
+      // Find the record with the specified ID
+      const foundRecord = records.items.find((record) => record.id === idToFind);
 
-// Get all order records from orders
-// todo: connect with database and replace the sample data
-app.get('/api/orders/records', (req, res) => {
-  const records = [
-    { id: 1, title: 'Order 1', content: 'Content 1' },
-    { id: 2, title: 'Order 2', content: 'Content 2' },
-  ];
-
-  res.json(records);
-});
-
-// Get one order record from orders
-// todo: connect with database and replace the sample data
-app.get('/api/orders/records/{id}', (req, res) => {
-  const record = [{ id: 1, title: 'Order 1', content: 'Content 1' }];
-
-  res.json(record);
+      if (foundRecord) {
+        res.json(foundRecord);
+      } else {
+        res.status(404).send('Record not found');
+      }
+    }
+  });
 });
 
 // Create one order record
@@ -70,23 +127,6 @@ app.post('/api/orders/records', (req, res) => {
 
   // Return the created post in the response
   // res.status(201).json(newOrderRecord);
-});
-
-app.put('/api/orders/records/:id', (req, res) => {
-  const orderRecordId = req.params.id; // Get the post ID from the route parameters
-
-  // todo: Find the post in your data storage by its ID
-  // const orderRecordToUpdate = orders.find((order) => order.id === orderRecordId);
-  // if (!orderRecordToUpdate) {
-  //     return res.status(404).json({ error: 'Record not found' });
-  // }
-
-  // todo: Update the post with the data from the request body
-  // orderRecordToUpdate.title = req.body.title;
-  // orderRecordToUpdate.content = req.body.content;
-
-  // Return the updated post
-  // res.json(orderRecordToUpdate);
 });
 
 // Start the server
