@@ -36,7 +36,7 @@ const AppFooter = () => (
           {
             icon: <img src="/other-images/footer-deploy-site-icon.png" alt="Deploy Site" />,
             title: 'Deploy Site',
-            url: 'https://main.d2v8q1c89t29jt.amplifyapp.com',
+            url: 'https://main.d3gz5bx2dbf7cg.amplifyapp.com',
             description: '',
             openExternal: true,
           },
