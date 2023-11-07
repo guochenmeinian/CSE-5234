@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "cse5234b3d82754",
+            "processPayment",
             {
               "Fn::Join": [
                 "",
                 [
-                  "cse5234b3d82754",
+                  "processPayment",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "cse5234LambdaRole05775891",
+            "cse5234LambdaRole582f9f84",
             {
               "Fn::Join": [
                 "",
                 [
-                  "cse5234LambdaRole05775891",
+                  "cse5234LambdaRole582f9f84",
                   "-",
                   {
                     "Ref": "env"

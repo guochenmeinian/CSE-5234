@@ -1,0 +1,74 @@
+type Item
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"], operations: [create, update, delete, read] },
+      { allow: private, operations: [read] },
+      { allow: public, operations: [read] }
+    ]
+  ) {
+    id: ID!
+    title: String!
+    description: String!
+    image: String!
+    color: String!
+    sale: Boolean
+    price: Float
+    orders: [ItemOrder] @hasMany
+  }
+
+type ItemOrder 
+  @model(queries: null, subscriptions: null)
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read] },
+      { allow: groups, groups: ["Admin"], operations: [create, update, delete, read] }
+    ]
+  ) {
+    id: ID!
+    item_id: ID!
+    order_id: ID!
+    item: Item @belongsTo(fields: ["item_id"])
+    order: Order @belongsTo(fields: ["order_id"])
+  }
+
+type Order
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      { allow: owner, operations: [read] },
+      { allow: groups, groups: ["Admin"], operations: [create, update, delete, read] }
+    ]
+  ) {
+    id: ID!
+    customerEmail: String @index(name: "byCustomerEmail")
+    date: AWSDateTime
+    total: Float
+    items: [ItemOrder] @hasMany
+  }
+
+enum OrderStatus {
+  SUCCESS
+  FAILED
+}
+
+input CartItem {
+  id: ID!
+  title: String
+  image: String
+  price: Float
+  amount: Int
+}
+
+input ProcessOrderInput {
+  cart: [CartItem]
+  total: Float!
+  token: String!
+  address: String!
+}
+
+type Mutation {
+  processOrder(input: ProcessOrderInput!): OrderStatus
+    @function(name: "processPayment-${env}")
+    @function(name: "createOrder-${env}")
+}
