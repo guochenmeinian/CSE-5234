@@ -9,7 +9,19 @@
       "UnauthRoleName": "amplify-cse5234-dev-22755-unauthRole",
       "StackName": "amplify-cse5234-dev-22755",
       "StackId": "arn:aws:cloudformation:us-east-2:231247894294:stack/amplify-cse5234-dev-22755/4aca4320-7adb-11ee-9088-067f114c23f1",
-      "AmplifyAppId": "d3gz5bx2dbf7cg"
+      "AmplifyAppId": "d3gz5bx2dbf7cg",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-cse5234-dev-22755-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "function": {
+        "cse5234b3d82754": {
+          "deploymentBucketName": "amplify-cse5234-dev-22755-deployment",
+          "s3Key": "amplify-builds/cse5234b3d82754-74354d53667238374b63-build.zip"
+        }
+      },
+      "api": {
+        "api2e53c8f7": {}
+      }
     }
   }
 }
