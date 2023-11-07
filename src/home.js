@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Button, Icon, Box, Grid, Paper } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
 
 const Home = () => {
@@ -14,34 +15,45 @@ const Home = () => {
 
   return (
     <Box>
-      <Box my={5}>
-        <Typography
-          variant="h3"
-          align="center"
-          gutterBottom
-          sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
-          Welcome to RM Hub
+      {/* Intro Section */}
+      <Box my={5} textAlign="center">
+        <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold' }}>
+          Welcome to the RM Hub
+        </Typography>
+        <Typography variant="h6" color="text.secondary">
+          Your portal to the Rick and Morty universe
         </Typography>
       </Box>
-      {/* Company Mission and Image */}
-      <Box my={5}>
-        <motion.div initial="hidden" animate="visible" variants={slideIn} transition={{ duration: 1 }}>
-          <Typography variant="h5" gutterBottom color="secondary">Our Interdimensional Mission</Typography>
-          <Typography variant="body1" paragraph>
-            Here at RickAndMorty (RM) Hub, our mission is to be the premier destination for all things related to the universe of "Rick and Morty." Dive deep into the multiverse with our curated collection of merchandise, and stay updated with the latest episodes, theories, and interdimensional news.
+
+      {/* Video Section */}
+      <Box my={5} display="flex" justifyContent="center">
+        <Box maxWidth="960px" >
+          <ReactPlayer url="https://www.youtube.com/watch?v=BKYJ5AIOU9I" controls={true} width="100%" />
+          <Typography variant="subtitle1" color="text.secondary" mt={2}>
+            Immerse yourself in the latest interdimensional escapades with Rick and Morty in this featured episode.
           </Typography>
-          <Link to="/categories" style={{ textDecoration: 'none' }}>
-            <Button variant="contained" color="primary" startIcon={<Icon>shopping_cart</Icon>}>
-              Explore Merchandise
-            </Button>
-          </Link>
-        </motion.div>
-        <Box mt={4}>
-          <Link to="/rick-and-morty-gallery">
-            <img src={rickAndMortyImageUrl} alt="Rick and Morty" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }} />
-          </Link>
         </Box>
       </Box>
+
+      {/* Image and Mission */}
+      <Box my={5} display="flex" justifyContent="center" flexDirection="column" alignItems="center">
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 'medium' }}>
+          Our Interdimensional Mission
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 3 }}>
+          At RickAndMorty (RM) Hub, we transcend ordinary fandom. Our mission is to forge a vibrant community of enthusiasts deeply immersed in the rich narrative of the show. We're dedicated to providing exclusive content, detailed episode breakdowns, and forums for discussion. Unravel the mysteries of the multiverse, get insights from creators, and participate in fan-led events. Become part of a collective that celebrates every nuance of this cosmic journey.
+        </Typography>
+        <Link to="/mission" style={{ textDecoration: 'none' }}>
+          <Button variant="contained" color="primary">
+            Learn About Our Mission
+          </Button>
+        </Link>
+        <Box mt={4}>
+          <img src={rickAndMortyImageUrl} alt="Rick and Morty" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />
+        </Box>
+      </Box>
+
+
       {/* Subsequent Sections Flexed Horizontally */}
       <Box my={5}>
         <Grid container spacing={4}>
@@ -59,14 +71,14 @@ const Home = () => {
               }
             },
             {
-              title: "Latest Episode Updates",
-              content: "Never miss an adventure! Stay updated with episode recaps, reviews, and discussions.",
+              title: "Behind The Scenes",
+              content: "Get a peek at the making of your favorite episodes with exclusive behind-the-scenes content.",
               button: {
-                label: "View Episodes",
-                icon: "movie",
+                label: "Go Behind the Scenes",
+                icon: "camera_enhance",
                 variant: "outlined",
                 color: "primary",
-                link: "https://www.adultswim.com/streams/rick-and-morty",
+                link: "https://www.youtube.com/watch?v=RlkJF-FTOQU",
                 type: "external"
               }
             },
