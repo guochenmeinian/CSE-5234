@@ -4,7 +4,7 @@ import { Stack, Typography, Box, Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 
-function Item() {
+function Item({ addItemToCart }) {
   const [item, setItem] = useState([]);
   const { id } = useParams();
 
@@ -21,7 +21,7 @@ function Item() {
   }, []);
 
   function handleAddClick() {
-    // todo:
+    addItemToCart(item);
   }
 
   return (

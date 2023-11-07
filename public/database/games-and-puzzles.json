@@ -28,19 +28,25 @@
         "id": 64,
         "name": "Rick and Morty: Close Rick-Counters of the Rick Kind Deck-Building Game",
         "description": "A deck-building card game where players take on the roles of different Ricks, battling for supremacy.",
-        "price": "39.99"
+        "price": "39.99",
+        "thumbnailImage": "/other-images/placeholder-image.png",
+        "actualImage": "/other-images/placeholder-image.png"
       },
       {
         "id": 65,
         "name": "Rick and Morty: The Ricks Must Be Crazy Multiverse Game",
         "description": "A strategy game that lets players create and control their own mini-universe.",
-        "price": "49.99"
+        "price": "49.99",
+        "thumbnailImage": "/other-images/placeholder-image.png",
+        "actualImage": "/other-images/placeholder-image.png"
       },
       {
         "id": 66,
         "name": "Rick and Morty 1000-Piece Jigsaw Puzzle",
         "description": "A jigsaw puzzle featuring a colorful and detailed design inspired by the show.",
-        "price": "19.99"
+        "price": "19.99",
+        "thumbnailImage": "/other-images/placeholder-image.png",
+        "actualImage": "/other-images/placeholder-image.png"
       },
       {
         "id": 67,

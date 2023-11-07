@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import {
   BrowserRouter as Router,
@@ -22,19 +22,36 @@ import { ThemeProvider } from '@mui/material/styles';
 import customTheme from "./constants/customTheme"
 
 function App() {
+  const [cartItems, setCartItems] = useState([]);
+
+  const removeAllItemsFromCart = () => {
+    setCartItems([]);
+  };
+
+  const removeItemFromCart = (id) => {
+    const newCartItems = cartItems.filter(item => {
+      return item.id !== id;
+    });
+    setCartItems(newCartItems);
+  };
+
+  const addItemToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
   return (
     <Router>
-      <Navbar />
+      <Navbar numberOfCartItems={cartItems.length} />
       <ThemeProvider theme={customTheme}>
         <Container sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <Routes>
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart cartItems={cartItems} removeItemFromCart={removeItemFromCart} />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:id/items" element={<Items />} />
-            <Route path="/items/:id" element={<Item />} />
+            <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
             <Route path="/purchase/payment" element={<Payment />} />
             <Route
               path="/purchase/shipping"
@@ -43,7 +60,7 @@ function App() {
             <Route path="/purchase/summary" element={<OrderSummary />} />
             <Route
               path="/purchase/confirmation"
-              element={<Confirmation />}
+              element={<Confirmation removeAllItemsFromCart={removeAllItemsFromCart} />}
             />
           </Routes>
         </Container>
