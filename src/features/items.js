@@ -17,7 +17,7 @@ function Items() {
     axios
       .get(`http://localhost:5000/api/inventory/categories/${id}/items`)
       .then((response) => {
-        setItems(response.data.items);
+        setItems(response.data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -40,10 +40,10 @@ function Items() {
               whiteSpace: "normal",
               overflow: "hidden"
             }}>
-            <ImageListItem key={item.thumbnailImage}>
+            <ImageListItem key={item.thumbnail_image}>
               <img
-                srcSet={`${item.thumbnailImage}?fit=crop&auto=format&dpr=2 2x`}
-                src={`${item.thumbnailImage}?fit=crop&auto=format`}
+                srcSet={`${item.thumbnail_image}?fit=crop&auto=format&dpr=2 2x`}
+                src={`${item.thumbnail_image}?fit=crop&auto=format`}
                 alt={item.name}
                 loading="lazy"
               />
