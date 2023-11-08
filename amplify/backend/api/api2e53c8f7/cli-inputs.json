@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/items/{id}": {
+      "name": "/items/{id}",
+      "lambdaFunction": "cse5234b3d82754",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}
