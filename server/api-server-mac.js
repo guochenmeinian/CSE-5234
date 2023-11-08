@@ -45,10 +45,23 @@ app.get('/api/inventory/categories', (req, res) => {
   });
 });
 
-// Get all items from inventory
+// Get all items for category from inventory
 app.get('/api/inventory/categories/:id/items', (req, res) => {
   const categoryId = req.params.id;
   const sql = `SELECT * FROM products where category_id = ${categoryId}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error('Error executing query: ' + err);
+      res.status(500).json({ error: 'An error occurred' });
+      return;
+    }
+    res.json(result);
+  });
+});
+
+// Get all items from inventory
+app.get('/api/inventory/items', (req, res) => {
+  const sql = `SELECT * FROM products`;
   db.query(sql, (err, result) => {
     if (err) {
       console.error('Error executing query: ' + err);

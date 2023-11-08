@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
-function NavBar() {
+function NavBar({ numberOfCartItems }) {
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -41,12 +41,12 @@ function NavBar() {
             <li className="nav-item">
               <NavLink
                 exact
-                to="/categories"
+                to="/purchase"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                Categories
+                Purchase
               </NavLink>
             </li>
             <li className="nav-item">
@@ -57,7 +57,7 @@ function NavBar() {
                 className="nav-links"
                 onClick={handleClick}
               >
-                Shopping Cart
+                Shopping Cart {numberOfCartItems > 0 ? `(${numberOfCartItems})` : ""}
               </NavLink>
             </li>
           </ul>
