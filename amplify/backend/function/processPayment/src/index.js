@@ -32,8 +32,8 @@ exports.handler = async (event) => {
         const email = await getUserEmail(event);
 
         await stripe.charges.create({
-            amount = total * 100,
-            currency = "usd",
+            amount: total * 100,
+            currency: "usd",
             source: token,
             description: `Order ${new Date()} by ${username} with ${email}`
         });

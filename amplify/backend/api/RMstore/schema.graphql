@@ -12,7 +12,7 @@ type Item
     description: String!
     image: String!
     color: String!
-    sale: Boolean
+    onSale: Boolean
     price: Float
     orders: [ItemOrder] @hasMany
   }

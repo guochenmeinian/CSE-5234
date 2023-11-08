@@ -16,11 +16,11 @@
       "function": {
         "createOrder": {
           "deploymentBucketName": "amplify-cse5234-dev-22755-deployment",
-          "s3Key": "amplify-builds/createOrder-5535463952684254506f-build.zip"
+          "s3Key": "amplify-builds/createOrder-6a5174672b4e44676965-build.zip"
         },
         "processPayment": {
           "deploymentBucketName": "amplify-cse5234-dev-22755-deployment",
-          "s3Key": "amplify-builds/processPayment-51496e72547051366558-build.zip"
+          "s3Key": "amplify-builds/processPayment-793846334261622b3247-build.zip"
         }
       },
       "auth": {
