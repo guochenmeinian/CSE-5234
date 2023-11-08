@@ -41,12 +41,12 @@ function NavBar({ numberOfCartItems }) {
             <li className="nav-item">
               <NavLink
                 exact
-                to="/categories"
+                to="/purchase"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                Categories
+                Purchase
               </NavLink>
             </li>
             <li className="nav-item">

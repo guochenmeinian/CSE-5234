@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import About from './about';
 import Cart from './features/cart';
+import Purchase from './features/purchase';
 import Categories from './features/categories';
 import Items from './features/items';
 import Item from './features/item';
@@ -49,6 +50,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart cartItems={cartItems} removeItemFromCart={removeItemFromCart} />} />
+            <Route path="/purchase" element={<Purchase />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:id/items" element={<Items />} />
             <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
