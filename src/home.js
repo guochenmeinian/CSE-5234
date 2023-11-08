@@ -11,8 +11,6 @@ const Home = () => {
     visible: { x: 0 },
   };
 
-  const rickAndMortyImageUrl = "https://wallpaperaccess.com/full/5112240.jpg";
-
   return (
     <Box>
       {/* Intro Section */}
@@ -48,10 +46,11 @@ const Home = () => {
             Learn About Our Mission
           </Button>
         </Link>
-        <Box mt={4}>
-          <img src={rickAndMortyImageUrl} alt="Rick and Morty" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />
+        <Box mt={4} sx={{ width: '100%', maxWidth: '1200px' }}> {/* Increase max width for larger display */}
+          <img src="/other-images/homepage.png" alt="Rick and Morty" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
         </Box>
       </Box>
+
 
 
       {/* Subsequent Sections Flexed Horizontally */}

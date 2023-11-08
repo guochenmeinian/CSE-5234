@@ -14,13 +14,23 @@
     },
     "categories": {
       "function": {
-        "cse5234b3d82754": {
+        "createOrder": {
           "deploymentBucketName": "amplify-cse5234-dev-22755-deployment",
-          "s3Key": "amplify-builds/cse5234b3d82754-74354d53667238374b63-build.zip"
+          "s3Key": "amplify-builds/createOrder-6a5174672b4e44676965-build.zip"
+        },
+        "processPayment": {
+          "deploymentBucketName": "amplify-cse5234-dev-22755-deployment",
+          "s3Key": "amplify-builds/processPayment-793846334261622b3247-build.zip"
         }
       },
+      "auth": {
+        "cse52341a8c5561": {}
+      },
       "api": {
-        "api2e53c8f7": {}
+        "RMstore": {}
+      },
+      "storage": {
+        "ItemImages": {}
       }
     }
   }

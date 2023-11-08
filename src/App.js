@@ -7,20 +7,20 @@ import {
   Navigate,
 } from 'react-router-dom';
 import About from './about';
-import Cart from './features/cart';
-import Purchase from './features/purchase';
-import Categories from './features/categories';
-import Items from './features/items';
-import Item from './features/item';
-import Payment from './features/payment';
-import Shipping from './features/shipping';
-import OrderSummary from './features/orderSummary';
-import Confirmation from './features/confirmation';
+import Cart from './pages/cart';
+import Categories from './pages/categories';
+import Items from './pages/items';
+import Item from './pages/item';
+import Payment from './pages/payment';
+import Shipping from './pages/shipping';
+import OrderSummary from './pages/orderSummary';
+import Confirmation from './pages/confirmation';
 import AppFooter from './components/footer';
+import PurchaseItems from './pages/purchase';
 import Home from './home';
 import { Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import customTheme from "./constants/customTheme"
+import customTheme from "./customTheme"
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -49,8 +49,7 @@ function App() {
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/cart" element={<Cart cartItems={cartItems} removeItemFromCart={removeItemFromCart} />} />
-            <Route path="/purchase" element={<Purchase />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:id/items" element={<Items />} />
             <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
