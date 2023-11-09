@@ -33,7 +33,7 @@ const teamMembers = [
     title: 'COO',
     image: '/avatar-icons/morty.png',
     description:
-      'Hannes ensures smooth operations and the execution of our essential day-to-day activities.',
+      'Hannes ensures smooth operations and the execution of our day-to-day activities.',
   },
 ];
 
