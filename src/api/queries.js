@@ -8,8 +8,7 @@ export const getItem = /* GraphQL */ `
       title
       description
       image
-      color
-      sale
+      onSale
       price
       orders {
         nextToken
@@ -33,8 +32,7 @@ export const listItems = /* GraphQL */ `
         title
         description
         image
-        color
-        sale
+        onSale
         price
         createdAt
         updatedAt

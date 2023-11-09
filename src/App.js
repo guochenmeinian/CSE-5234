@@ -16,7 +16,7 @@ import Shipping from './pages/shipping';
 import OrderSummary from './pages/orderSummary';
 import Confirmation from './pages/confirmation';
 import AppFooter from './components/footer';
-import PurchaseItems from './pages/purchase';
+import Admin from './pages/admin';
 import Home from './home';
 import { Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -52,6 +52,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:id/items" element={<Items />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
             <Route path="/purchase/payment" element={<Payment />} />
             <Route

@@ -12,3 +12,49 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* auth-styles.css */
+
+.auth-container {
+  width: 50%;
+  margin: auto;
+  border: 1px #c7c7c7 solid;
+  padding: 2rem;
+  text-align: center;
+}
+
+.auth-header {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333; /* Change as needed */
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form input {
+  width: 80%;
+  height: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  border: 1px solid #c7c7c7;
+  padding: 0.5rem;
+}
+
+.auth-button {
+  width: 80%;
+  height: 3rem;
+  background-color: #4caf50; /* Example color, change as needed */
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* Add more styles as needed */

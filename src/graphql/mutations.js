@@ -16,8 +16,7 @@ export const createItem = /* GraphQL */ `
       title
       description
       image
-      color
-      sale
+      onSale
       price
       orders {
         nextToken
@@ -39,8 +38,7 @@ export const updateItem = /* GraphQL */ `
       title
       description
       image
-      color
-      sale
+      onSale
       price
       orders {
         nextToken
@@ -62,8 +60,7 @@ export const deleteItem = /* GraphQL */ `
       title
       description
       image
-      color
-      sale
+      onSale
       price
       orders {
         nextToken
@@ -89,8 +86,7 @@ export const createItemOrder = /* GraphQL */ `
         title
         description
         image
-        color
-        sale
+        onSale
         price
         createdAt
         updatedAt
@@ -129,8 +125,7 @@ export const updateItemOrder = /* GraphQL */ `
         title
         description
         image
-        color
-        sale
+        onSale
         price
         createdAt
         updatedAt
@@ -169,8 +164,7 @@ export const deleteItemOrder = /* GraphQL */ `
         title
         description
         image
-        color
-        sale
+        onSale
         price
         createdAt
         updatedAt

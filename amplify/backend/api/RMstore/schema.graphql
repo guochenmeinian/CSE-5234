@@ -10,10 +10,9 @@ type Item
     id: ID!
     title: String!
     description: String!
-    image: String!
-    color: String!
+    image: String
     onSale: Boolean
-    price: Float
+    price: Float!
     orders: [ItemOrder] @hasMany
   }
 
@@ -64,7 +63,7 @@ input ProcessOrderInput {
   cart: [CartItem]
   total: Float!
   token: String!
-  address: String!
+  address: String
 }
 
 type Mutation {

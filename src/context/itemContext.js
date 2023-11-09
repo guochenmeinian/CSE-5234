@@ -31,15 +31,16 @@ const ItemProvider = ({ children }) => {
   const fetchItems = async () => {
     try {
       // Switch authMode to API_KEY for public access
+      setLoading(true);
       const { data } = await API.graphql(graphqlOperation(listItems, null, { authMode: "API_KEY" }));
       const fetchedItems = data.listItems.items;
       const onSaleItems = fetchedItems.filter((item) => item.onSale);
       setItems(fetchedItems);
       setOnSale(onSaleItems);
+      setLoading(false);
     } catch (err) {
       console.error("Error fetching items:", err);
     }
-    setLoading(false);
   };
 
   return (

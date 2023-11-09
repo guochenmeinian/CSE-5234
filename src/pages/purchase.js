@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import {
   Box,
@@ -11,19 +11,9 @@ import { ItemContext } from '../context/itemContext';
 
 
 function Purchase() {
-  const { id } = useParams();
-  const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/inventory/items`)
-      .then((response) => {
-        setItems(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+  const { items } = useContext(ItemContext);
+  
 
   return (
     <Box
@@ -31,32 +21,7 @@ function Purchase() {
       sx={{ p: 2 }}
       my={5}
     >
-      <ImageList cols={5}>
-        {items.map((item) => (
-          <Link key={item.id} to={`/items/${item.id}`}
-            style={{
-              textDecoration: 'none',
-              color: 'black',
-              border: "1px solid #f5f5f5",
-              whiteSpace: "normal",
-              overflow: "hidden"
-            }}>
-            <ImageListItem key={item.thumbnail_image}>
-              <img
-                srcSet={`${item.thumbnail_image}?fit=crop&auto=format&dpr=2 2x`}
-                src={`${item.thumbnail_image}?fit=crop&auto=format`}
-                alt={item.name}
-                loading="lazy"
-              />
-              <ImageListItemBar
-                title={item.name}
-                subtitle={`$${item.price}`}
-                position="below"
-              />
-            </ImageListItem>
-          </Link>
-        ))}
-      </ImageList>
+      
     </Box>
   );
 }
