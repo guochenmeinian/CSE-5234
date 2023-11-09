@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import {
   Box,
+  Container,
   ImageList,
   ImageListItem,
   ImageListItemBar,
@@ -12,17 +13,14 @@ import { ItemContext } from '../context/itemContext';
 
 function Purchase() {
 
-  const { items } = useContext(ItemContext);
-  
+  const {products} = useContext(ItemContext) || {}; // bug: context is just null for no unknown reason
+
+  if (false) {
+    return <h3>No Item Available</h3>
+  }
 
   return (
-    <Box
-      spacing={{ xs: 1, sm: 2, md: 4 }}
-      sx={{ p: 2 }}
-      my={5}
-    >
-      
-    </Box>
+      <h1>hi</h1>
   );
 }
 

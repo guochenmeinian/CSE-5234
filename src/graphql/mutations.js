@@ -94,7 +94,7 @@ export const createItemOrder = /* GraphQL */ `
       }
       order {
         id
-        customerEmail
+        user
         date
         total
         createdAt
@@ -133,7 +133,7 @@ export const updateItemOrder = /* GraphQL */ `
       }
       order {
         id
-        customerEmail
+        user
         date
         total
         createdAt
@@ -172,7 +172,7 @@ export const deleteItemOrder = /* GraphQL */ `
       }
       order {
         id
-        customerEmail
+        user
         date
         total
         createdAt
@@ -196,7 +196,7 @@ export const createOrder = /* GraphQL */ `
   ) {
     createOrder(input: $input, condition: $condition) {
       id
-      customerEmail
+      user
       date
       total
       items {
@@ -217,7 +217,7 @@ export const updateOrder = /* GraphQL */ `
   ) {
     updateOrder(input: $input, condition: $condition) {
       id
-      customerEmail
+      user
       date
       total
       items {
@@ -238,7 +238,7 @@ export const deleteOrder = /* GraphQL */ `
   ) {
     deleteOrder(input: $input, condition: $condition) {
       id
-      customerEmail
+      user
       date
       total
       items {

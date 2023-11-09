@@ -7,44 +7,47 @@ import { processOrder } from "../api/mutations";
 const ItemContext = React.createContext();
 
 const ItemProvider = ({ children }) => {
-  const [items, setItems] = useState([]);
+  const [products, setProducts] = useState([]);
   const [onSale, setOnSale] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
-    fetchItems();
+    fetchProducts();
   }, []);
 
   const checkout = async (orderDetails) => {
-    const payload = {
-      id: uuidv4(), 
-      ...orderDetails
-    };
     try {
+      const payload = {
+        id: uuidv4(),
+        ...orderDetails
+      };
       await API.graphql(graphqlOperation(processOrder, { input: payload }));
       console.log("Order is successful");
     } catch (err) {
-      console.log(err);
+      console.log("Error processing order:", err);
+      setError(err); // Set error state
     }
   };
 
-  const fetchItems = async () => {
+  const fetchProducts = async () => {
+    setError(null); // Reset error state before fetching
     try {
-      // Switch authMode to API_KEY for public access
       setLoading(true);
-      const { data } = await API.graphql(graphqlOperation(listItems, null, { authMode: "API_KEY" }));
-      const fetchedItems = data.listItems.items;
-      const onSaleItems = fetchedItems.filter((item) => item.onSale);
-      setItems(fetchedItems);
-      setOnSale(onSaleItems);
+      const response = await API.graphql(graphqlOperation(listItems, { authMode: "API_KEY" }));
+      const fetchedProducts = response?.data?.listItems?.items || [];
+      const onSaleProducts = fetchedProducts.filter(item => item.onSale);
+      setProducts(fetchedProducts);
+      setOnSale(onSaleProducts);
       setLoading(false);
     } catch (err) {
-      console.error("Error fetching items:", err);
+      console.error("Error fetching products:", err);
+      setError(err); // Set error state
     }
   };
 
   return (
-    <ItemContext.Provider value={{ items, onSale, loading, checkout }}>
+    <ItemContext.Provider value={{ products, onSale, loading, checkout, error }}>
       {children}
     </ItemContext.Provider>
   );

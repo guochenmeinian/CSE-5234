@@ -2,7 +2,7 @@ type Item
   @model(subscriptions: null)
   @auth(
     rules: [
-      { allow: groups, groups: ["Admin"], operations: [create, update, delete, read] },
+      { allow: groups, groups: ["Admin"] },
       { allow: private, operations: [read] },
       { allow: public, operations: [read] }
     ]
@@ -20,8 +20,8 @@ type ItemOrder
   @model(queries: null, subscriptions: null)
   @auth(
     rules: [
-      { allow: owner, operations: [create, read] },
-      { allow: groups, groups: ["Admin"], operations: [create, update, delete, read] }
+      { allow: owner, identityClaim: "email"}
+      { allow: groups, groups: ["Admin"] }
     ]
   ) {
     id: ID!
@@ -35,12 +35,12 @@ type Order
   @model(subscriptions: null)
   @auth(
     rules: [
-      { allow: owner, operations: [read] },
-      { allow: groups, groups: ["Admin"], operations: [create, update, delete, read] }
+      { allow: owner, identityClaim: "email" }
+      { allow: groups, groups: ["Admin"] }
     ]
   ) {
     id: ID!
-    customerEmail: String @index(name: "byCustomerEmail")
+    user: String!
     date: AWSDateTime
     total: Float
     items: [ItemOrder] @hasMany

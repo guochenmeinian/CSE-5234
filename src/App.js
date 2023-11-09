@@ -18,6 +18,7 @@ import Confirmation from './pages/confirmation';
 import AppFooter from './components/footer';
 import Admin from './pages/admin';
 import Home from './home';
+import Purchase from './pages/purchase';
 import { Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import customTheme from "./customTheme"
@@ -53,7 +54,8 @@ function App() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:id/items" element={<Items />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
+            
+            <Route path="/purchase" element={<Purchase />} />
             <Route path="/purchase/payment" element={<Payment />} />
             <Route
               path="/purchase/shipping"
@@ -64,6 +66,7 @@ function App() {
               path="/purchase/confirmation"
               element={<Confirmation removeAllItemsFromCart={removeAllItemsFromCart} />}
             />
+          <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
           </Routes>
         </Container>
       </ThemeProvider>

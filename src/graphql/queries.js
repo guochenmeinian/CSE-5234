@@ -47,7 +47,7 @@ export const getOrder = /* GraphQL */ `
   query GetOrder($id: ID!) {
     getOrder(id: $id) {
       id
-      customerEmail
+      user
       date
       total
       items {
@@ -70,37 +70,7 @@ export const listOrders = /* GraphQL */ `
     listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        customerEmail
-        date
-        total
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const ordersByCustomerEmail = /* GraphQL */ `
-  query OrdersByCustomerEmail(
-    $customerEmail: String!
-    $sortDirection: ModelSortDirection
-    $filter: ModelOrderFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    ordersByCustomerEmail(
-      customerEmail: $customerEmail
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        customerEmail
+        user
         date
         total
         createdAt

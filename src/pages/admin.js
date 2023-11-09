@@ -34,7 +34,7 @@ const Admin = () => {
             await API.graphql(graphqlOperation(createItem, { input: itemDetails }))
             setItemDetails({ title: "", description: "", image: "", price: "" })
         } catch (err) {
-            console.log('error creating todo:', err)
+            console.log('error creating in admin page:\n', err)
         }
     }
 
@@ -87,65 +87,65 @@ const Admin = () => {
                                 </Box>
                             </Grid>
                             <Grid item xs={12}>
-                            <form onSubmit={handleSubmit} noValidate>
-                            <Grid container spacing={3}>
-                                <Grid item xs={12} sm={6}>
-                                    <Box display="flex" flexDirection="column" alignItems="center">
-                                        {image ? (
-                                            <img src={image} alt="" style={{ width: '100%', height: 'auto' }} />
-                                        ) : (
-                                            <Button
-                                                variant="contained"
-                                                component="label"
-                                            >
-                                                Upload Image
-                                                <input
-                                                    type="file"
-                                                    hidden
-                                                    accept="image/*"
-                                                    onChange={(e) => handleImageUpload(e)}
-                                                />
+                                <form onSubmit={handleSubmit} noValidate>
+                                    <Grid container spacing={3}>
+                                        <Grid item xs={12} sm={6}>
+                                            <Box display="flex" flexDirection="column" alignItems="center">
+                                                {image ? (
+                                                    <img src={image} alt="" style={{ width: '100%', height: 'auto' }} />
+                                                ) : (
+                                                    <Button
+                                                        variant="contained"
+                                                        component="label"
+                                                    >
+                                                        Upload Image
+                                                        <input
+                                                            type="file"
+                                                            hidden
+                                                            accept="image/*"
+                                                            onChange={(e) => handleImageUpload(e)}
+                                                        />
+                                                    </Button>
+                                                )}
+                                            </Box>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="title"
+                                                label="Title"
+                                                name="title"
+                                                onChange={(e) => setItemDetails({ ...itemDetails, title: e.target.value })}
+                                            />
+                                            <TextareaAutosize
+                                                minRows={5}
+                                                style={{ width: '100%', marginTop: '10px' }}
+                                                placeholder="Type the description"
+                                                name="description"
+                                                onChange={(e) => setItemDetails({ ...itemDetails, description: e.target.value })}
+                                            />
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                name="price"
+                                                label="Price ($)"
+                                                type="number"
+                                                id="price"
+                                                style={{ marginTop: '10px' }}
+                                                onChange={(e) => setItemDetails({ ...itemDetails, price: e.target.value })}
+                                            />
+                                            <FormControlLabel
+                                                control={<Checkbox checked={itemDetails.onSale} onChange={() => setItemDetails({ ...itemDetails, onSale: itemDetails.onSale })} />}
+                                                label="On Sale"
+                                                style={{ marginTop: '10px' }}
+                                            />
+                                            <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: '20px' }}>
+                                                Submit
                                             </Button>
-                                        )}
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="title"
-                                        label="Title"
-                                        name="title"
-                                        onChange={(e) => setItemDetails({ ...itemDetails, title: e.target.value })}
-                                    />
-                                    <TextareaAutosize
-                                        minRows={5}
-                                        style={{ width: '100%', marginTop: '10px' }}
-                                        placeholder="Type the description"
-                                        name="description"
-                                        onChange={(e) => setItemDetails({ ...itemDetails, description: e.target.value })}
-                                    />
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        name="price"
-                                        label="Price ($)"
-                                        type="number"
-                                        id="price"
-                                        style={{ marginTop: '10px' }}
-                                        onChange={(e) => setItemDetails({ ...itemDetails, price: e.target.value })}
-                                    />
-                                    <FormControlLabel
-                                        control={<Checkbox checked={itemDetails.onSale} onChange={() => setItemDetails({ ...itemDetails, onSale: itemDetails.onSale })} />}
-                                        label="On Sale"
-                                        style={{ marginTop: '10px' }}
-                                    />
-                                    <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: '20px' }}>
-                                        Submit
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </form>
+                                        </Grid>
+                                    </Grid>
+                                </form>
                             </Grid>
                         </Grid>
                     </Paper>
