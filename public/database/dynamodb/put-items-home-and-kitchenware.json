@@ -1,0 +1,228 @@
+{
+    "Item-34zdcx75mzai7d62ujozvrch3q-devguochen": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "71"
+                    },
+                    "title": {
+                        "S": "Rick and Morty Portal Gun Mug"
+                    },
+                    "description": {
+                        "S": "A ceramic mug shaped like Rick's portal gun, perfect for your morning coffee."
+                    },
+                    "price": {
+                        "S": "14.99"
+                    },
+                    "thumbnailImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "actualImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "onSale": {"S": "false"},
+                    "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+                    "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+                    "__typename": {"S": "Item"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "72"
+                    },
+                    "title": {
+                        "S": "Rick and Morty Apron"
+                    },
+                    "description": {
+                        "S": "An apron featuring various characters and elements from the show, ideal for cooking adventures."
+                    },
+                    "price": {
+                        "S": "19.99"
+                    },
+                    "thumbnailImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "actualImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "onSale": {"S": "false"},
+                    "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+                    "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+                    "__typename": {"S": "Item"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "73"
+                    },
+                    "title": {
+                        "S": "Rick and Morty Bedding Set"
+                    },
+                    "description": {
+                        "S": "A bedding set with a design inspired by the show, including sheets and pillowcases."
+                    },
+                    "price": {
+                        "S": "49.99"
+                    },
+                    "thumbnailImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "actualImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "onSale": {"S": "false"},
+                    "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+                    "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+                    "__typename": {"S": "Item"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "74"
+                    },
+                    "title": {
+                        "S": "Pickle Rick Wine Bottle Stopper"
+                    },
+                    "description": {
+                        "S": "A decorative wine bottle stopper in the shape of Pickle Rick, perfect for wine enthusiasts."
+                    },
+                    "price": {
+                        "S": "9.99"
+                    },
+                    "thumbnailImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "actualImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "onSale": {"S": "false"},
+                    "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+                    "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+                    "__typename": {"S": "Item"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "75"
+                    },
+                    "title": {
+                        "S": "Rick and Morty Coasters"
+                    },
+                    "description": {
+                        "S": "A set of coasters featuring various Rick and Morty designs to protect your surfaces."
+                    },
+                    "price": {
+                        "S": "12.99"
+                    },
+                    "thumbnailImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "actualImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "onSale": {"S": "false"},
+                    "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+                    "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+                    "__typename": {"S": "Item"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "76"
+                    },
+                    "title": {
+                        "S": "Morty's Mind Blowers Throw Blanket"
+                    },
+                    "description": {
+                        "S": "A soft and cozy throw blanket with a design inspired by the 'Morty's Mind Blowers' episode."
+                    },
+                    "price": {
+                        "S": "24.99"
+                    },
+                    "thumbnailImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "actualImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "onSale": {"S": "false"},
+                    "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+                    "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+                    "__typename": {"S": "Item"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "77"
+                    },
+                    "title": {
+                        "S": "Rick and Morty Cutting Board Set"
+                    },
+                    "description": {
+                        "S": "A set of cutting boards featuring different show-themed designs, perfect for your kitchen."
+                    },
+                    "price": {
+                        "S": "29.99"
+                    },
+                    "thumbnailImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "actualImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "onSale": {"S": "false"},
+                    "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+                    "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+                    "__typename": {"S": "Item"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "78"
+                    },
+                    "title": {
+                        "S": "Rick and Morty Wall Clock"
+                    },
+                    "description": {
+                        "S": "A wall clock featuring the show's iconic portal design, adding a unique touch to your home decor."
+                    },
+                    "price": {
+                        "S": "34.99"
+                    },
+                    "thumbnailImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "actualImage": {
+                        "S": "/other-images/placeholder-image.png"
+                    },
+                    "onSale": {"S": "false"},
+                    "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+                    "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+                    "__typename": {"S": "Item"}
+                }
+            }
+        }
+    ]
+}

@@ -22,6 +22,8 @@ import Purchase from './pages/purchase';
 import { Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import customTheme from "./customTheme"
+import { ItemProvider } from './context/itemContext';
+import { CartProvider } from './context/cartContext';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -45,30 +47,33 @@ function App() {
     <Router>
       <Navbar numberOfCartItems={cartItems.length} />
       <ThemeProvider theme={customTheme}>
-        <Container sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-          <Routes>
-            <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/categories" element={<Categories />} />
-            <Route path="/categories/:id/items" element={<Items />} />
-            <Route path="/admin" element={<Admin />} />
-            
-            <Route path="/purchase" element={<Purchase />} />
-            <Route path="/purchase/payment" element={<Payment />} />
-            <Route
-              path="/purchase/shipping"
-              element={<Shipping />}
-            />
-            <Route path="/purchase/summary" element={<OrderSummary />} />
-            <Route
-              path="/purchase/confirmation"
-              element={<Confirmation removeAllItemsFromCart={removeAllItemsFromCart} />}
-            />
-          <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
-          </Routes>
-        </Container>
+        <ItemProvider>
+          <CartProvider>
+            <Container sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <Routes>
+                <Route path="/" element={<Navigate replace to="/home" />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/categories" element={<Categories />} />
+                <Route path="/categories/:id/items" element={<Items />} />
+                <Route path="/admin" element={<Admin />} />          
+                <Route path="/purchase" element={<Purchase />} />
+                <Route path="/purchase/payment" element={<Payment />} />
+                <Route
+                  path="/purchase/shipping"
+                  element={<Shipping />}
+                />
+                <Route path="/purchase/summary" element={<OrderSummary />} />
+                <Route
+                  path="/purchase/confirmation"
+                  element={<Confirmation removeAllItemsFromCart={removeAllItemsFromCart} />}
+                />
+                <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
+              </Routes>
+            </Container>
+          </CartProvider>
+        </ItemProvider>
       </ThemeProvider>
       <AppFooter />
     </Router >
