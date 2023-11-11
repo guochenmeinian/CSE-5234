@@ -6,17 +6,16 @@ export const processOrder = /* GraphQL */ `
     processOrder(input: $input)
   }
 `;
-export const createItem = /* GraphQL */ `
-  mutation CreateItem(
-    $input: CreateItemInput!
-    $condition: ModelItemConditionInput
+export const createProduct = /* GraphQL */ `
+  mutation CreateProduct(
+    $input: CreateProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    createItem(input: $input, condition: $condition) {
+    createProduct(input: $input, condition: $condition) {
       id
       title
       description
-      thumbnailImage
-      actualImage
+      image
       onSale
       price
       orders {
@@ -29,17 +28,16 @@ export const createItem = /* GraphQL */ `
     }
   }
 `;
-export const updateItem = /* GraphQL */ `
-  mutation UpdateItem(
-    $input: UpdateItemInput!
-    $condition: ModelItemConditionInput
+export const updateProduct = /* GraphQL */ `
+  mutation UpdateProduct(
+    $input: UpdateProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    updateItem(input: $input, condition: $condition) {
+    updateProduct(input: $input, condition: $condition) {
       id
       title
       description
-      thumbnailImage
-      actualImage
+      image
       onSale
       price
       orders {
@@ -52,17 +50,16 @@ export const updateItem = /* GraphQL */ `
     }
   }
 `;
-export const deleteItem = /* GraphQL */ `
-  mutation DeleteItem(
-    $input: DeleteItemInput!
-    $condition: ModelItemConditionInput
+export const deleteProduct = /* GraphQL */ `
+  mutation DeleteProduct(
+    $input: DeleteProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    deleteItem(input: $input, condition: $condition) {
+    deleteProduct(input: $input, condition: $condition) {
       id
       title
       description
-      thumbnailImage
-      actualImage
+      image
       onSale
       price
       orders {
@@ -75,21 +72,20 @@ export const deleteItem = /* GraphQL */ `
     }
   }
 `;
-export const createItemOrder = /* GraphQL */ `
-  mutation CreateItemOrder(
-    $input: CreateItemOrderInput!
-    $condition: ModelItemOrderConditionInput
+export const createProductOrder = /* GraphQL */ `
+  mutation CreateProductOrder(
+    $input: CreateProductOrderInput!
+    $condition: ModelProductOrderConditionInput
   ) {
-    createItemOrder(input: $input, condition: $condition) {
+    createProductOrder(input: $input, condition: $condition) {
       id
-      item_id
+      product_id
       order_id
-      item {
+      product {
         id
         title
         description
-        thumbnailImage
-        actualImage
+        image
         onSale
         price
         createdAt
@@ -108,28 +104,27 @@ export const createItemOrder = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      itemOrdersId
-      orderItemsId
+      productOrdersId
+      orderProductsId
       owner
       __typename
     }
   }
 `;
-export const updateItemOrder = /* GraphQL */ `
-  mutation UpdateItemOrder(
-    $input: UpdateItemOrderInput!
-    $condition: ModelItemOrderConditionInput
+export const updateProductOrder = /* GraphQL */ `
+  mutation UpdateProductOrder(
+    $input: UpdateProductOrderInput!
+    $condition: ModelProductOrderConditionInput
   ) {
-    updateItemOrder(input: $input, condition: $condition) {
+    updateProductOrder(input: $input, condition: $condition) {
       id
-      item_id
+      product_id
       order_id
-      item {
+      product {
         id
         title
         description
-        thumbnailImage
-        actualImage
+        image
         onSale
         price
         createdAt
@@ -148,28 +143,27 @@ export const updateItemOrder = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      itemOrdersId
-      orderItemsId
+      productOrdersId
+      orderProductsId
       owner
       __typename
     }
   }
 `;
-export const deleteItemOrder = /* GraphQL */ `
-  mutation DeleteItemOrder(
-    $input: DeleteItemOrderInput!
-    $condition: ModelItemOrderConditionInput
+export const deleteProductOrder = /* GraphQL */ `
+  mutation DeleteProductOrder(
+    $input: DeleteProductOrderInput!
+    $condition: ModelProductOrderConditionInput
   ) {
-    deleteItemOrder(input: $input, condition: $condition) {
+    deleteProductOrder(input: $input, condition: $condition) {
       id
-      item_id
+      product_id
       order_id
-      item {
+      product {
         id
         title
         description
-        thumbnailImage
-        actualImage
+        image
         onSale
         price
         createdAt
@@ -188,8 +182,8 @@ export const deleteItemOrder = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      itemOrdersId
-      orderItemsId
+      productOrdersId
+      orderProductsId
       owner
       __typename
     }
@@ -205,7 +199,7 @@ export const createOrder = /* GraphQL */ `
       user
       date
       total
-      items {
+      products {
         nextToken
         __typename
       }
@@ -226,7 +220,7 @@ export const updateOrder = /* GraphQL */ `
       user
       date
       total
-      items {
+      products {
         nextToken
         __typename
       }
@@ -247,7 +241,7 @@ export const deleteOrder = /* GraphQL */ `
       user
       date
       total
-      items {
+      products {
         nextToken
         __typename
       }
