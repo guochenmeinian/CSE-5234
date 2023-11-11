@@ -13,7 +13,7 @@
         "name" : "Query",
         "description" : null,
         "fields" : [ {
-          "name" : "getItem",
+          "name" : "getProduct",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -31,20 +31,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Item",
+            "name" : "Product",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listItems",
+          "name" : "listProducts",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemFilterInput",
+              "name" : "ModelProductFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -69,7 +69,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelItemConnection",
+            "name" : "ModelProductConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -143,7 +143,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "Item",
+        "name" : "Product",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -191,18 +191,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "thumbnailImage",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "actualImage",
+          "name" : "image",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -246,7 +235,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderFilterInput",
+              "name" : "ModelProductOrderFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -280,7 +269,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelItemOrderConnection",
+            "name" : "ModelProductOrderConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -358,7 +347,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelItemOrderConnection",
+        "name" : "ModelProductOrderConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -372,7 +361,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "OBJECT",
-                "name" : "ItemOrder",
+                "name" : "ProductOrder",
                 "ofType" : null
               }
             }
@@ -397,7 +386,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ItemOrder",
+        "name" : "ProductOrder",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -415,7 +404,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "item_id",
+          "name" : "product_id",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -445,12 +434,12 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "item",
+          "name" : "product",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Item",
+            "name" : "Product",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -497,7 +486,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "itemOrdersId",
+          "name" : "productOrdersId",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -508,7 +497,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "orderItemsId",
+          "name" : "orderProductsId",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -591,14 +580,14 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "items",
+          "name" : "products",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderFilterInput",
+              "name" : "ModelProductOrderFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -632,7 +621,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelItemOrderConnection",
+            "name" : "ModelProductOrderConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -694,7 +683,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelItemOrderFilterInput",
+        "name" : "ModelProductOrderFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -707,7 +696,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "item_id",
+          "name" : "product_id",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -732,7 +721,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderFilterInput",
+              "name" : "ModelProductOrderFilterInput",
               "ofType" : null
             }
           },
@@ -745,7 +734,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderFilterInput",
+              "name" : "ModelProductOrderFilterInput",
               "ofType" : null
             }
           },
@@ -755,12 +744,12 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelItemOrderFilterInput",
+            "name" : "ModelProductOrderFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "orderItemsId",
+          "name" : "orderProductsId",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1067,7 +1056,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelItemConnection",
+        "name" : "ModelProductConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -1081,7 +1070,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "OBJECT",
-                "name" : "Item",
+                "name" : "Product",
                 "ofType" : null
               }
             }
@@ -1106,7 +1095,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelItemFilterInput",
+        "name" : "ModelProductFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1171,7 +1160,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemFilterInput",
+              "name" : "ModelProductFilterInput",
               "ofType" : null
             }
           },
@@ -1184,7 +1173,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemFilterInput",
+              "name" : "ModelProductFilterInput",
               "ofType" : null
             }
           },
@@ -1194,7 +1183,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelItemFilterInput",
+            "name" : "ModelProductFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1619,7 +1608,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createItem",
+          "name" : "createProduct",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1629,7 +1618,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateItemInput",
+                "name" : "CreateProductInput",
                 "ofType" : null
               }
             },
@@ -1639,20 +1628,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemConditionInput",
+              "name" : "ModelProductConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Item",
+            "name" : "Product",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateItem",
+          "name" : "updateProduct",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1662,7 +1651,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateItemInput",
+                "name" : "UpdateProductInput",
                 "ofType" : null
               }
             },
@@ -1672,20 +1661,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemConditionInput",
+              "name" : "ModelProductConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Item",
+            "name" : "Product",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteItem",
+          "name" : "deleteProduct",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1695,7 +1684,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteItemInput",
+                "name" : "DeleteProductInput",
                 "ofType" : null
               }
             },
@@ -1705,20 +1694,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemConditionInput",
+              "name" : "ModelProductConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Item",
+            "name" : "Product",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createItemOrder",
+          "name" : "createProductOrder",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1728,7 +1717,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateItemOrderInput",
+                "name" : "CreateProductOrderInput",
                 "ofType" : null
               }
             },
@@ -1738,20 +1727,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderConditionInput",
+              "name" : "ModelProductOrderConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ItemOrder",
+            "name" : "ProductOrder",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateItemOrder",
+          "name" : "updateProductOrder",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1761,7 +1750,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateItemOrderInput",
+                "name" : "UpdateProductOrderInput",
                 "ofType" : null
               }
             },
@@ -1771,20 +1760,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderConditionInput",
+              "name" : "ModelProductOrderConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ItemOrder",
+            "name" : "ProductOrder",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteItemOrder",
+          "name" : "deleteProductOrder",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1794,7 +1783,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteItemOrderInput",
+                "name" : "DeleteProductOrderInput",
                 "ofType" : null
               }
             },
@@ -1804,14 +1793,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderConditionInput",
+              "name" : "ModelProductOrderConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ItemOrder",
+            "name" : "ProductOrder",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1952,7 +1941,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "CartItem",
+              "name" : "CartProduct",
               "ofType" : null
             }
           },
@@ -1998,7 +1987,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CartItem",
+        "name" : "CartProduct",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2056,7 +2045,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateItemInput",
+        "name" : "CreateProductInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2131,7 +2120,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelItemConditionInput",
+        "name" : "ModelProductConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2187,7 +2176,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemConditionInput",
+              "name" : "ModelProductConditionInput",
               "ofType" : null
             }
           },
@@ -2200,7 +2189,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemConditionInput",
+              "name" : "ModelProductConditionInput",
               "ofType" : null
             }
           },
@@ -2210,7 +2199,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelItemConditionInput",
+            "name" : "ModelProductConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2220,7 +2209,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateItemInput",
+        "name" : "UpdateProductInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2287,7 +2276,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteItemInput",
+        "name" : "DeleteProductInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2309,7 +2298,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateItemOrderInput",
+        "name" : "CreateProductOrderInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2322,7 +2311,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "item_id",
+          "name" : "product_id",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -2348,7 +2337,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "itemOrdersId",
+          "name" : "productOrdersId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -2357,7 +2346,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "orderItemsId",
+          "name" : "orderProductsId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -2371,11 +2360,11 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelItemOrderConditionInput",
+        "name" : "ModelProductOrderConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
-          "name" : "item_id",
+          "name" : "product_id",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2400,7 +2389,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderConditionInput",
+              "name" : "ModelProductOrderConditionInput",
               "ofType" : null
             }
           },
@@ -2413,7 +2402,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelItemOrderConditionInput",
+              "name" : "ModelProductOrderConditionInput",
               "ofType" : null
             }
           },
@@ -2423,12 +2412,12 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelItemOrderConditionInput",
+            "name" : "ModelProductOrderConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "itemOrdersId",
+          "name" : "productOrdersId",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2437,7 +2426,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "orderItemsId",
+          "name" : "orderProductsId",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2451,7 +2440,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateItemOrderInput",
+        "name" : "UpdateProductOrderInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2468,7 +2457,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "item_id",
+          "name" : "product_id",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -2486,7 +2475,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "itemOrdersId",
+          "name" : "productOrdersId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -2495,7 +2484,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "orderItemsId",
+          "name" : "orderProductsId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -2509,7 +2498,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteItemOrderInput",
+        "name" : "DeleteProductOrderInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2722,7 +2711,109 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelIntInput",
+        "name" : "ModelSubscriptionFloatInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "le",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "lt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ge",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "gt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "between",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Float",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "in",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Float",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "notIn",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Float",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelSubscriptionIntInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2793,21 +2884,29 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "attributeExists",
+          "name" : "in",
           "description" : null,
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            }
           },
           "defaultValue" : null
         }, {
-          "name" : "attributeType",
+          "name" : "notIn",
           "description" : null,
           "type" : {
-            "kind" : "ENUM",
-            "name" : "ModelAttributeTypes",
-            "ofType" : null
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            }
           },
           "defaultValue" : null
         } ],
@@ -2945,33 +3044,6 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelSubscriptionBooleanInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
         "name" : "ModelSubscriptionStringInput",
         "description" : null,
         "fields" : null,
@@ -3101,7 +3173,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelSubscriptionIntInput",
+        "name" : "ModelSubscriptionBooleanInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3109,7 +3181,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Int",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3118,83 +3190,8 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Int",
+            "name" : "Boolean",
             "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "le",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "lt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "ge",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "gt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "between",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Int",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "in",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Int",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "notIn",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Int",
-              "ofType" : null
-            }
           },
           "defaultValue" : null
         } ],
@@ -3203,7 +3200,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelSubscriptionFloatInput",
+        "name" : "ModelIntInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3211,7 +3208,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Float",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3220,7 +3217,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Float",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3229,7 +3226,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Float",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3238,7 +3235,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Float",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3247,7 +3244,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Float",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3256,7 +3253,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Float",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3268,35 +3265,27 @@
             "name" : null,
             "ofType" : {
               "kind" : "SCALAR",
-              "name" : "Float",
+              "name" : "Int",
               "ofType" : null
             }
           },
           "defaultValue" : null
         }, {
-          "name" : "in",
+          "name" : "attributeExists",
           "description" : null,
           "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Float",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "notIn",
+          "name" : "attributeType",
           "description" : null,
           "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Float",
-              "ofType" : null
-            }
+            "kind" : "ENUM",
+            "name" : "ModelAttributeTypes",
+            "ofType" : null
           },
           "defaultValue" : null
         } ],
@@ -4087,6 +4076,22 @@
         "onFragment" : false,
         "onField" : true
       }, {
+        "name" : "aws_iam",
+        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_lambda",
+        "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_cognito_user_pools",
         "description" : "Tells the service this field/object has access authorized by a Cognito User Pools token.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
@@ -4108,14 +4113,6 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_api_key",
-        "description" : "Tells the service this field/object has access authorized by an API key.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_subscribe",
         "description" : "Tells the service which mutation triggers this subscription.",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -4133,43 +4130,6 @@
           },
           "defaultValue" : null
         } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_auth",
-        "description" : "Directs the schema to enforce authorization on a field",
-        "locations" : [ "FIELD_DEFINITION" ],
-        "args" : [ {
-          "name" : "cognito_groups",
-          "description" : "List of cognito user pool groups which have access on this field",
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_iam",
-        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_oidc",
-        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
@@ -4212,8 +4172,37 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_lambda",
-        "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
+        "name" : "aws_auth",
+        "description" : "Directs the schema to enforce authorization on a field",
+        "locations" : [ "FIELD_DEFINITION" ],
+        "args" : [ {
+          "name" : "cognito_groups",
+          "description" : "List of cognito user pool groups which have access on this field",
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_oidc",
+        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
         "onOperation" : false,

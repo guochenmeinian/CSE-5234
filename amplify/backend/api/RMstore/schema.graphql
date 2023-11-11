@@ -1,4 +1,4 @@
-type Item
+type Product
   @model(subscriptions: null)
   @auth(
     rules: [
@@ -10,14 +10,13 @@ type Item
     id: ID!
     title: String!
     description: String!
-    thumbnailImage: String!
-    actualImage: String!
+    image: String
     onSale: Boolean
     price: Float!
-    orders: [ItemOrder] @hasMany
+    orders: [ProductOrder] @hasMany
   }
 
-type ItemOrder 
+type ProductOrder 
   @model(queries: null, subscriptions: null)
   @auth(
     rules: [
@@ -26,9 +25,9 @@ type ItemOrder
     ]
   ) {
     id: ID!
-    item_id: ID!
+    product_id: ID!
     order_id: ID!
-    item: Item @belongsTo(fields: ["item_id"])
+    product: Product @belongsTo(fields: ["product_id"])
     order: Order @belongsTo(fields: ["order_id"])
   }
 
@@ -44,7 +43,7 @@ type Order
     user: String!
     date: AWSDateTime
     total: Float
-    items: [ItemOrder] @hasMany
+    products: [ProductOrder] @hasMany
   }
 
 enum OrderStatus {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { Authenticator, Button as AmplifyButton } from '@aws-amplify/ui-react';
-import { createItem } from '../api/mutations';
+import { createProduct } from '../api/mutations';
 import config from '../aws-exports';
 import '@aws-amplify/ui-react/styles.css'; // default styles
 import { 
@@ -31,8 +31,9 @@ const Admin = () => {
         e.preventDefault();
         try {
             if (!itemDetails.title || !itemDetails.price) return
-            await API.graphql(graphqlOperation(createItem, { input: itemDetails }))
+            await API.graphql(graphqlOperation(createProduct, { input: itemDetails, authMode: "AMAZON_COGNITO_USER_POOLS" }))
             setItemDetails({ title: "", description: "", image: "", price: "" })
+            console.log('data uploaded successfully.')
         } catch (err) {
             console.log('error creating in admin page:\n', err)
         }
@@ -55,6 +56,7 @@ const Admin = () => {
             const image = await Storage.get(key, { level: 'public' })
             setImage(image);
             setItemDetails({ ...itemDetails, image: url });
+            console.log('image uploaded successfully.')
         } catch (err) {
             console.log(err);
         }

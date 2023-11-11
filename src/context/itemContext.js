@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { v4 as uuidv4 } from "uuid";
-import { listItems } from "../api/queries";
+import { listProducts } from "../api/queries";
 import { processOrder } from "../api/mutations";
 
 const ItemContext = React.createContext();
@@ -34,8 +34,8 @@ const ItemProvider = ({ children }) => {
     setError(null); // Reset error state before fetching
     try {
       setLoading(true);
-      const response = await API.graphql(graphqlOperation(listItems, { authMode: "API_KEY" }));
-      const fetchedProducts = response?.data?.listItems?.items || [];
+      const response = await API.graphql(graphqlOperation(listProducts, { authMode: "API_KEY" }));
+      const fetchedProducts = response?.data?.listProducts?.items || [];
       const onSaleProducts = fetchedProducts.filter(item => item.onSale);
       setProducts(fetchedProducts);
       setOnSale(onSaleProducts);
