@@ -3,19 +3,13 @@
 
 ## Local Development
 
-1. **Run the data query**
-
-```bash
-git clone https://github.com/guochenmeinian/CSE-5234
-npm install
-npm start
-```
+1. **Run the data query files under /local folder to add data**
 
 
 ## Remote Development
 
 
-## DynamoDB
+## Add multiple data to DynamoDB
 
 1. **Rename the table name in json files under /dynamodb folder**
 
