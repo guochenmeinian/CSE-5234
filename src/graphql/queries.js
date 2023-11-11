@@ -7,7 +7,8 @@ export const getItem = /* GraphQL */ `
       id
       title
       description
-      image
+      thumbnailImage
+      actualImage
       onSale
       price
       orders {
@@ -31,7 +32,8 @@ export const listItems = /* GraphQL */ `
         id
         title
         description
-        image
+        thumbnailImage
+        actualImage
         onSale
         price
         createdAt

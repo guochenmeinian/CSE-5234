@@ -15,7 +15,8 @@ export const createItem = /* GraphQL */ `
       id
       title
       description
-      image
+      thumbnailImage
+      actualImage
       onSale
       price
       orders {
@@ -37,7 +38,8 @@ export const updateItem = /* GraphQL */ `
       id
       title
       description
-      image
+      thumbnailImage
+      actualImage
       onSale
       price
       orders {
@@ -59,7 +61,8 @@ export const deleteItem = /* GraphQL */ `
       id
       title
       description
-      image
+      thumbnailImage
+      actualImage
       onSale
       price
       orders {
@@ -85,7 +88,8 @@ export const createItemOrder = /* GraphQL */ `
         id
         title
         description
-        image
+        thumbnailImage
+        actualImage
         onSale
         price
         createdAt
@@ -124,7 +128,8 @@ export const updateItemOrder = /* GraphQL */ `
         id
         title
         description
-        image
+        thumbnailImage
+        actualImage
         onSale
         price
         createdAt
@@ -163,7 +168,8 @@ export const deleteItemOrder = /* GraphQL */ `
         id
         title
         description
-        image
+        thumbnailImage
+        actualImage
         onSale
         price
         createdAt

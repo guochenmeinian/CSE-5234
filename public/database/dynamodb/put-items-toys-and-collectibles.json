@@ -1,0 +1,53 @@
+{
+    "Item-34zdcx75mzai7d62ujozvrch3q-devguochen": [
+      {
+        "PutRequest": {
+          "Item": {
+            "id": {"S": "81"},
+            "title": {"S": "Funko Pop! Vinyl Figures"},
+            "description": {"S": "A collection of vinyl figures featuring various characters from the show, perfect for collectors."},
+            "price": {"S": "12.99"},
+            "thumbnailImage": {"S": "/items-icons/thumbnail-funko-pop!-rick-and-morty-vinyl-figures.png"},
+            "actualImage": {"S": "/items-icons/funko-pop!-rick-and-morty-vinyl-figures.png"},
+            "onSale": {"S": "false"},
+            "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+            "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+            "__typename": {"S": "Item"}
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": {"S": "82"},
+            "title": {"S": "Portal Gun Prop Replica"},
+            "description": {"S": "A high-quality prop replica of Rick's portal gun for cosplayers and collectors."},
+            "price": {"S": "59.99"},
+            "thumbnailImage": {"S": "/items-icons/thumbnail-portal-gun-prop-replica.png"},
+            "actualImage": {"S": "/items-icons/portal-gun-prop-replica.png"},
+            "onSale": {"S": "false"},
+            "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+            "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+            "__typename": {"S": "Item"}
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "id": {"S": "83"},
+            "title": {"S": "Rick and Morty Plushies"},
+            "description": {"S": "Soft and huggable plush toys in the likeness of Rick, Morty, and other characters."},
+            "price": {"S": "9.99"},
+            "thumbnailImage": {"S": "/items-icons/thumbnail-rick-and-morty-plushies.png"},
+            "actualImage": {"S": "/items-icons/rick-and-morty-plushies.png"},
+            "onSale": {"S": "false"},
+            "createdAt": {"S": "2023-01-01T12:00:00Z"}, 
+            "updatedAt": {"S": "2023-01-01T12:00:00Z"},  
+            "__typename": {"S": "Item"}
+          }
+        }
+      }
+    ]
+  }
+  

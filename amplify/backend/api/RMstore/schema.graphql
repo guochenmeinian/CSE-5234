@@ -10,7 +10,8 @@ type Item
     id: ID!
     title: String!
     description: String!
-    image: String
+    thumbnailImage: String!
+    actualImage: String!
     onSale: Boolean
     price: Float!
     orders: [ItemOrder] @hasMany
