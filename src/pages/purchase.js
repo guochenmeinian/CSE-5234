@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import {
-  Box,
   Container,
   Grid,
   Card,
@@ -11,11 +10,10 @@ import {
   Button
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ItemContext } from '../context/itemContext';
+import { ProductContext } from '../context/productContext';
 
 function Purchase() {
-  const { products } = useContext(ItemContext);
-  // console.log(products)
+  const { products } = useContext(ProductContext);
 
   if (!products || products.length === 0) {
     return (
@@ -39,7 +37,11 @@ function Purchase() {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
         Our Products
       </Typography>
       <Grid container spacing={4}>
@@ -48,7 +50,7 @@ function Purchase() {
             <Card style={cardStyle}>
               <CardMedia
                 style={mediaStyle}
-                image={image || 'https://upload.wikimedia.org/wikipedia/zh/b/b8/Rick_and_Morty_season_1.png'} // a default image URL if no image available
+                image={image || '/other-images/placeholder-image.png'} // a default image URL if no image available
                 title={title}
               />
               <CardContent>
@@ -58,7 +60,7 @@ function Purchase() {
               </CardContent>
               <CardActions>
                 <Button size="small" color="primary">
-                  <Link to={`books/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Link to={`/items/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     View Details
                   </Link>
                 </Button>

@@ -3,53 +3,55 @@ import React, { useState, useEffect } from "react";
 const CartContext = React.createContext();
 
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const total = [...cart].reduce((total, { amount, price }) => {
+    const total = [...cartItems].reduce((total, { amount, price }) => {
       return (total += amount * price);
     }, 0);
     setTotal(parseFloat(total.toFixed(2)));
-  }, [cart]);
+  }, [cartItems]);
 
   const increaseAmount = (id) => {
-    const updatedCart = [...cart].map((item) => {
+    const updatedCart = [...cartItems].map((item) => {
       return item.id === id ? { ...item, amount: item.amount + 1 } : item;
     });
-    setCart(updatedCart);
+    setCartItems(updatedCart);
   };
 
   const decreaseAmount = (id, amount) => {
     let updatedCart = [];
     if (amount === 1) {
-      updatedCart = [...cart].filter((item) => item.id !== id);
+      updatedCart = [...cartItems].filter((item) => item.id !== id);
     } else {
-      updatedCart = [...cart].map((item) => {
+      updatedCart = [...cartItems].map((item) => {
         return item.id === id ? { ...item, amount: item.amount - 1 } : item;
       });
     }
-    setCart(updatedCart);
+    setCartItems(updatedCart);
   };
 
   const addToCart = (item) => {
     const { id, title, price, image } = item;
-    const cartItem = [...cart].find((item) => item.id === id);
+    const cartItem = [...cartItems].find((item) => item.id === id);
     if (cartItem) {
       increaseAmount(id);
+      console.log("increase amount successfully");
     } else {
-      const cartItems = [...cart, { id, title, image, price, amount: 1 }];
-      setCart(cartItems);
+      const updatedCartItems = [...cartItems, { id, title, image, price, amount: 1 }];
+      setCartItems(updatedCartItems);
+      console.log("add to cart successfully");
     }
   };
 
   const clearCart = () => {
-    setCart([]);
+    setCartItems([]);
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, total, addToCart, increaseAmount, decreaseAmount, clearCart }}
+      value={{ cartItems, total, addToCart, increaseAmount, decreaseAmount, clearCart }}
     >
       {children}
     </CartContext.Provider>

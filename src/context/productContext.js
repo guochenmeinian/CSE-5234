@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { listProducts } from "../api/queries";
 import { processOrder } from "../api/mutations";
 
-const ItemContext = React.createContext();
+const ProductContext = React.createContext();
 
 const ItemProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -13,7 +13,7 @@ const ItemProvider = ({ children }) => {
   const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
-    fetchProducts();
+    fetchAllProducts();
   }, []);
 
   const checkout = async (orderDetails) => {
@@ -23,18 +23,18 @@ const ItemProvider = ({ children }) => {
         ...orderDetails
       };
       await API.graphql(graphqlOperation(processOrder, { input: payload }));
-      console.log("Order is successful");
+      console.log("process order successfully");
     } catch (err) {
       console.log("Error processing order:", err);
       setError(err); // Set error state
     }
   };
 
-  const fetchProducts = async () => {
+  const fetchAllProducts = async () => {
     setError(null); // Reset error state before fetching
     try {
       setLoading(true);
-      const response = await API.graphql(graphqlOperation(listProducts, { authMode: "API_KEY" }));
+      const response = await API.graphql(graphqlOperation(listProducts, { authMode: "AMAZON_COGNITO_USER_POOLS" }));
       const fetchedProducts = response?.data?.listProducts?.items || [];
       const onSaleProducts = fetchedProducts.filter(item => item.onSale);
       setProducts(fetchedProducts);
@@ -47,10 +47,10 @@ const ItemProvider = ({ children }) => {
   };
 
   return (
-    <ItemContext.Provider value={{ products, onSale, loading, checkout, error }}>
+    <ProductContext.Provider value={{ products, onSale, loading, checkout, error }}>
       {children}
-    </ItemContext.Provider>
+    </ProductContext.Provider>
   );
 };
 
-export { ItemContext, ItemProvider };
+export { ProductContext, ItemProvider };

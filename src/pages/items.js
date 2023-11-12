@@ -44,11 +44,11 @@ function Items() {
               <img
                 srcSet={`${item.image}?fit=crop&auto=format&dpr=2 2x`}
                 src={`${item.image}?fit=crop&auto=format`}
-                alt={item.name}
+                alt={item.title}
                 loading="lazy"
               />
               <ImageListItemBar
-                title={item.name}
+                title={item.title}
                 subtitle={`$${item.price}`}
                 position="below"
               />
