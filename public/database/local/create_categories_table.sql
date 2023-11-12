@@ -3,6 +3,5 @@ CREATE TABLE categories (
     id INT PRIMARY KEY,
     name VARCHAR(255),
     description TEXT,
-    thumbnail_image VARCHAR(255),
-    actual_image VARCHAR(255)
+    image VARCHAR(255)
 );

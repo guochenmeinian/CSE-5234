@@ -38,10 +38,10 @@ function Categories() {
                 {items.map((item) => (
                     <Link key={item.id} to={`/categories/${item.id}/items`}
                         style={{ textDecoration: 'none', color: 'black' }}>
-                        <ImageListItem key={item.thumbnail_image}>
+                        <ImageListItem key={item.image}>
                             <img
-                                srcSet={`${item.thumbnail_image}?fit=crop&auto=format&dpr=2 2x`}
-                                src={`${item.thumbnail_image}?fit=crop&auto=format`}
+                                srcSet={`${item.image}?fit=crop&auto=format&dpr=2 2x`}
+                                src={`${item.image}?fit=crop&auto=format`}
                                 alt={item.name}
                                 loading="lazy"
                             />
