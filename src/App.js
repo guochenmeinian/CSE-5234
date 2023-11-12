@@ -22,7 +22,7 @@ import Purchase from './pages/purchase';
 import { Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import customTheme from "./customTheme"
-import { ItemProvider } from './context/productContext';
+import { ProductProvider } from './context/productContext';
 import { CartProvider } from './context/cartContext';
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
     <Router>
       <Navbar numberOfCartItems={cartItems.length} />
       <ThemeProvider theme={customTheme}>
-        <ItemProvider>
+        <ProductProvider>
           <CartProvider>
             <Container sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <Routes>
@@ -73,7 +73,7 @@ function App() {
               </Routes>
             </Container>
           </CartProvider>
-        </ItemProvider>
+        </ProductProvider>
       </ThemeProvider>
       <AppFooter />
     </Router >

@@ -6,7 +6,7 @@ import { processOrder } from "../api/mutations";
 
 const ProductContext = React.createContext();
 
-const ItemProvider = ({ children }) => {
+const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [onSale, setOnSale] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -53,4 +53,4 @@ const ItemProvider = ({ children }) => {
   );
 };
 
-export { ProductContext, ItemProvider };
+export { ProductContext, ProductProvider };
