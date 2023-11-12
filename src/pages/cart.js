@@ -3,91 +3,71 @@ import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Grid,
-  Icon,
   Typography,
-  ButtonGroup,
   Button,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
+  Card,
+  CardContent,
+  CardActions,
+  IconButton,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import getTotalCost from '../hook/getTotalCost';
 import { CartContext } from '../context/cartContext';
 
-
 function Cart() {
   const { cartItems, increaseAmount, decreaseAmount, clearCart } = useContext(CartContext);
-
   const navigate = useNavigate();
 
   return (
     <Box my={5}>
-      <Typography
-        variant="h3"
-        align="center"
-        gutterBottom
-        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+      <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
         Your Shopping Cart
       </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <Box>
-            {cartItems.length === 0 ? (
-              <Typography variant="body1">Your cart is empty.</Typography>
-            ) : (
-              <ImageList cols={5}>
-                {cartItems.map((item) => (
-                  <Box>
-                    <Link key={item.id} to={`/products/${item.id}`}
-                      style={{
-                        textDecoration: 'none',
-                        color: 'black',
-                        border: "1px solid #f5f5f5",
-                        whiteSpace: "normal",
-                        overflow: "hidden"
-                      }}>
-                      <ImageListItem key={item.id}>
-                        <img
-                          srcSet={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format&dpr=2 2x`}
-                          src={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format`}
-                          alt={item.title}
-                          loading="lazy"
-                        />
-                        <ImageListItemBar
-                          title={item.title}
-                          subtitle={`$${item.price}`}
-                          position="below"
-                        />
-                      </ImageListItem>
-                    </Link>
-                    <Box><Typography variant="body1">Amount: {item.amount}</Typography></Box>
-                    <Box>
-                      <ButtonGroup variant="contained" aria-label="increase and decrease amount button group">
-                        <Button onClick={() => {increaseAmount(item.id)}}>+</Button>
-                        <Button onClick={() => {decreaseAmount(item.id, item.amount)}}>-</Button>
-                      </ButtonGroup>
-                    </Box>
-                  </Box>
-                ))}
-              </ImageList>
-            )}
-          </Box>
-        </Grid>
-        <Grid item xs={4}>
-          <Box>
-            <Typography variant="h5">Total:</Typography>
-            <Typography variant="h5">{getTotalCost(cartItems)}</Typography>
+      
+      {cartItems.length === 0 ? (
+        <Typography variant="h6" align="center">Your cart is empty.</Typography>
+      ) : (
+        <Box>
+          {cartItems.map((item) => (
+            <Card key={item.id} sx={{ display: 'flex', mb: 2, alignItems: 'center' }}>
+              <img
+                src={item.image || '/other-images/placeholder-image.png'}
+                alt={item.title}
+                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+              />
+              <CardContent>
+                <Typography variant="h6">{item.title}</Typography>
+                <Typography variant="body1">Price: ${item.price}</Typography>
+                <Typography variant="body1">Amount: {item.amount}</Typography>
+              </CardContent>
+              <CardActions>
+                <Button onClick={() => increaseAmount(item.id)}>+</Button>
+                <Button onClick={() => decreaseAmount(item.id, item.amount)}>-</Button>
+                <IconButton onClick={() => decreaseAmount(item.id, 1)}>
+                  <DeleteIcon />
+                </IconButton>
+              </CardActions>
+            </Card>
+          ))}
+
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="h5">Total: ${getTotalCost(cartItems)}</Typography>
             <Button
               variant="contained"
-              startIcon={<Icon>shopping_cart</Icon>}
+              sx={{ mt: 2 }}
               onClick={() => navigate('/purchase/payment', { state: { order: cartItems } })}>
               Proceed to Payment
             </Button>
+            <Button
+              variant="outlined"
+              color="error"
+              sx={{ ml: 2, mt: 2 }}
+              onClick={clearCart}>
+              Clear Cart
+            </Button>
           </Box>
-        </Grid>
-      </Grid>
+        </Box>
+      )}
     </Box>
   );
 }

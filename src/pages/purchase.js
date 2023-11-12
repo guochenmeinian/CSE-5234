@@ -25,32 +25,22 @@ function Purchase() {
     );
   }
 
-  const cardStyle = {
-    height: '100%', // Ensures that all cards have the same height
-    display: 'flex',
-    flexDirection: 'column',
-  };
-
-  const mediaStyle = {
-    paddingTop: '56.25%', // 16:9 aspect ratio
-  };
-
   return (
-    <Container>
+    <Container sx={{ py: 4 }}>
       <Typography
-        variant="h3"
+        variant="h4"
         align="center"
         gutterBottom
-        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+        sx={{ fontWeight: 'bold', mb: 3 }}>
         Our Products
       </Typography>
-      <Grid container spacing={4}>
+      <Grid container spacing={4} justifyContent="center">
         {products.map(({ id, title, image }) => (
           <Grid item xs={12} sm={6} md={4} key={id}>
-            <Card style={cardStyle}>
+            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
               <CardMedia
-                style={mediaStyle}
-                image={image || '/other-images/placeholder-image.png'} // a default image URL if no image available
+                sx={{ paddingTop: '56.25%' }} // 16:9 aspect ratio
+                image={image || '/other-images/placeholder-image.png'}
                 title={title}
               />
               <CardContent>
