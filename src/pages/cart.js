@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Grid,
   Icon,
   Typography,
+  ButtonGroup,
   Button,
   ImageList,
   ImageListItem,
@@ -13,9 +14,12 @@ import {
 import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import getTotalCost from '../hook/getTotalCost';
+import { CartContext } from '../context/cartContext';
 
 
-function Cart({ cartItems, removeItemFromCart }) {
+function Cart() {
+  const { cartItems, increaseAmount, decreaseAmount, clearCart } = useContext(CartContext);
+
   const navigate = useNavigate();
 
   return (
@@ -36,7 +40,7 @@ function Cart({ cartItems, removeItemFromCart }) {
               <ImageList cols={5}>
                 {cartItems.map((item) => (
                   <Box>
-                    <Link key={item.id} to={`/items/${item.id}`}
+                    <Link key={item.id} to={`/products/${item.id}`}
                       style={{
                         textDecoration: 'none',
                         color: 'black',
@@ -44,27 +48,27 @@ function Cart({ cartItems, removeItemFromCart }) {
                         whiteSpace: "normal",
                         overflow: "hidden"
                       }}>
-                      <ImageListItem key={item.thumbnailImage}>
+                      <ImageListItem key={item.id}>
                         <img
-                          srcSet={`${item.thumbnailImage}?fit=crop&auto=format&dpr=2 2x`}
-                          src={`${item.thumbnailImage}?fit=crop&auto=format`}
-                          alt={item.name}
+                          srcSet={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format&dpr=2 2x`}
+                          src={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format`}
+                          alt={item.title}
                           loading="lazy"
                         />
                         <ImageListItemBar
-                          title={item.name}
+                          title={item.title}
                           subtitle={`$${item.price}`}
                           position="below"
                         />
                       </ImageListItem>
                     </Link>
-                    <Button
-                      variant="contained"
-                      startIcon={<DeleteIcon />}
-                      onClick={() => removeItemFromCart(item.id)}
-                    >
-                      Remove
-                    </Button>
+                    <Box><Typography variant="body1">Amount: {item.amount}</Typography></Box>
+                    <Box>
+                      <ButtonGroup variant="contained" aria-label="increase and decrease amount button group">
+                        <Button onClick={() => {increaseAmount(item.id)}}>+</Button>
+                        <Button onClick={() => {decreaseAmount(item.id, item.amount)}}>-</Button>
+                      </ButtonGroup>
+                    </Box>
                   </Box>
                 ))}
               </ImageList>

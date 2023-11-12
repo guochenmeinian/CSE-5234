@@ -8,9 +8,7 @@ import {
 } from 'react-router-dom';
 import About from './about';
 import Cart from './pages/cart';
-import Categories from './pages/categories';
-import Items from './pages/items';
-import Item from './pages/item';
+import Product from './pages/product';
 import Payment from './pages/payment';
 import Shipping from './pages/shipping';
 import OrderSummary from './pages/orderSummary';
@@ -22,7 +20,7 @@ import Purchase from './pages/purchase';
 import { Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import customTheme from "./customTheme"
-import { ItemProvider } from './context/itemContext';
+import { ProductProvider } from './context/productContext';
 import { CartProvider } from './context/cartContext';
 
 function App() {
@@ -47,7 +45,7 @@ function App() {
     <Router>
       <Navbar numberOfCartItems={cartItems.length} />
       <ThemeProvider theme={customTheme}>
-        <ItemProvider>
+        <ProductProvider>
           <CartProvider>
             <Container sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <Routes>
@@ -55,8 +53,6 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/categories" element={<Categories />} />
-                <Route path="/categories/:id/items" element={<Items />} />
                 <Route path="/admin" element={<Admin />} />          
                 <Route path="/purchase" element={<Purchase />} />
                 <Route path="/purchase/payment" element={<Payment />} />
@@ -69,11 +65,11 @@ function App() {
                   path="/purchase/confirmation"
                   element={<Confirmation removeAllItemsFromCart={removeAllItemsFromCart} />}
                 />
-                <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
+                <Route path="/products/:id" element={<Product />} />
               </Routes>
             </Container>
           </CartProvider>
-        </ItemProvider>
+        </ProductProvider>
       </ThemeProvider>
       <AppFooter />
     </Router >

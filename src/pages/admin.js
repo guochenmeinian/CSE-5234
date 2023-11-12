@@ -5,17 +5,17 @@ import { Authenticator, Button as AmplifyButton } from '@aws-amplify/ui-react';
 import { createProduct } from '../api/mutations';
 import config from '../aws-exports';
 import '@aws-amplify/ui-react/styles.css'; // default styles
-import { 
-  Button, 
-  TextField, 
-  TextareaAutosize, 
-  FormControlLabel, 
-  Checkbox, 
-  Paper, 
-  Container, 
-  Typography, 
-  Grid, 
-  Box 
+import {
+    Button,
+    TextField,
+    TextareaAutosize,
+    FormControlLabel,
+    Checkbox,
+    Paper,
+    Container,
+    Typography,
+    Grid,
+    Box
 } from '@mui/material';
 
 const {
@@ -25,17 +25,18 @@ const {
 
 const Admin = () => {
     const [image, setImage] = useState(null);
-    const [itemDetails, setItemDetails] = useState({ title: "", description: "", image: "", price: "" });
+    const [itemDetails, setItemDetails] = useState({ title: "", description: "", image: "", price: "", onSale: false });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (!itemDetails.title || !itemDetails.price) return
-            await API.graphql(graphqlOperation(createProduct, { input: itemDetails, authMode: "AMAZON_COGNITO_USER_POOLS" }))
-            setItemDetails({ title: "", description: "", image: "", price: "" })
-            console.log('data uploaded successfully.')
+            if (!itemDetails.title || !itemDetails.price) return;
+            await API.graphql(graphqlOperation(createProduct, { input: itemDetails, authMode: "AMAZON_COGNITO_USER_POOLS" }));
+            setItemDetails({ title: "", description: "", image: "", price: "", onSale: false });
+            setImage(null);
+            console.log('data uploaded successfully.');
         } catch (err) {
-            console.log('error creating in admin page:\n', err)
+            console.log('error creating in admin page:\n', err);
         }
     }
 
@@ -58,7 +59,7 @@ const Admin = () => {
             setItemDetails({ ...itemDetails, image: url });
             console.log('image uploaded successfully.')
         } catch (err) {
-            console.log(err);
+            console.log('error creating in image upload:\n', err);
         }
     }
 
@@ -73,8 +74,8 @@ const Admin = () => {
                                     <Typography variant="h5" component="h1">
                                         Add New Product
                                     </Typography>
-                                    <AmplifyButton 
-                                        onClick={signOut} 
+                                    <AmplifyButton
+                                        onClick={signOut}
                                         style={{
                                             backgroundColor: '#f50057', // Example color, change as needed
                                             color: 'white',
@@ -115,9 +116,9 @@ const Admin = () => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="title"
                                                 label="Title"
                                                 name="title"
+                                                value={itemDetails.title}
                                                 onChange={(e) => setItemDetails({ ...itemDetails, title: e.target.value })}
                                             />
                                             <TextareaAutosize
@@ -125,20 +126,21 @@ const Admin = () => {
                                                 style={{ width: '100%', marginTop: '10px' }}
                                                 placeholder="Type the description"
                                                 name="description"
+                                                value={itemDetails.description}
                                                 onChange={(e) => setItemDetails({ ...itemDetails, description: e.target.value })}
                                             />
                                             <TextField
                                                 required
                                                 fullWidth
                                                 name="price"
+                                                value={itemDetails.price}
                                                 label="Price ($)"
                                                 type="number"
-                                                id="price"
                                                 style={{ marginTop: '10px' }}
                                                 onChange={(e) => setItemDetails({ ...itemDetails, price: e.target.value })}
                                             />
                                             <FormControlLabel
-                                                control={<Checkbox checked={itemDetails.onSale} onChange={() => setItemDetails({ ...itemDetails, onSale: itemDetails.onSale })} />}
+                                                control={<Checkbox checked={itemDetails.onSale} onChange={() => setItemDetails({ ...itemDetails, onSale: !itemDetails.onSale })} />}
                                                 label="On Sale"
                                                 style={{ marginTop: '10px' }}
                                             />

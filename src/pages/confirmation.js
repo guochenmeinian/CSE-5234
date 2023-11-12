@@ -33,7 +33,7 @@ function Confirmation({ removeAllItemsFromCart }) {
           </Typography>
           <ImageList cols={5}>
             {orderData.map((item) => (
-              <Link key={item.id} to={`/items/${item.id}`}
+              <Link key={item.id} to={`/products/${item.id}`}
                 style={{
                   textDecoration: 'none',
                   color: 'black',
@@ -41,15 +41,15 @@ function Confirmation({ removeAllItemsFromCart }) {
                   whiteSpace: "normal",
                   overflow: "hidden"
                 }}>
-                <ImageListItem key={item.thumbnailImage}>
+                <ImageListItem key={item.id}>
                   <img
-                    srcSet={`${item.thumbnailImage}?fit=crop&auto=format&dpr=2 2x`}
-                    src={`${item.thumbnailImage}?fit=crop&auto=format`}
-                    alt={item.name}
+                    srcSet={`${item.image}?fit=crop&auto=format&dpr=2 2x`}
+                    src={`${item.image}?fit=crop&auto=format`}
+                    alt={item.title}
                     loading="lazy"
                   />
                   <ImageListItemBar
-                    title={item.name}
+                    title={item.title}
                     subtitle={`$${item.price}`}
                     position="below"
                   />
