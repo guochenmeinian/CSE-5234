@@ -44,10 +44,10 @@ function Cart({ cartItems, removeItemFromCart }) {
                         whiteSpace: "normal",
                         overflow: "hidden"
                       }}>
-                      <ImageListItem key={item.thumbnailImage}>
+                      <ImageListItem key={item.image}>
                         <img
-                          srcSet={`${item.thumbnailImage}?fit=crop&auto=format&dpr=2 2x`}
-                          src={`${item.thumbnailImage}?fit=crop&auto=format`}
+                          srcSet={`${item.image}?fit=crop&auto=format&dpr=2 2x`}
+                          src={`${item.image}?fit=crop&auto=format`}
                           alt={item.name}
                           loading="lazy"
                         />
