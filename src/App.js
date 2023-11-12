@@ -8,8 +8,6 @@ import {
 } from 'react-router-dom';
 import About from './about';
 import Cart from './pages/cart';
-import Categories from './pages/categories';
-import Items from './pages/items';
 import Product from './pages/product';
 import Payment from './pages/payment';
 import Shipping from './pages/shipping';
@@ -55,8 +53,6 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/categories" element={<Categories />} />
-                <Route path="/categories/:id/items" element={<Items />} />
                 <Route path="/admin" element={<Admin />} />          
                 <Route path="/purchase" element={<Purchase />} />
                 <Route path="/purchase/payment" element={<Payment />} />
