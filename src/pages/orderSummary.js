@@ -65,8 +65,8 @@ function OrderSummary() {
                     }}>
                     <ImageListItem key={item.image}>
                       <img
-                        srcSet={`${item.image}?fit=crop&auto=format&dpr=2 2x`}
-                        src={`${item.image}?fit=crop&auto=format`}
+                        srcSet={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format&dpr=2 2x`}
+                        src={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format`}
                         alt={item.title}
                         loading="lazy"
                       />
