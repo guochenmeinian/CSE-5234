@@ -48,7 +48,7 @@ function Cart() {
                         whiteSpace: "normal",
                         overflow: "hidden"
                       }}>
-                      <ImageListItem key={item.image}>
+                      <ImageListItem key={item.id}>
                         <img
                           srcSet={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format&dpr=2 2x`}
                           src={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format`}
