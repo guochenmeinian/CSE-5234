@@ -55,7 +55,7 @@ function OrderSummary() {
               <Typography variant="h6">Products:</Typography>
               <ImageList cols={5}>
                 {orderData.map((item) => (
-                  <Link key={item.id} to={`/items/${item.id}`}
+                  <Link key={item.id} to={`/products/${item.id}`}
                     style={{
                       textDecoration: 'none',
                       color: 'black',

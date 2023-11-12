@@ -10,7 +10,7 @@ import About from './about';
 import Cart from './pages/cart';
 import Categories from './pages/categories';
 import Items from './pages/items';
-import Item from './pages/item';
+import Product from './pages/product';
 import Payment from './pages/payment';
 import Shipping from './pages/shipping';
 import OrderSummary from './pages/orderSummary';
@@ -69,7 +69,7 @@ function App() {
                   path="/purchase/confirmation"
                   element={<Confirmation removeAllItemsFromCart={removeAllItemsFromCart} />}
                 />
-                <Route path="/items/:id" element={<Item />} />
+                <Route path="/products/:id" element={<Product />} />
               </Routes>
             </Container>
           </CartProvider>

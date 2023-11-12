@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getProduct } from "../api/queries";
 import { CartContext } from '../context/cartContext';
 
-function Item() {
+function Product() {
   const { addToCart } = useContext(CartContext);
 
   const [item, setItem] = useState({});
@@ -63,4 +63,4 @@ function Item() {
   );
 }
 
-export default Item;
+export default Product;

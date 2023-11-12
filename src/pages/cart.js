@@ -40,7 +40,7 @@ function Cart() {
               <ImageList cols={5}>
                 {cartItems.map((item) => (
                   <Box>
-                    <Link key={item.id} to={`/items/${item.id}`}
+                    <Link key={item.id} to={`/products/${item.id}`}
                       style={{
                         textDecoration: 'none',
                         color: 'black',

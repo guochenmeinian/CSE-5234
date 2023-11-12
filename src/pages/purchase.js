@@ -60,7 +60,7 @@ function Purchase() {
               </CardContent>
               <CardActions>
                 <Button size="small" color="primary">
-                  <Link to={`/items/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Link to={`/products/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     View Details
                   </Link>
                 </Button>
