@@ -33,32 +33,18 @@ Before you begin, make sure you have the following prerequisites installed on yo
 git clone https://github.com/guochenmeinian/CSE-5234
 ```
 
-2. **Run the mysql scheme in /public/database folder**
-
-Note: the sql must be run in order from create_categories_table, create_products_table, and then insert_values.
-
-3. **Run following commands for installation**
+2. **Run following commands for installation**
 
 ``` bash 
 npm install rc-footer
 npm install rc-switch
 ```
 
-4. **Execute the frontend**
+3. **Execute the frontend**
 
 ```bash
 npm install
 npm start
-```
-
-5. **Execute the backend based on machine settings**
-
-```bash
-node server/api-server-mac.js
-```
-or
-```bash
-node server/api-server-windows.js
 ```
 
 
@@ -178,6 +164,28 @@ Before you begin, make sure you have the following prerequisites installed on yo
   ```
 
 For more detailed documentation and advanced usage, refer to the [AWS Amplify documentation](https://docs.amplify.aws/).
+
+
+## AWS DynamoDB
+
+
+### Products Table on DynamoDB
+
+1. id: String
+2. title: String
+3. description: String
+4. price: Number
+5. image: String
+6. createdAt: String
+7. updatedAt: String
+8. __typename: String
+
+
+### How to Add Records of Data to DynamoDB
+
+1. create an account and login on /admin
+2. wait for the administrator of application to assign the access to the account
+3. have the access to add/edit/delete a product
 
 
 ## Team Members

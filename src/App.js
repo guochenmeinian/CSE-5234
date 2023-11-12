@@ -22,7 +22,7 @@ import Purchase from './pages/purchase';
 import { Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import customTheme from "./customTheme"
-import { ItemProvider } from './context/itemContext';
+import { ItemProvider } from './context/productContext';
 import { CartProvider } from './context/cartContext';
 
 function App() {
@@ -69,7 +69,7 @@ function App() {
                   path="/purchase/confirmation"
                   element={<Confirmation removeAllItemsFromCart={removeAllItemsFromCart} />}
                 />
-                <Route path="/items/:id" element={<Item addItemToCart={addItemToCart} />} />
+                <Route path="/items/:id" element={<Item />} />
               </Routes>
             </Container>
           </CartProvider>

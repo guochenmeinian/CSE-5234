@@ -30,12 +30,13 @@ const Admin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (!itemDetails.title || !itemDetails.price) return
-            await API.graphql(graphqlOperation(createProduct, { input: itemDetails, authMode: "AMAZON_COGNITO_USER_POOLS" }))
-            setItemDetails({ title: "", description: "", image: "", price: "", onSale: false })
-            console.log('data uploaded successfully.')
+            if (!itemDetails.title || !itemDetails.price) return;
+            await API.graphql(graphqlOperation(createProduct, { input: itemDetails, authMode: "AMAZON_COGNITO_USER_POOLS" }));
+            setItemDetails({ title: "", description: "", image: "", price: "", onSale: false });
+            setImage(null);
+            console.log('data uploaded successfully.');
         } catch (err) {
-            console.log('error creating in admin page:\n', err)
+            console.log('error creating in admin page:\n', err);
         }
     }
 
