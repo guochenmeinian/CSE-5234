@@ -1,7 +1,7 @@
 # CSE 5234 E-commerce Application
 
 Welcome to our e-commerce application for the CSE 5234 course. We built this full-stack application using Node.js for the backend and React.js for the frontend.
-The deployment is available [here](https://main.d2v8q1c89t29jt.amplifyapp.com ). 
+The deployment is available [here](https://main.dor2izrbuao8w.amplifyapp.com). 
 
 
 ## Project Overview
@@ -33,23 +33,21 @@ Before you begin, make sure you have the following prerequisites installed on yo
 git clone https://github.com/guochenmeinian/CSE-5234
 ```
 
-2. **Run following commands for installation**
+2. **Install frontend components**
 
 ``` bash 
-npm install rc-footer
-npm install rc-switch
+npm install
 ```
 
-3. **Execute the frontend**
+3. **Run the project**
 
 ```bash
-npm install
 npm start
 ```
 
 
-## Remote Environment
 
+## Remote Environment
 
 ## AWS Amplify
 
