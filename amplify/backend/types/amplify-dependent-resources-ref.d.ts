@@ -1,13 +1,13 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "RMstore": {
+    "cse5234": {
       "GraphQLAPIEndpointOutput": "string",
       "GraphQLAPIIdOutput": "string",
       "GraphQLAPIKeyOutput": "string"
     }
   },
   "auth": {
-    "cse52341a8c5561": {
+    "cse523486eead97": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -18,7 +18,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "createOrder": {
+    "placeOrder": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -34,7 +34,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "ItemImages": {
+    "productImages": {
       "BucketName": "string",
       "Region": "string"
     }

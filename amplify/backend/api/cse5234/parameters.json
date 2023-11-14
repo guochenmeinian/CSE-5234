@@ -1,10 +1,10 @@
 {
-  "AppSyncApiName": "RMstore",
+  "AppSyncApiName": "cse5234",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
-      "authcse52341a8c5561",
+      "authcse523486eead97",
       "Outputs.UserPoolId"
     ]
   }

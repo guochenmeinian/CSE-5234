@@ -34,7 +34,8 @@ const ProductProvider = ({ children }) => {
     setError(null); // Reset error state before fetching
     try {
       setLoading(true);
-      const response = await API.graphql(graphqlOperation(listProducts, { authMode: "AMAZON_COGNITO_USER_POOLS" }));
+      // authMode doc: https://docs.amplify.aws/lib/graphqlapi/authz/q/platform/js/#using-amplify-graphql-client
+      const response = await API.graphql(graphqlOperation(listProducts, { authMode: "API_KEY" }));
       const fetchedProducts = response?.data?.listProducts?.items || [];
       const onSaleProducts = fetchedProducts.filter(item => item.onSale);
       setProducts(fetchedProducts);

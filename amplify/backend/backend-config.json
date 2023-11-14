@@ -1,13 +1,13 @@
 {
   "api": {
-    "RMstore": {
+    "cse5234": {
       "dependsOn": [
         {
           "attributes": [
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "cse52341a8c5561"
+          "resourceName": "cse523486eead97"
         }
       ],
       "output": {
@@ -16,7 +16,7 @@
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authcse52341a8c5561"
+                "userPoolId": "authcse523486eead97"
               }
             }
           ],
@@ -33,7 +33,7 @@
     }
   },
   "auth": {
-    "cse52341a8c5561": {
+    "cse523486eead97": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -59,7 +59,7 @@
     }
   },
   "function": {
-    "createOrder": {
+    "placeOrder": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -71,19 +71,19 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_createOrder_deploymentBucketName": {
+    "AMPLIFY_function_placeOrder_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "createOrder"
+          "resourceName": "placeOrder"
         }
       ]
     },
-    "AMPLIFY_function_createOrder_s3Key": {
+    "AMPLIFY_function_placeOrder_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "createOrder"
+          "resourceName": "placeOrder"
         }
       ]
     },
@@ -105,7 +105,7 @@
     }
   },
   "storage": {
-    "ItemImages": {
+    "productImages": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"
