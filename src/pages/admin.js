@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { Authenticator, Button as AmplifyButton } from '@aws-amplify/ui-react';
@@ -15,8 +15,14 @@ import {
     Container,
     Typography,
     Grid,
-    Box
+    Box,
+    List,
+    ListItem,
+    ListItemText,
+    IconButton,
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { ProductContext } from '../context/productContext';
 
 const {
     aws_user_files_s3_bucket_region: region,
@@ -24,44 +30,62 @@ const {
 } = config;
 
 const Admin = () => {
-    const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null); // For the image preview
+    const [imageFile, setImageFile] = useState(null);
     const [itemDetails, setItemDetails] = useState({ title: "", description: "", image: "", price: "", onSale: false });
+    const { products, deleteSelectedProduct } = useContext(ProductContext);
+    const handleDelete = async (productId) => {
+        await deleteSelectedProduct(productId);
+        console.log('deleted successfully');
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            if (!itemDetails.title || !itemDetails.price) return;
-            await API.graphql(graphqlOperation(createProduct, { input: itemDetails, authMode: "AMAZON_COGNITO_USER_POOLS" }));
-            setItemDetails({ title: "", description: "", image: "", price: "", onSale: false });
-            setImage(null);
-            console.log('data uploaded successfully.');
-        } catch (err) {
-            console.log('error creating in admin page:\n', err);
+    
+        // Check if all the required fields are filled
+        if (!itemDetails.title || !itemDetails.price || !imageFile) {
+            console.log('Please fill in all fields and upload an image.');
+            return;
         }
-    }
+    
+        // Extract the file extension and name from the uploaded file
+        const extension = imageFile.name.split(".")[1];
+        const name = imageFile.name.split(".")[0];
+        const key = `images/${uuidv4()}${name}.${extension}`;
+        const url = `https://${bucket}.s3.${region}.amazonaws.com/public/${key}`;
+    
+        try {
+            // Upload the image to S3
+            await Storage.put(key, imageFile, {
+                level: 'public',
+                contentType: imageFile.type
+            });
+    
+            // Add the image URL to the product details and create the product
+            const productDetails = { ...itemDetails, image: url };
+            await API.graphql(graphqlOperation(createProduct, { input: productDetails, authMode: "AMAZON_COGNITO_USER_POOLS" }));
+    
+            // Reset the form state
+            setItemDetails({ title: "", description: "", image: "", price: "", onSale: false });
+            setImageFile(null);
+            setImagePreview(null);
+            console.log('Product created successfully.');
+        } catch (err) {
+            console.log('Error submitting product:', err);
+        }
+    }    
 
-    const handleImageUpload = async (e) => {
+    // Handle image upload for immediate display
+    const handleImageUpload = (e) => {
         e.preventDefault();
         const file = e.target.files[0];
-        const extension = file.name.split(".")[1];
-        const name = file.name.split(".")[0];
-        const key = `images/${uuidv4()}${name}.${extension}`;
-        const url = `https://${bucket}.s3.${region}.amazonaws.com/public/${key}`
-        try {
-            // Upload the file to s3 with public access level. 
-            await Storage.put(key, file, {
-                level: 'public',
-                contentType: file.type
-            });
-            // Retrieve the uploaded file to display
-            const image = await Storage.get(key, { level: 'public' })
-            setImage(image);
-            setItemDetails({ ...itemDetails, image: url });
-            console.log('image uploaded successfully.')
-        } catch (err) {
-            console.log('error creating in image upload:\n', err);
+        if (file) {
+            const previewUrl = URL.createObjectURL(file);
+            setImagePreview(previewUrl); // Set the preview URL
+            setImageFile(file); // Store the image file for later submission
         }
     }
+    
 
     return (
         <Authenticator>
@@ -94,22 +118,19 @@ const Admin = () => {
                                     <Grid container spacing={3}>
                                         <Grid item xs={12} sm={6}>
                                             <Box display="flex" flexDirection="column" alignItems="center">
-                                                {image ? (
-                                                    <img src={image} alt="" style={{ width: '100%', height: 'auto' }} />
-                                                ) : (
-                                                    <Button
-                                                        variant="contained"
-                                                        component="label"
-                                                    >
-                                                        Upload Image
-                                                        <input
-                                                            type="file"
-                                                            hidden
-                                                            accept="image/*"
-                                                            onChange={(e) => handleImageUpload(e)}
-                                                        />
-                                                    </Button>
-                                                )}
+                                            {imagePreview ? (
+                                                <img src={imagePreview} alt="Preview" style={{ width: '100%', height: 'auto' }} />
+                                            ) : (
+                                                <Button variant="contained" component="label">
+                                                    Upload Image
+                                                    <input
+                                                        type="file"
+                                                        hidden
+                                                        accept="image/*"
+                                                        onChange={handleImageUpload}
+                                                    />
+                                                </Button>
+                                            )}
                                             </Box>
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
@@ -152,8 +173,25 @@ const Admin = () => {
                                 </form>
                             </Grid>
                         </Grid>
+                        {/* Section to list and delete products */}
+                        <Grid item xs={12}>
+                            <Typography variant="h6" gutterBottom>
+                            Manage Products
+                            </Typography>
+                            <List>
+                            {products.map((product) => (
+                                <ListItem key={product.id} divider>
+                                <ListItemText primary={product.title} secondary={`Price: $${product.price}`} />
+                                <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(product.id)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                                </ListItem>
+                            ))}
+                            </List>
+                        </Grid>
                     </Paper>
                 </Container>
+                
             )}
         </Authenticator>
     );
