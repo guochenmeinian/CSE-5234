@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation, Storage } from "aws-amplify";
 import { v4 as uuidv4 } from "uuid";
-import { listProducts } from "../api/queries";
-import { processOrder } from "../api/mutations";
+import { getProduct, listProducts } from "../api/queries";
+import { processOrder, deleteProduct } from "../api/mutations";
 
 const ProductContext = React.createContext();
 
 const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [onSale, setOnSale] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
     fetchAllProducts();
@@ -26,29 +24,48 @@ const ProductProvider = ({ children }) => {
       console.log("process order successfully");
     } catch (err) {
       console.log("Error processing order:", err);
-      setError(err); // Set error state
     }
   };
 
   const fetchAllProducts = async () => {
-    setError(null); // Reset error state before fetching
     try {
-      setLoading(true);
       // authMode doc: https://docs.amplify.aws/lib/graphqlapi/authz/q/platform/js/#using-amplify-graphql-client
       const response = await API.graphql(graphqlOperation(listProducts, { authMode: "API_KEY" }));
       const fetchedProducts = response?.data?.listProducts?.items || [];
       const onSaleProducts = fetchedProducts.filter(item => item.onSale);
       setProducts(fetchedProducts);
       setOnSale(onSaleProducts);
-      setLoading(false);
     } catch (err) {
       console.error("Error fetching products:", err);
-      setError(err); // Set error state
     }
   };
 
+  // Delete a product
+  const deleteSelectedProduct = async (productId) => {
+    try {
+        // Fetch the product details first
+        const response = await API.graphql(graphqlOperation(getProduct, { id: productId }));
+        const product = response.data.getProduct;
+
+        // Delete the image from S3 if it exists
+        if (product && product.image) {
+            const imageName = product.image.split('/').pop();
+            console.log("Deleting image:", imageName);
+            await Storage.remove(imageName, { level: 'public' })
+            .then(result => console.log("Image deleted:", result))
+            .catch(err => console.error("Error deleting image:", err));
+        }
+
+        // Then delete the product
+        await API.graphql(graphqlOperation(deleteProduct, { input: { id: productId } }));
+        fetchAllProducts(); // Refresh the list after deletion
+      } catch (err) {
+          console.error("Error deleting product:", err);
+      }
+  };
+
   return (
-    <ProductContext.Provider value={{ products, onSale, loading, checkout, error }}>
+    <ProductContext.Provider value={{ products, onSale, checkout, deleteSelectedProduct }}>
       {children}
     </ProductContext.Provider>
   );
