@@ -10,10 +10,6 @@ export const getProduct = /* GraphQL */ `
       image
       onSale
       price
-      orders {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
