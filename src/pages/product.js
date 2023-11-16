@@ -14,7 +14,7 @@ function Product() {
   useEffect(() => {
     async function fetchedProduct() {
       try {
-        const response = await API.graphql(graphqlOperation(getProduct, { id }));
+        const response = await API.graphql(graphqlOperation(getProduct, { id }, { authMode: "AMAZON_COGNITO_USER_POOLS" }));
         setItem(response?.data?.getProduct || {});
       } catch (err) {
         console.error("Error fetching product:", err);
