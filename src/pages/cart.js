@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
-  Grid,
   Typography,
   Button,
   Card,
@@ -11,12 +10,11 @@ import {
   IconButton,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import getTotalCost from '../hook/getTotalCost';
 import { CartContext } from '../context/cartContext';
-import { Authenticator, Button as AmplifyButton } from '@aws-amplify/ui-react';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 function Cart() {
-  const { cartItems, increaseAmount, decreaseAmount, clearCart } = useContext(CartContext);
+  const { cartItems, total, increaseAmount, decreaseAmount, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   return (
@@ -54,7 +52,7 @@ function Cart() {
               ))}
 
               <Box sx={{ mt: 2 }}>
-                <Typography variant="h5">Total: ${getTotalCost(cartItems)}</Typography>
+                <Typography variant="h5">Total: ${total}</Typography>
                 <Button
                   variant="contained"
                   sx={{ mt: 2 }}
