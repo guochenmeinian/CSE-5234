@@ -4,7 +4,7 @@ import { Box, Typography, Button, Paper } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { getProduct } from "../api/queries";
 import { CartContext } from '../context/cartContext';
-import { Authenticator, Button as AmplifyButton } from '@aws-amplify/ui-react';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 function Product() {
   const { addToCart } = useContext(CartContext);

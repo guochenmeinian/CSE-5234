@@ -1,72 +1,88 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import './Navbar.css';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Grid } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Auth } from 'aws-amplify';
 
 function NavBar({ numberOfCartItems }) {
-  const [click, setClick] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-  const handleClick = () => setClick(!click);
+  useEffect(() => {
+    checkCurrentUser();
+  }, []);
+
+  const checkCurrentUser = async () => {
+    try {
+      const currentUser = await Auth.currentAuthenticatedUser();
+      setUser(currentUser);
+    } catch (error) {
+      setUser(null);
+    }
+  };
+
+  const handleDrawerOpen = () => setDrawerOpen(true);
+  const handleDrawerClose = () => setDrawerOpen(false);
+
+  const handleNavLinkClick = (path) => {
+    navigate(path);
+    handleDrawerClose();
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await Auth.signOut();
+      setUser(null);
+      navigate('/');
+    } catch (error) {
+      console.error('Error signing out: ', error);
+    }
+  };
+
   return (
-    <>
-      <nav className="navbar">
-        <div className="nav-container">
-          <NavLink exact to="/" className="nav-logo">
-            RM Hub
-            <i className="fas fa-code"></i>
-          </NavLink>
+    <AppBar position="static" sx={{ backgroundColor: '#000', minHeight: '80px' }}>
+      <Toolbar>
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Grid item>
+            <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
+              <MenuIcon />
+            </IconButton>
+          </Grid>
 
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/home"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/about"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                About
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/purchase"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Purchase
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/cart"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Shopping Cart {numberOfCartItems > 0 ? `(${numberOfCartItems})` : ""}
-              </NavLink>
-            </li>
-          </ul>
-          <div className="nav-icon" onClick={handleClick}>
-            <i className={click ? 'fas fa-times' : 'fas fa-bars'}></i>
-          </div>
-        </div>
-      </nav>
-    </>
+          <Grid item>
+            <Typography variant="h4" sx={{ color: '#f5b921', cursor: 'pointer' }} onClick={() => navigate('/')}>
+              RM Hub
+            </Typography>
+          </Grid>
+
+          <Grid item>
+            {user ? (
+              <Button color="inherit" onClick={handleSignOut}>Log Out</Button>
+            ) : (
+              <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
+            )}
+          </Grid>
+        </Grid>
+
+        <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
+          <List sx={{ width: 250 }}>
+            <ListItem button onClick={() => handleNavLinkClick('/home')}>
+              <ListItemText primary="Home" />
+            </ListItem>
+            <ListItem button onClick={() => handleNavLinkClick('/about')}>
+              <ListItemText primary="About" />
+            </ListItem>
+            <ListItem button onClick={() => handleNavLinkClick('/purchase')}>
+              <ListItemText primary="Purchase" />
+            </ListItem>
+            <ListItem button onClick={() => handleNavLinkClick('/cart')}>
+              <ListItemText primary={`Shopping Cart ${numberOfCartItems > 0 ? `(${numberOfCartItems})` : ""}`} />
+            </ListItem>
+          </List>
+        </Drawer>
+      </Toolbar>
+    </AppBar>
   );
 }
 
