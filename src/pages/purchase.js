@@ -39,16 +39,17 @@ function Purchase() {
           <Grid item xs={12} sm={6} md={4} key={id}>
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
               <CardMedia
-                sx={{ paddingTop: '56.25%' }} // 16:9 aspect ratio
+                component="img"
+                sx={{ height: 'auto', maxHeight: '1000px' }} // Adjust height as needed
                 image={image || '/other-images/placeholder-image.png'}
-                title={title}
+                alt={title}
               />
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h6" component="h2">
                   {title}
                 </Typography>
               </CardContent>
-              <CardActions>
+              <CardActions sx={{ justifyContent: 'center', paddingBottom: 2 }}>
                 <Button size="small" color="primary">
                   <Link to={`/products/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     View Details
