@@ -15,6 +15,10 @@ In this project, we aimed to create a seamless online shopping experience by imp
 - **Backend:** Node.js with Express.js for handling API requests.
 - **Database:** MySql on local or DynamoDB on aws
 
+Below is a graphical representation of our structure
+
+![image](public/other-images/rm-hub-architecture.png)
+
 
 ## Local Environment
 
