@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { Authenticator, Button as AmplifyButton } from '@aws-amplify/ui-react';
-import { createProduct } from '../api/mutations';
+import { createProduct, updateInventory } from '../api/mutations';
 import config from '../aws-exports';
 import '@aws-amplify/ui-react/styles.css'; // default styles
 import {
@@ -20,8 +20,13 @@ import {
     ListItem,
     ListItemText,
     IconButton,
+    Dialog, // for modal
+    DialogActions,
+    DialogContent,
+    DialogTitle
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit'; // for edit button
 import { ProductContext } from '../context/productContext';
 
 const {
@@ -30,20 +35,23 @@ const {
 } = config;
 
 const Admin = () => {
-    const [imagePreview, setImagePreview] = useState(null); // For the image preview
+    // State for creating a new product
+    const [imagePreview, setImagePreview] = useState(null);
     const [imageFile, setImageFile] = useState(null);
-    const [itemDetails, setItemDetails] = useState({ title: "", description: "", image: "", price: "", onSale: false });
-    const { products, deleteSelectedProduct } = useContext(ProductContext);
-    const handleDelete = async (productId) => {
-        await deleteSelectedProduct(productId);
-        console.log('deleted successfully');
-    };
+    const [itemDetails, setItemDetails] = useState({ title: "", description: "", image: "", price: "", onSale: false, quantity: 0 });
+
+    // State for editing existing product inventory
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [newQuantity, setNewQuantity] = useState(0);
+
+    const { products, fetchProducts, deleteSelectedProduct } = useContext(ProductContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         // Check if all the required fields are filled
-        if (!itemDetails.title || !itemDetails.price || !imageFile) {
+        if (!itemDetails.title || !itemDetails.price || !itemDetails.quantity || !imageFile) {
             console.log('Please fill in all fields and upload an image.');
             return;
         }
@@ -62,18 +70,63 @@ const Admin = () => {
             });
     
             // Add the image URL to the product details and create the product
-            const productDetails = { ...itemDetails, image: url };
-            await API.graphql(graphqlOperation(createProduct, { input: productDetails, authMode: "AMAZON_COGNITO_USER_POOLS" }));
-    
+            const productDetails = { ...itemDetails, image: url, quantity: itemDetails.quantity };
+            await API.graphql(graphqlOperation(createProduct, { 
+                input: {
+                    ...productDetails
+                },
+                authMode: "AMAZON_COGNITO_USER_POOLS" 
+            }));
+                
             // Reset the form state
-            setItemDetails({ title: "", description: "", image: "", price: "", onSale: false });
+            setItemDetails({ title: "", description: "", image: "", price: "", onSale: false, quantity: 0 });
             setImageFile(null);
             setImagePreview(null);
             console.log('Product created successfully.');
+            fetchProducts(); // Refresh product list
         } catch (err) {
             console.log('Error submitting product:', err);
         }
     }    
+
+    const handleEditInventory = (product) => {
+        setSelectedProduct(product);
+        setNewQuantity(product.inventory?.quantity || 0); 
+        setEditModalOpen(true);
+    };
+    
+
+    const handleUpdateInventory = async () => {
+        if (!selectedProduct || newQuantity < 0) {
+            alert("Invalid product or quantity");
+            return;
+          }
+
+        try {
+            // Call the updateProductInventory mutation
+            await API.graphql(graphqlOperation(updateInventory, {
+                input: { 
+                    id: selectedProduct.id, 
+                    quantity: newQuantity 
+                },
+                authMode: "AMAZON_COGNITO_USER_POOLS" 
+            }));
+    
+            // Close the modal
+            setEditModalOpen(false);
+    
+            // Refresh products list
+            fetchProducts();
+        } catch (error) {
+            console.error('Error updating inventory:', error);
+        }
+    };
+    
+
+    const handleDelete = async (productId) => {
+        await deleteSelectedProduct(productId);
+        console.log('deleted successfully');
+    };
 
     // Handle image upload for immediate display
     const handleImageUpload = (e) => {
@@ -150,6 +203,17 @@ const Admin = () => {
                                                 value={itemDetails.description}
                                                 onChange={(e) => setItemDetails({ ...itemDetails, description: e.target.value })}
                                             />
+                                            {/* New TextField for Initial Quantity */}
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                label="Initial Quantity"
+                                                name="initialQuantity"
+                                                type="number"
+                                                value={itemDetails.quantity}
+                                                onChange={(e) => setItemDetails({ ...itemDetails, quantity: parseInt(e.target.value, 10) })}
+                                                style={{ marginTop: '10px' }}
+                                            />
                                             <TextField
                                                 required
                                                 fullWidth
@@ -173,25 +237,52 @@ const Admin = () => {
                                 </form>
                             </Grid>
                         </Grid>
-                        {/* Section to list and delete products */}
+                    </Paper>
+                    <br />
+                    <Paper>
+                        {/* New Section for Edit Inventory Modal */}
+                        <Dialog open={editModalOpen} onClose={() => setEditModalOpen(false)}>
+                            <DialogTitle>Edit Inventory</DialogTitle>
+                            <DialogContent>
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    label="New Quantity"
+                                    type="number"
+                                    fullWidth
+                                    value={newQuantity}
+                                    onChange={(e) => setNewQuantity(parseInt(e.target.value, 10))}
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => setEditModalOpen(false)} color="primary">
+                                    Cancel
+                                </Button>
+                                <Button onClick={handleUpdateInventory} color="primary">
+                                    Update
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+
+                        {/* Section to list and provide options to delete or edit product inventory */}
                         <Grid item xs={12}>
-                            <Typography variant="h6" gutterBottom>
-                            Manage Products
-                            </Typography>
+                            <Typography variant="h6" gutterBottom>Manage Products</Typography>
                             <List>
-                            {products.map((product) => (
-                                <ListItem key={product.id} divider>
-                                <ListItemText primary={product.title} secondary={`Price: $${product.price}`} />
-                                <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(product.id)}>
-                                    <DeleteIcon />
-                                </IconButton>
-                                </ListItem>
-                            ))}
+                                {products.map((product) => (
+                                    <ListItem key={product.id} divider>
+                                        <ListItemText primary={product.title} secondary={`Price: $${product.price}`} />
+                                        <IconButton edge="end" aria-label="edit" onClick={() => handleEditInventory(product)}>
+                                            <EditIcon />
+                                        </IconButton>
+                                        <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(product.id)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </ListItem>
+                                ))}
                             </List>
                         </Grid>
                     </Paper>
                 </Container>
-                
             )}
         </Authenticator>
     );
@@ -200,3 +291,6 @@ const Admin = () => {
 
 
 export default Admin;
+
+
+

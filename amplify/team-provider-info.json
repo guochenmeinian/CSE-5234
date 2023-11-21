@@ -18,11 +18,19 @@
       "function": {
         "processPayment": {
           "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
-          "s3Key": "amplify-builds/processPayment-6c364c414f37772f5256-build.zip"
+          "s3Key": "amplify-builds/processPayment-66584b715a4455614677-build.zip"
         },
         "placeOrder": {
           "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
-          "s3Key": "amplify-builds/placeOrder-5667705a385575427757-build.zip"
+          "s3Key": "amplify-builds/placeOrder-3574464f42746c336a32-build.zip"
+        },
+        "createProduct": {
+          "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
+          "s3Key": "amplify-builds/createProduct-7561686b6e777a61556b-build.zip"
+        },
+        "processShipping": {
+          "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
+          "s3Key": "amplify-builds/processShipping-453445547841364a516a-build.zip"
         }
       },
       "api": {
@@ -30,6 +38,9 @@
       },
       "storage": {
         "productImages": {}
+      },
+      "analytics": {
+        "cse5234": {}
       }
     }
   },

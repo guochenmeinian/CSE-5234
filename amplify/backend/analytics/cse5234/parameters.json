@@ -1,0 +1,21 @@
+{
+    "appName": "cse5234",
+    "roleName": "pinpointLambdaRole2cb3d269",
+    "cloudformationPolicyName": "cloudformationPolicy2cb3d269",
+    "cloudWatchPolicyName": "cloudWatchPolicy2cb3d269",
+    "pinpointPolicyName": "pinpointPolicy2cb3d269",
+    "authPolicyName": "pinpoint_amplify_2cb3d269",
+    "unauthPolicyName": "pinpoint_amplify_2cb3d269",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

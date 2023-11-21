@@ -1,3 +1,19 @@
+type Inventory
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"] },
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  product: Product @belongsTo(fields: ["product_id"])
+  product_id: ID!
+  quantity: Int!
+  reorderLevel: Int
+  lastUpdated: AWSDateTime
+}
+
 type Product
   @model(subscriptions: null)
   @auth(
@@ -14,6 +30,7 @@ type Product
     onSale: Boolean
     price: Float!
     orders: [ProductOrder] @hasMany
+    inventory: Inventory @hasOne
   }
 
 type ProductOrder 
@@ -63,11 +80,23 @@ input ProcessOrderInput {
   cart: [CartItem]
   total: Float!
   token: String!
-  address: String
+  address: String!
+}
+
+input ProcessProductInput {
+  title: String!
+  description: String!
+  image: String
+  onSale: Boolean
+  price: Float!
+  quantity: Int!
 }
 
 type Mutation {
   processOrder(input: ProcessOrderInput!): OrderStatus
     @function(name: "processPayment-${env}")
+    @function(name: "processShipping-${env}")
     @function(name: "createOrder-${env}")
+  processProduct(input: ProcessProductInput!): Product
+    @function(name: "createProduct-${env}")
 }

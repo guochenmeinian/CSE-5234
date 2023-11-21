@@ -101,7 +101,7 @@ const Home = () => {
                 icon: "star",
                 variant: "contained",
                 color: "secondary",
-                link: "/categories",
+                link: "/purchase",
                 type: "internal"
               }
             }

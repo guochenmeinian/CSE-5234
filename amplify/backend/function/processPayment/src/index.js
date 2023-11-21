@@ -1,7 +1,7 @@
 const { CognitoIdentityServiceProvider } = require("aws-sdk")
 const cognitoIdentityServiceProvider = new CognitoIdentityServiceProvider();
-const USER_POOL_ID = "<userpool_id";
-const stript = require("stripe")("<stripe_private_key>");
+const USER_POOL_ID = "cse523486eead97_userpool_86eead97-cse";
+const stripe = require("stripe")("sk_test_51L9dl4F8DRl4m1alq9Va4I4SEZtGQY7aoIPVNTR063IHoXKfiHjDPABK3dboKrUtikqbHLruQEfEXJSJB1HiQyv4005MkaDqc3");
 
 /**
  * Get user email
@@ -15,7 +15,7 @@ const getUserEmail = async (event) => {
     };
     const user = await cognitoIdentityServiceProvider.adminGetUser(params).promise();
     const { Value: email } = user.UserAttributes.find((attr) => {
-        if (attr.Name = "email") {
+        if (attr.Name === "email") {
             return attr.Value;
         }
     });

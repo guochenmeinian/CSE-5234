@@ -2,16 +2,17 @@ const { v4: uuidv4 } = require("uuid");
 const AWS = require("aws-sdk");
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
-const ORDER_TABLE = "Order-hnjfuwowbja4biwzq534pm6j2e-cse";
+const ORDER_TABLE = "Order-ddgqbfwy6zhwnkfzuc6hcwsaqm-cse";
 const ORDER_TYPE = "Order";
-const ITEM_ORDER_TABLE = "ItemOrder-hnjfuwowbja4biwzq534pm6j2e-cse";
-const ITEM_ORDER_TYPE = "ItemOrder";
+const PRODUCT_ORDER_TABLE = "ProductOrder-ddgqbfwy6zhwnkfzuc6hcwsaqm-cse";
+const PRODUCT_ORDER_TYPE = "ProductOrder";
+const INVENTORY_TABLE = "Inventory-ddgqbfwy6zhwnkfzuc6hcwsaqm-cse";
 
 const createOrder = async (payload) => {
   const { order_id, username, email, total } = payload;
   var params = {
     TableName: ORDER_TABLE,
-    Item: {
+    Product: {
       id: order_id,
       __typename: ORDER_TYPE,
       customer: email,
@@ -25,16 +26,16 @@ const createOrder = async (payload) => {
   await documentClient.put(params).promise();
 };
 
-const createItemOrder = async (payload) => {
-  let itemOrders = [];
+const createProductOrder = async (payload) => {
+  let productOrders = [];
   for (let i = 0; i < payload.cart.length; i++) {
     const cartItem = payload.cart[i];
-    itemOrders.push({
+    productOrders.push({
       PutRequest: {
         Item: {
           id: uuidv4(),
-          __typename: ITEM_ORDER_TYPE,
-          item_id: cartItem.id,
+          __typename: PRODUCT_ORDER_TYPE,
+          product_id: cartItem.id,
           order_id: payload.order_id,
           customer: payload.email,
           createdAt: new Date().toISOString(),
@@ -46,9 +47,25 @@ const createItemOrder = async (payload) => {
   let params = {
     RequestItems: {}
   };
-  params["RequestItems"][ITEM_ORDER_TABLE] = itemOrders;
+  params["RequestItems"][PRODUCT_ORDER_TABLE] = productOrders;
   console.log(params);
   await documentClient.batchWrite(params).promise();
+};
+
+const updateInventory = async (cartItems) => {
+  const updatePromises = cartItems.map(item => {
+    const params = {
+      TableName: INVENTORY_TABLE,
+      Key: { product_id: item.id },
+      UpdateExpression: "set quantity = quantity - :q",
+      ExpressionAttributeValues: {
+        ":q": item.amount,
+      }
+    };
+    return documentClient.update(params).promise();
+  });
+
+  await Promise.all(updatePromises);
 };
 
 /*
@@ -66,7 +83,10 @@ exports.handler = async (event) => {
     await createOrder(payload);
 
     // links items with the order
-    await createItemOrder(payload);
+    await createProductOrder(payload);
+
+    // Update inventory
+    await updateInventory(payload.cart);
 
     // Note - You may add another function to email the invoice to the user
 

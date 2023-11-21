@@ -6,6 +6,93 @@ export const processOrder = /* GraphQL */ `
     processOrder(input: $input)
   }
 `;
+export const createInventory = /* GraphQL */ `
+  mutation CreateInventory(
+    $input: CreateInventoryInput!
+    $condition: ModelInventoryConditionInput
+  ) {
+    createInventory(input: $input, condition: $condition) {
+      id
+      product {
+        id
+        title
+        description
+        image
+        onSale
+        price
+        createdAt
+        updatedAt
+        productInventoryId
+        __typename
+      }
+      product_id
+      quantity
+      reorderLevel
+      lastUpdated
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateInventory = /* GraphQL */ `
+  mutation UpdateInventory(
+    $input: UpdateInventoryInput!
+    $condition: ModelInventoryConditionInput
+  ) {
+    updateInventory(input: $input, condition: $condition) {
+      id
+      product {
+        id
+        title
+        description
+        image
+        onSale
+        price
+        createdAt
+        updatedAt
+        productInventoryId
+        __typename
+      }
+      product_id
+      quantity
+      reorderLevel
+      lastUpdated
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteInventory = /* GraphQL */ `
+  mutation DeleteInventory(
+    $input: DeleteInventoryInput!
+    $condition: ModelInventoryConditionInput
+  ) {
+    deleteInventory(input: $input, condition: $condition) {
+      id
+      product {
+        id
+        title
+        description
+        image
+        onSale
+        price
+        createdAt
+        updatedAt
+        productInventoryId
+        __typename
+      }
+      product_id
+      quantity
+      reorderLevel
+      lastUpdated
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createProduct = /* GraphQL */ `
   mutation CreateProduct(
     $input: CreateProductInput!
@@ -22,8 +109,19 @@ export const createProduct = /* GraphQL */ `
         nextToken
         __typename
       }
+      inventory {
+        id
+        product_id
+        quantity
+        reorderLevel
+        lastUpdated
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
+      productInventoryId
       __typename
     }
   }
@@ -44,8 +142,19 @@ export const updateProduct = /* GraphQL */ `
         nextToken
         __typename
       }
+      inventory {
+        id
+        product_id
+        quantity
+        reorderLevel
+        lastUpdated
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
+      productInventoryId
       __typename
     }
   }
@@ -66,8 +175,19 @@ export const deleteProduct = /* GraphQL */ `
         nextToken
         __typename
       }
+      inventory {
+        id
+        product_id
+        quantity
+        reorderLevel
+        lastUpdated
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
+      productInventoryId
       __typename
     }
   }
@@ -90,6 +210,7 @@ export const createProductOrder = /* GraphQL */ `
         price
         createdAt
         updatedAt
+        productInventoryId
         __typename
       }
       order {
@@ -129,6 +250,7 @@ export const updateProductOrder = /* GraphQL */ `
         price
         createdAt
         updatedAt
+        productInventoryId
         __typename
       }
       order {
@@ -168,6 +290,7 @@ export const deleteProductOrder = /* GraphQL */ `
         price
         createdAt
         updatedAt
+        productInventoryId
         __typename
       }
       order {
