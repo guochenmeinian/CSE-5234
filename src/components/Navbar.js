@@ -77,7 +77,10 @@ function NavBar({ numberOfCartItems }) {
               <ListItemText primary="Purchase" />
             </ListItem>
             <ListItem button onClick={() => handleNavLinkClick('/cart')}>
-              <ListItemText primary={`Shopping Cart ${numberOfCartItems > 0 ? `(${numberOfCartItems})` : ""}`} />
+              <ListItemText primary="Shopping Cart" />
+            </ListItem>
+            <ListItem button onClick={() => handleNavLinkClick('/admin')}>
+              <ListItemText primary="Admin" />
             </ListItem>
           </List>
         </Drawer>

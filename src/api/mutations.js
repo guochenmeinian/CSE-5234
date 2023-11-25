@@ -6,6 +6,36 @@ export const processOrder = /* GraphQL */ `
     processOrder(input: $input)
   }
 `;
+export const processProduct = /* GraphQL */ `
+  mutation ProcessProduct($input: ProcessProductInput!) {
+    processProduct(input: $input) {
+      id
+      title
+      description
+      image
+      onSale
+      price
+      orders {
+        nextToken
+        __typename
+      }
+      inventory {
+        id
+        product_id
+        quantity
+        reorderLevel
+        lastUpdated
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      productInventoryId
+      __typename
+    }
+  }
+`;
 export const createInventory = /* GraphQL */ `
   mutation CreateInventory(
     $input: CreateInventoryInput!
