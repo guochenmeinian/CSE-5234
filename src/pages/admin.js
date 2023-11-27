@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { Authenticator, Button as AmplifyButton } from '@aws-amplify/ui-react';
-import { createProduct, updateInventory } from '../api/mutations';
+import { processProduct, updateInventory } from '../api/mutations';
 import config from '../aws-exports';
+import { Auth } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css'; // default styles
 import {
     Button,
@@ -29,13 +30,20 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit'; // for edit button
 import { ProductContext } from '../context/productContext';
 
+
 const {
     aws_user_files_s3_bucket_region: region,
     aws_user_files_s3_bucket: bucket
 } = config;
 
+
+
+
 const Admin = () => {
+
     // State for creating a new product
+    const [isAdmin, setIsAdmin] = useState(false);
+
     const [imagePreview, setImagePreview] = useState(null);
     const [imageFile, setImageFile] = useState(null);
     const [itemDetails, setItemDetails] = useState({ title: "", description: "", image: "", price: "", onSale: false, quantity: 0 });
@@ -46,6 +54,27 @@ const Admin = () => {
     const [newQuantity, setNewQuantity] = useState(0);
 
     const { products, fetchProducts, deleteSelectedProduct } = useContext(ProductContext);
+
+    useEffect(() => {
+        checkUserGroup();
+    }, []);
+
+    const checkUserGroup = async () => {
+        try {
+            const user = await Auth.currentAuthenticatedUser();
+            const groups = user.signInUserSession.accessToken.payload["cognito:groups"];
+            if (groups && groups.includes("Admin")) {
+                setIsAdmin(true);
+            }
+        } catch (error) {
+            console.error('Error fetching user details:', error);
+        }
+    };
+
+    if (!isAdmin) {
+        // Redirect or show an access denied message
+        return <div>Access Denied</div>;
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -70,11 +99,16 @@ const Admin = () => {
             });
     
             // Add the image URL to the product details and create the product
-            const productDetails = { ...itemDetails, image: url, quantity: itemDetails.quantity };
-            await API.graphql(graphqlOperation(createProduct, { 
-                input: {
-                    ...productDetails
-                },
+            const productDetails = {
+                title: itemDetails.title,
+                description: itemDetails.description,
+                image: url,
+                onSale: itemDetails.onSale,
+                price: itemDetails.price,
+                quantity: itemDetails.quantity
+            };
+            await API.graphql(graphqlOperation(processProduct, { 
+                input: productDetails,
                 authMode: "AMAZON_COGNITO_USER_POOLS" 
             }));
                 
