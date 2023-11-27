@@ -1,6 +1,6 @@
 # CSE 5234 E-commerce Application
 
-Welcome to our e-commerce application for the CSE 5234 course. We built this full-stack application using Node.js for the backend and React.js for the frontend.
+Welcome to our e-commerce application for the CSE 5234 course. We built this full-stack application using Node.js and AWS Amplify for the backend and React.js for the frontend.
 The deployment is available [here](https://main.dor2izrbuao8w.amplifyapp.com). 
 
 
@@ -12,15 +12,15 @@ In this project, we aimed to create a seamless online shopping experience by imp
 ## Structure
 
 - **Frontend:** React.js with [Material-UI](https://mui.com/) for the user interface.
-- **Backend:** Node.js with Express.js for handling API requests.
-- **Database:** MySql on local or DynamoDB on aws
+- **Backend:** Node.js with Express.js for handling API requests, AWS Amplify for building GraphQL API and serverless functions, and AWS SNS for messags delivery from publishers to subscribers.
+- **Database:** AWS DynamoDB (text data) and S3 bucket (image) on aws
 
 Below is a graphical representation of our structure
 
 ![image](public/other-images/rm-hub-architecture.png)
 
 
-## Local Environment
+## Local / Frontend Environment
 
 
 ## Prerequisites
@@ -29,7 +29,6 @@ Before you begin, make sure you have the following prerequisites installed on yo
 
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
-- [MySql](https://www.mysql.com/)
 
 1. **Clone the repository**
 
@@ -51,11 +50,11 @@ npm start
 
 
 
-## Remote Environment
+## Remote / Backend Environment
 
 ## AWS Amplify
 
-This section provides a quick start guide to using AWS Amplify for building scalable and secure cloud-powered applications. AWS Amplify is a development platform that simplifies the process of building and deploying full-stack applications on the cloud.
+This section provides a quick start guide to using AWS Amplify for building scalable and secure cloud-powered applications. AWS Amplify is a development platform that simplifies the process of building and deploying full-stack applications on the cloud. Since Amplify is based on AWS configuration, you probably can't directly start the project unless I give you permission for using my account. Instead, you may need to start over with the following commands and manually create the functions by youself (refer to the **amplify** folder for details on how we implement the backend services).
 
 
 ## Prerequisites
