@@ -167,26 +167,24 @@ Before you begin, make sure you have the following prerequisites installed on yo
 For more detailed documentation and advanced usage, refer to the [AWS Amplify documentation](https://docs.amplify.aws/).
 
 
-## AWS DynamoDB
+## Database Design
+
+AWS DynamoDB: A NoSQL database service, used for storing structured data with low-latency access.
+AWS S3 (Simple Storage Service): An object storage service, used for storing and retrieving large files such as images.
+
+### Access Patterns
+Retrieve all products for listing on the website.
+Fetch individual product details, including image from S3.
+Update inventory levels after a purchase.
+Place a new order and update the Order table.
+Retrieve user order history.
 
 
-### Products Table on DynamoDB
-
-1. id: String
-2. title: String
-3. description: String
-4. price: Number
-5. image: String
-6. createdAt: String
-7. updatedAt: String
-8. __typename: String
-
-
-### How to Add Records of Data to DynamoDB
+### How to Add/Edit/Delete product
 
 1. create an account and login on /admin
-2. wait for the administrator of application to assign the access to the account
-3. have the access to add/edit/delete a product
+2. add administrator permission to user in AWS Amplify website
+3. login in to perform operations
 
 
 ## Team Members
