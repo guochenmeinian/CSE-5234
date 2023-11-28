@@ -47,7 +47,9 @@ const sendEmailUsingSES = async (toEmailAddress, subject, message) => {
 
 exports.handler = async (event) => {
     try {
-        const { orderId, customerEmail } = event; // Assuming customerEmail is passed in the event
+        const messageBodyString = event.Records[0].Sns.Message;         
+        const messageBodyObject = JSON.parse(messageBodyString);         
+        const { orderId, customerEmail } = messageBodyObject;
         
         await updateOrderStatus(orderId, 'SUCCESS');
 
