@@ -85,10 +85,10 @@ function Payment() {
             </FormControl>
           </Stack>
           <Stack direction="row" justifyContent="space-between" mt={2}>
-            <Button variant="outlined" onClick={handleGoBack()}>
+            <Button variant="outlined" onClick={handleGoBack}>
               Go Back
             </Button>
-            <Button variant="contained" onClick={handleSubmit()}>
+            <Button variant="contained" onClick={handleSubmit}>
               Confirm
             </Button>
           </Stack>
