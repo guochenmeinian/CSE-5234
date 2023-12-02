@@ -8,6 +8,7 @@ import {
   Grid,
   IconButton,
   CardMedia,
+  Stack,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CartContext } from '../context/cartContext';
@@ -24,9 +25,17 @@ function Cart() {
           <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
             Your Shopping Cart
           </Typography>
-          
+
           {cartItems.length === 0 ? (
-            <Typography variant="h6" align="center">Your cart is empty.</Typography>
+            <Stack
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              spacing={2}
+            >
+              <Typography variant="h6" align="center">Your cart is empty.</Typography>
+              <Button variant="contained" color="primary" href="/purchase">Start shopping</Button>
+            </Stack>
           ) : (
             <>
               {cartItems.map((item) => (
