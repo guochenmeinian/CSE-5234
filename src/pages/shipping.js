@@ -116,7 +116,7 @@ function Shipping() {
               />
             </FormControl>
             <ControlledButtons
-              secondaryButtonFunc={() =>
+              handleSubmit={() =>
                 navigate('/purchase/summary', {
                   state: {
                     payment: paymentData,
