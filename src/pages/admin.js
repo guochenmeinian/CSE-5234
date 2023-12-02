@@ -277,7 +277,7 @@ const Admin = () => {
                             <DialogTitle>Edit Inventory</DialogTitle>
                             <DialogContent>
                                 <Typography variant="body1">
-                                    Current Inventory: {selectedProduct.quantity}
+                                    Current Inventory: {selectedProduct?.quantity}
                                 </Typography>
                                 <br />
                                 <TextField
