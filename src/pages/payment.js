@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
-  Button,
   FormControl,
   InputLabel,
   Input,
@@ -9,16 +8,13 @@ import {
   Box,
   Typography,
 } from '@mui/material';
-
+import ControlledButtons from '../components/ControlledButtons';
 
 function Payment() {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const orderData = location.state?.order || {};
-
   const [paymentData, setPaymentData] = useState({
-    creditCardNumber: '',
+    cardNumber: '',
     expirationDate: '',
     cvvCode: '',
     cardHolderName: '',
@@ -31,18 +27,8 @@ function Payment() {
     });
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
-  const handleSubmit = () => {
-    navigate('/purchase/shipping', {
-      state: { order: orderData, payment: paymentData },
-    });
-  };
-
   return (
-    <Box my={5}>
+    <Box>
       <Typography
         variant="h3"
         align="center"
@@ -50,46 +36,58 @@ function Payment() {
         sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
         Payment Info
       </Typography>
-      <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-        <Stack spacing={2} mt={2}>
-          <FormControl>
-            <InputLabel>Credit Card Number</InputLabel>
-            <Input
-              value={paymentData.creditCardNumber}
-              onChange={handleUpdatePayment('creditCardNumber')}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel>Expiration Date</InputLabel>
-            <Input
-              value={paymentData.expirationDate}
-              onChange={handleUpdatePayment('expirationDate')}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel>CVV Code</InputLabel>
-            <Input
-              value={paymentData.cvvCode}
-              onChange={handleUpdatePayment('cvvCode')}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel>Card Holder Name</InputLabel>
-            <Input
-              value={paymentData.cardHolderName}
-              onChange={handleUpdatePayment('cardHolderName')}
-            />
-          </FormControl>
-          <Stack direction="row" justifyContent="space-between" mt={2}>
-            <Button variant="outlined" onClick={handleGoBack}>
-              Go Back
-            </Button>
-            <Button variant="contained" onClick={handleSubmit}>
-              Confirm
-            </Button>
+      <Stack
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+        direction="row">
+        <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
+          <Typography variant='subtitle1'>Pay with credit or debit card</Typography>
+          <Stack spacing={2}>
+            <FormControl required>
+              <InputLabel>Card Number</InputLabel>
+              <Input
+                value={paymentData.cardNumber}
+                onChange={handleUpdatePayment('cardNumber')}
+              />
+            </FormControl>
+            <FormControl required>
+              <InputLabel>Expiration Date</InputLabel>
+              <Input
+                value={paymentData.expirationDate}
+                onChange={handleUpdatePayment('expirationDate')}
+              />
+            </FormControl>
+            <FormControl required>
+              <InputLabel>CVV Code</InputLabel>
+              <Input
+                value={paymentData.cvvCode}
+                onChange={handleUpdatePayment('cvvCode')}
+              />
+            </FormControl>
+            <FormControl required>
+              <InputLabel>Card Holder Name</InputLabel>
+              <Input
+                value={paymentData.cardHolderName}
+                onChange={handleUpdatePayment('cardHolderName')}
+              />
+            </FormControl>
           </Stack>
-        </Stack>
-      </Box>
+          <ControlledButtons
+            secondaryButtonFunc={() =>
+              navigate('/purchase/shipping', {
+                state: { payment: paymentData },
+              })
+            } />
+        </Box>
+        <Typography variant='h6' width={"50%"}>
+          Alright, Morty, it's time to make the ultimate choice!
+          Get those credit cards ready because paying for stuff in different dimensions isn’t as easy as jumping through portals.
+          Secure your order quicker than Rick escaping an alien federation.
+          Let's handle the payment like pros so you can get your hands on those cool goodies from across the cosmos!
+          It's payment time, Morty! 💳💸🌌
+        </Typography>
+      </Stack>
     </Box>
   );
 }

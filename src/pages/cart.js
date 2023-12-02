@@ -25,7 +25,6 @@ function Cart() {
           <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
             Your Shopping Cart
           </Typography>
-
           {cartItems.length === 0 ? (
             <Stack
               direction="column"
@@ -33,7 +32,7 @@ function Cart() {
               alignItems="center"
               spacing={2}
             >
-              <Typography variant="h6" align="center">Your cart is empty.</Typography>
+              <Typography variant="h6" align="center">Whoa there, Morty! Looks like your shopping cart is about as empty as a void in another dimension! Looks like we gotta hunt down some intergalactic goodies to fill that bad boy up! Get schwifty and start adding stuff to your cart, buddy! Wubba lubba dub dub! 🛒🌌🛸</Typography>
               <Button variant="contained" color="primary" href="/purchase">Start shopping</Button>
             </Stack>
           ) : (

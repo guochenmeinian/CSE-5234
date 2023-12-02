@@ -97,7 +97,7 @@ function OrderSummary() {
                 <br />
                 <Typography>
                   Credit Card: **** **** ****{' '}
-                  {paymentData.creditCardNumber.slice(-4)}
+                  {paymentData.cardNumber.slice(-4)}
                 </Typography>
               </Box>
             ) : (
@@ -108,10 +108,14 @@ function OrderSummary() {
             {shippingData ? (
               <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
                 <Typography variant="h6">Shipping Details:</Typography>
-                <Typography>Address: {shippingData.address}</Typography>
+                <Typography>Name: {shippingData.name}</Typography>
+                <Typography>Address: {shippingData.addressLine1} {shippingData.addressLine2}</Typography>
                 <Typography>City: {shippingData.city}</Typography>
+                <Typography>State: {shippingData.state}</Typography>
                 <Typography>Postal Code: {shippingData.postalCode}</Typography>
                 <Typography>Country: {shippingData.country}</Typography>
+                <Typography>Email: {shippingData.email}</Typography>
+                <Typography>Phone Number: {shippingData.phoneNumber}</Typography>
               </Box>
             ) : (
               <Typography>No shipping information provided.</Typography>
