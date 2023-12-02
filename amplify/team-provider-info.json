@@ -24,13 +24,9 @@
           "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
           "s3Key": "amplify-builds/placeOrder-3574464f42746c336a32-build.zip"
         },
-        "createProduct": {
-          "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
-          "s3Key": "amplify-builds/createProduct-7561686b6e777a61556b-build.zip"
-        },
         "processShipping": {
           "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
-          "s3Key": "amplify-builds/processShipping-453445547841364a516a-build.zip"
+          "s3Key": "amplify-builds/processShipping-6d6f446d674e6c676742-build.zip"
         }
       },
       "api": {
@@ -40,7 +36,19 @@
         "productImages": {}
       },
       "analytics": {
-        "cse5234": {}
+        "cse5234": {},
+        "Pinpoint": {
+          "Name": "cse5234-cse",
+          "Id": "422f9f7be09f41a3a959d7d2fb736f35",
+          "Region": "us-east-2"
+        }
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "cse5234-cse",
+          "Id": "422f9f7be09f41a3a959d7d2fb736f35",
+          "Region": "us-east-2"
+        }
       }
     }
   },

@@ -1,54 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getInventory = /* GraphQL */ `
-  query GetInventory($id: ID!) {
-    getInventory(id: $id) {
-      id
-      product {
-        id
-        title
-        description
-        image
-        onSale
-        price
-        createdAt
-        updatedAt
-        productInventoryId
-        __typename
-      }
-      product_id
-      quantity
-      reorderLevel
-      lastUpdated
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listInventories = /* GraphQL */ `
-  query ListInventories(
-    $filter: ModelInventoryFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listInventories(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        product_id
-        quantity
-        reorderLevel
-        lastUpdated
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
 export const getProduct = /* GraphQL */ `
   query GetProduct($id: ID!) {
     getProduct(id: $id) {
@@ -58,23 +10,14 @@ export const getProduct = /* GraphQL */ `
       image
       onSale
       price
+      quantity
+      lastUpdated
       orders {
         nextToken
         __typename
       }
-      inventory {
-        id
-        product_id
-        quantity
-        reorderLevel
-        lastUpdated
-        createdAt
-        updatedAt
-        __typename
-      }
       createdAt
       updatedAt
-      productInventoryId
       __typename
     }
   }
@@ -93,9 +36,10 @@ export const listProducts = /* GraphQL */ `
         image
         onSale
         price
+        quantity
+        lastUpdated
         createdAt
         updatedAt
-        productInventoryId
         __typename
       }
       nextToken

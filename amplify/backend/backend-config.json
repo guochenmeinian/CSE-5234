@@ -65,11 +65,6 @@
     }
   },
   "function": {
-    "createProduct": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "placeOrder": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -86,21 +81,34 @@
       "service": "Lambda"
     }
   },
-  "notifications": {},
+  "notifications": {
+    "cse5234": {
+      "channels": [],
+      "service": "Pinpoint"
+    }
+  },
   "parameters": {
-    "AMPLIFY_function_createProduct_deploymentBucketName": {
+    "AMPLIFY_analytics_Pinpoint_Id": {
       "usedBy": [
         {
-          "category": "function",
-          "resourceName": "createProduct"
+          "category": "analytics",
+          "resourceName": "Pinpoint"
         }
       ]
     },
-    "AMPLIFY_function_createProduct_s3Key": {
+    "AMPLIFY_analytics_Pinpoint_Name": {
       "usedBy": [
         {
-          "category": "function",
-          "resourceName": "createProduct"
+          "category": "analytics",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_analytics_Pinpoint_Region": {
+      "usedBy": [
+        {
+          "category": "analytics",
+          "resourceName": "Pinpoint"
         }
       ]
     },
@@ -149,6 +157,30 @@
         {
           "category": "function",
           "resourceName": "processShipping"
+        }
+      ]
+    },
+    "AMPLIFY_notifications_Pinpoint_Id": {
+      "usedBy": [
+        {
+          "category": "notifications",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_notifications_Pinpoint_Name": {
+      "usedBy": [
+        {
+          "category": "notifications",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_notifications_Pinpoint_Region": {
+      "usedBy": [
+        {
+          "category": "notifications",
+          "resourceName": "Pinpoint"
         }
       ]
     }

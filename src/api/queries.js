@@ -10,6 +10,12 @@ export const getProduct = /* GraphQL */ `
       image
       onSale
       price
+      quantity
+      lastUpdated
+      orders {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -30,6 +36,8 @@ export const listProducts = /* GraphQL */ `
         image
         onSale
         price
+        quantity
+        lastUpdated
         createdAt
         updatedAt
         __typename

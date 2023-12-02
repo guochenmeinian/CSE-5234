@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { Authenticator, Button as AmplifyButton } from '@aws-amplify/ui-react';
-import { processProduct, updateInventory } from '../api/mutations';
+import { createProduct, updateProduct } from '../api/mutations';
 import config from '../aws-exports';
 import { Auth } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css'; // default styles
@@ -35,8 +35,6 @@ const {
     aws_user_files_s3_bucket_region: region,
     aws_user_files_s3_bucket: bucket
 } = config;
-
-
 
 
 const Admin = () => {
@@ -107,7 +105,7 @@ const Admin = () => {
                 price: itemDetails.price,
                 quantity: itemDetails.quantity
             };
-            await API.graphql(graphqlOperation(processProduct, { 
+            await API.graphql(graphqlOperation(createProduct, { 
                 input: productDetails,
                 authMode: "AMAZON_COGNITO_USER_POOLS" 
             }));
@@ -137,8 +135,8 @@ const Admin = () => {
           }
 
         try {
-            // Call the updateProductInventory mutation
-            await API.graphql(graphqlOperation(updateInventory, {
+            // Call the updateProduct mutation
+            await API.graphql(graphqlOperation(updateProduct, {
                 input: { 
                     id: selectedProduct.id, 
                     quantity: newQuantity 
@@ -278,6 +276,10 @@ const Admin = () => {
                         <Dialog open={editModalOpen} onClose={() => setEditModalOpen(false)}>
                             <DialogTitle>Edit Inventory</DialogTitle>
                             <DialogContent>
+                                <Typography variant="body1">
+                                    Current Inventory: {selectedProduct.quantity}
+                                </Typography>
+                                <br />
                                 <TextField
                                     autoFocus
                                     margin="dense"
@@ -285,7 +287,7 @@ const Admin = () => {
                                     type="number"
                                     fullWidth
                                     value={newQuantity}
-                                    onChange={(e) => setNewQuantity(parseInt(e.target.value, 10))}
+                                    onChange={(e) => setNewQuantity(parseInt(e.target.value, 0))}
                                 />
                             </DialogContent>
                             <DialogActions>

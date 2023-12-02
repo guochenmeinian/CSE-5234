@@ -1,19 +1,3 @@
-type Inventory
-  @model
-  @auth(
-    rules: [
-      { allow: groups, groups: ["Admin"] },
-      { allow: private, operations: [read] }
-    ]
-  ) {
-  id: ID!
-  product: Product @belongsTo(fields: ["product_id"])
-  product_id: ID!
-  quantity: Int!
-  reorderLevel: Int
-  lastUpdated: AWSDateTime
-}
-
 type Product
   @model(subscriptions: null)
   @auth(
@@ -26,12 +10,13 @@ type Product
     id: ID!
     title: String!
     description: String!
-    image: String
-    onSale: Boolean
+    image: String!
+    onSale: Boolean!
     price: Float!
+    quantity: Int!        # Inventory quantity as a direct attribute of Product
+    lastUpdated: AWSDateTime 
     orders: [ProductOrder] @hasMany
-    inventory: Inventory @hasOne
-  }
+}
 
 type ProductOrder 
   @model(queries: null, subscriptions: null)
@@ -46,7 +31,7 @@ type ProductOrder
     order_id: ID!
     product: Product @belongsTo(fields: ["product_id"])
     order: Order @belongsTo(fields: ["order_id"])
-  }
+}
 
 type Order
   @model(subscriptions: null)
@@ -61,7 +46,7 @@ type Order
     date: AWSDateTime
     total: Float
     products: [ProductOrder] @hasMany
-  }
+}
 
 enum OrderStatus {
   SUCCESS
@@ -83,20 +68,9 @@ input ProcessOrderInput {
   address: String!
 }
 
-input ProcessProductInput {
-  title: String!
-  description: String!
-  image: String
-  onSale: Boolean
-  price: Float!
-  quantity: Int!
-}
-
 type Mutation {
   processOrder(input: ProcessOrderInput!): OrderStatus
     @function(name: "processPayment-${env}")
     @function(name: "processShipping-${env}")
     @function(name: "createOrder-${env}")
-  processProduct(input: ProcessProductInput!): Product
-    @function(name: "createProduct-${env}")
 }
