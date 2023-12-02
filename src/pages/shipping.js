@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
+  Button,
   FormControl,
   InputLabel,
   Input,
@@ -8,7 +9,6 @@ import {
   Box,
   Typography
 } from '@mui/material';
-import ControlledButtons from '../components/ControlledButtons';
 
 
 function Shipping() {
@@ -34,6 +34,19 @@ function Shipping() {
       ...shippingData,
       [field]: e.target.value,
     });
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  const handleSubmit = () => {
+    navigate('/purchase/summary', {
+      state: {
+        payment: paymentData,
+        shipping: shippingData,
+      },
+    })
   };
 
   return (
@@ -115,15 +128,14 @@ function Shipping() {
                 onChange={handleUpdateShipping('phoneNumber')}
               />
             </FormControl>
-            <ControlledButtons
-              handleSubmit={() =>
-                navigate('/purchase/summary', {
-                  state: {
-                    payment: paymentData,
-                    shipping: shippingData,
-                  },
-                })
-              } />
+            <Stack direction="row" justifyContent="space-between" mt={2}>
+              <Button variant="outlined" onClick={handleGoBack()}>
+                Go Back
+              </Button>
+              <Button variant="contained" onClick={handleSubmit()}>
+                Confirm
+              </Button>
+            </Stack>
           </Stack>
         </Box>
         <Typography variant='h6' width={"50%"}>

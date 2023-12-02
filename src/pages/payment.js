@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
+  Button,
   FormControl,
   InputLabel,
   Input,
@@ -8,7 +9,7 @@ import {
   Box,
   Typography,
 } from '@mui/material';
-import ControlledButtons from '../components/ControlledButtons';
+
 
 function Payment() {
   const navigate = useNavigate();
@@ -25,6 +26,16 @@ function Payment() {
       ...paymentData,
       [field]: e.target.value,
     });
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  const handleSubmit = () => {
+    navigate('/purchase/shipping', {
+      state: { payment: paymentData },
+    })
   };
 
   return (
@@ -73,12 +84,14 @@ function Payment() {
               />
             </FormControl>
           </Stack>
-          <ControlledButtons
-            handleSubmit={() =>
-              navigate('/purchase/shipping', {
-                state: { payment: paymentData },
-              })
-            } />
+          <Stack direction="row" justifyContent="space-between" mt={2}>
+            <Button variant="outlined" onClick={handleGoBack()}>
+              Go Back
+            </Button>
+            <Button variant="contained" onClick={handleSubmit()}>
+              Confirm
+            </Button>
+          </Stack>
         </Box>
         <Typography variant='h6' width={"50%"}>
           Alright, Morty, it's time to make the ultimate choice!
