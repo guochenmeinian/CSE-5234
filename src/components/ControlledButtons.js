@@ -4,15 +4,11 @@ import {
   Stack,
 } from '@mui/material';
 
-const ControlledButtons = (secondaryButtonFunc) => {
+const ControlledButtons = ({handleSubmit}) => {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
         navigate(-1);
-    };
-
-    const handleSubmit = () => {
-        secondaryButtonFunc();
     };
 
     return (
@@ -20,7 +16,7 @@ const ControlledButtons = (secondaryButtonFunc) => {
             <Button variant="outlined" onClick={handleGoBack}>
                 Go Back
             </Button>
-            <Button variant="contained" onClick={handleSubmit}>
+            <Button variant="contained" onClick={handleSubmit()}>
                 Confirm
             </Button>
         </Stack>
