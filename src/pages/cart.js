@@ -75,7 +75,7 @@ function Cart() {
             <Button
               variant="contained"
               sx={{ mt: 2 }}
-              onClick={() => navigate('/purchase/payment', { state: { order: cartItems } })}>
+              onClick={() => navigate('/purchase/shipping')}>
               Proceed to Payment
             </Button>
             <Button

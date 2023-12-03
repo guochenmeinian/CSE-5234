@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -9,52 +9,99 @@ import {
   ImageListItem,
   ImageListItemBar,
   Stack,
+  Divider
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/cartContext';
+import InternalServerErrorPage from '../components/InternalServerErrorPage';
 
 
 function OrderSummary() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { order: orderData, payment: paymentData, shipping: shippingData } = location.state || {};
+  const { cartItems, total } = useContext(CartContext);
 
-  const getTotalPrice = () => {
-    return orderData.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2);
-  };
+  const { payment: paymentData, shipping: shippingData } = location.state || {};
 
   const handleConfirmOrder = () => {
     navigate('/purchase/confirmation', {
       state: {
-        order: orderData,
-        payment: paymentData,
-        shipping: shippingData,
+        order: cartItems,
+        total: total,
+        shipping: shippingData
       },
     });
   };
 
+  if (!paymentData || !shippingData) {
+    return <InternalServerErrorPage />
+  }
+
   return (
-    <Box my={5}>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-        sx={{ m: 4 }}
-      >
-        <Typography
-          variant="h3"
-          align="center"
-          gutterBottom
-          sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
-          Review Your Order
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-              <Typography variant="h6">Products:</Typography>
+    <Box>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+        Review Your Order
+      </Typography>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom>
+        Hey there, dimension-hopper!
+        Before you blast off with your order, take a moment to check out your loot!
+        It's time to review your interstellar haul before we send it zooming through the cosmic pathways.
+        Make sure everything's as epic as a Rick invention before you hit that 'Place Order' button.
+        Let's make sure it's all perfectly aligned across dimensions!
+        Thanks for double-checking! 🚀🔍🌌
+      </Typography>
+      <Box py={4}><Divider orientation="horizontal" /></Box>
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <Stack direction="column" divider={<Divider orientation="horizontal" flexItem />} spacing={2}>
+            <Box >
+              <Typography
+                variant="h4"
+                align="start"
+                gutterBottom
+                sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+                Shipping
+              </Typography>
+              <Typography variant="h4" align="start" gutterBottom>Name: {shippingData.name}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Address: {shippingData.addressLine1} {shippingData.addressLine2}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>City: {shippingData.city}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>State: {shippingData.state}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Postal Code: {shippingData.postalCode}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Country: {shippingData.country}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Email: {shippingData.email}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Phone Number: {shippingData.phoneNumber}</Typography>
+            </Box>
+            <Box >
+              <Typography
+                variant="h4"
+                align="start"
+                gutterBottom
+                sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+                Payment
+              </Typography>
+              <Typography variant="h4" align="start" gutterBottom>Card Holder Name: {paymentData.cardHolderName}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>
+                Credit Card: **** **** **** {paymentData.cardNumber.slice(-4)}
+              </Typography>
+            </Box>
+          </Stack>
+        </Grid>
+        <Grid item xs={4}>
+          <Box flex={1} p={4} sx={{ backgroundColor: (theme) => theme.palette.grey["100"] }} borderRadius={1}>
+            <Stack direction="column" divider={<Divider orientation="horizontal" flexItem />} spacing={2}>
+              <Typography variant="h4" align="start" gutterBottom >
+                Products ({cartItems.length > 1 ? `${cartItems.length} items` : `${cartItems.length} item`})
+              </Typography>
               <ImageList cols={5}>
-                {orderData.map((item) => (
+                {cartItems.map((item) => (
                   <Link key={item.id} to={`/products/${item.id}`}
                     style={{
                       textDecoration: 'none',
@@ -79,55 +126,20 @@ function OrderSummary() {
                   </Link>
                 ))}
               </ImageList>
-            </Box>
-          </Grid>
-          <Grid item xs={4}>
-            <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-              <Typography variant="h5">Total:</Typography>
-              <Typography variant="h5">{getTotalPrice()}</Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            {paymentData ? (
-              <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-                <Typography variant="h6">Payment Details:</Typography>
-                <Typography>
-                  Card Holder Name: {paymentData.cardHolderName}
-                </Typography>{' '}
-                <br />
-                <Typography>
-                  Credit Card: **** **** ****{' '}
-                  {paymentData.cardNumber.slice(-4)}
-                </Typography>
+              <Box display="flex" justifyContent="space-between">
+                <Typography variant="h4" component="span">Total</Typography>
+                <Typography variant="h4" component="span">${total}</Typography>
               </Box>
-            ) : (
-              <Typography>No payment information provided.</Typography>
-            )}
-          </Grid>
-          <Grid item xs={6}>
-            {shippingData ? (
-              <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-                <Typography variant="h6">Shipping Details:</Typography>
-                <Typography>Name: {shippingData.name}</Typography>
-                <Typography>Address: {shippingData.addressLine1} {shippingData.addressLine2}</Typography>
-                <Typography>City: {shippingData.city}</Typography>
-                <Typography>State: {shippingData.state}</Typography>
-                <Typography>Postal Code: {shippingData.postalCode}</Typography>
-                <Typography>Country: {shippingData.country}</Typography>
-                <Typography>Email: {shippingData.email}</Typography>
-                <Typography>Phone Number: {shippingData.phoneNumber}</Typography>
-              </Box>
-            ) : (
-              <Typography>No shipping information provided.</Typography>
-            )}
-          </Grid>
-          <Grid item xs={12}>
-            <Button variant="contained" onClick={handleConfirmOrder}>
-              Confirm Order
-            </Button>
-          </Grid>
+            </Stack>
+          </Box>
         </Grid>
-      </Stack>
+        <Grid item xs={8}></Grid>
+        <Grid item xs={4} display="flex" flexWrap="wrap" alignContent="flex-end">
+          <Button variant="contained" onClick={handleConfirmOrder} fullWidth>
+            Place Order
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   FormControl,
@@ -13,9 +13,6 @@ import {
 
 function Shipping() {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const { payment: paymentData } = location.state || {};
 
   const [shippingData, setShippingData] = useState({
     name: '',
@@ -41,9 +38,8 @@ function Shipping() {
   };
 
   const handleSubmit = () => {
-    navigate('/purchase/summary', {
+    navigate('/purchase/payment', {
       state: {
-        payment: paymentData,
         shipping: shippingData,
       },
     })
@@ -56,7 +52,7 @@ function Shipping() {
         align="center"
         gutterBottom
         sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
-        Shipping & Contact info
+        Shipping & Contact Info
       </Typography>
       <Stack
         justifyContent="center"
