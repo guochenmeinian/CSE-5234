@@ -5,15 +5,13 @@ import {
   Grid,
   Typography,
   Button,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
   Stack,
   Divider
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { CartContext } from '../context/cartContext';
 import InternalServerErrorPage from '../components/InternalServerErrorPage';
+import { API } from 'aws-amplify';
+import CartSummaryPanel from '../components/CartSummaryPanel';
 
 
 function OrderSummary() {
@@ -24,14 +22,28 @@ function OrderSummary() {
 
   const { payment: paymentData, shipping: shippingData } = location.state || {};
 
-  const handleConfirmOrder = () => {
-    navigate('/purchase/confirmation', {
-      state: {
-        order: cartItems,
-        total: total,
-        shipping: shippingData
-      },
-    });
+  const handleConfirmOrder = async () => {
+    try {
+      // Replace 'YOUR_LAMBDA_FUNCTION_NAME' with your Lambda function name
+      const lambdaParams = {
+        body: { /* Your payload data */ },
+        // Other parameters such as headers, query parameters can be added here
+      };
+  
+      const response = await API.post('placeOrder', '/route', lambdaParams);
+      console.log('Lambda function invoked:', response);
+      // // Process the response from the Lambda function
+
+      // navigate('/purchase/confirmation', {
+      //   state: {
+      //     order: cartItems,
+      //     total: total,
+      //     shipping: shippingData
+      //   },
+      // });
+    } catch (error) {
+      console.error('Error invoking Lambda function:', error);
+    }
   };
 
   if (!paymentData || !shippingData) {
@@ -95,43 +107,7 @@ function OrderSummary() {
           </Stack>
         </Grid>
         <Grid item xs={4}>
-          <Box flex={1} p={4} sx={{ backgroundColor: (theme) => theme.palette.grey["100"] }} borderRadius={1}>
-            <Stack direction="column" divider={<Divider orientation="horizontal" flexItem />} spacing={2}>
-              <Typography variant="h4" align="start" gutterBottom >
-                Products ({cartItems.length > 1 ? `${cartItems.length} items` : `${cartItems.length} item`})
-              </Typography>
-              <ImageList cols={5}>
-                {cartItems.map((item) => (
-                  <Link key={item.id} to={`/products/${item.id}`}
-                    style={{
-                      textDecoration: 'none',
-                      color: 'black',
-                      border: "1px solid #f5f5f5",
-                      whiteSpace: "normal",
-                      overflow: "hidden"
-                    }}>
-                    <ImageListItem key={item.id}>
-                      <img
-                        srcSet={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format&dpr=2 2x`}
-                        src={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format`}
-                        alt={item.title}
-                        loading="lazy"
-                      />
-                      <ImageListItemBar
-                        title={item.title}
-                        subtitle={`$${item.price}`}
-                        position="below"
-                      />
-                    </ImageListItem>
-                  </Link>
-                ))}
-              </ImageList>
-              <Box display="flex" justifyContent="space-between">
-                <Typography variant="h4" component="span">Total</Typography>
-                <Typography variant="h4" component="span">${total}</Typography>
-              </Box>
-            </Stack>
-          </Box>
+          <CartSummaryPanel />
         </Grid>
         <Grid item xs={8}></Grid>
         <Grid item xs={4} display="flex" flexWrap="wrap" alignContent="flex-end">
