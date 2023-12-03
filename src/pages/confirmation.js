@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   Typography,
@@ -10,14 +10,10 @@ import {
 import { Link } from 'react-router-dom';
 import getTotalCost from "../hook/getTotalCost";
 
-function Confirmation({ removeAllItemsFromCart }) {
+function Confirmation() {
   const location = useLocation();
 
   const { order: orderData } = location.state || {};
-
-  useEffect(() => {
-    removeAllItemsFromCart();
-  }, []);
 
   return (
     orderData ?
