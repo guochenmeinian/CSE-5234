@@ -80,10 +80,10 @@ function Confirmation() {
                 align="start"
                 gutterBottom
                 sx={{ fontWeight: 'bold' }}>
-                Order summary
+                Order Summary
               </Typography>
-              <Typography variant="h5" align="start" gutterBottom>Order number: ???</Typography>
-              <Typography variant="h5" align="start" gutterBottom>Order total: ${total}</Typography>
+              <Typography variant="h5" align="start" gutterBottom>Order Number: ???</Typography>
+              <Typography variant="h5" align="start" gutterBottom>Order Total: ${total}</Typography>
             </Box>
           </Box>
         </Box>
