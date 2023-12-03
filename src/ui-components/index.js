@@ -4,8 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as ItemCreateForm } from "./ItemCreateForm";
-export { default as ItemUpdateForm } from "./ItemUpdateForm";
 export { default as OrderCreateForm } from "./OrderCreateForm";
 export { default as OrderUpdateForm } from "./OrderUpdateForm";
+export { default as ProductCreateForm } from "./ProductCreateForm";
+export { default as ProductUpdateForm } from "./ProductUpdateForm";
 export { default as studioTheme } from "./studioTheme";
