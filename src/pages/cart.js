@@ -42,6 +42,17 @@ function Cart() {
   function renderCartItems() {
     return (
       <Box minHeight="500px">
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom>
+          Hey there, interdimensional shopper!
+          Your shopping cart is a bit like Rick's garage – filled with incredible gadgets and oddities from across the multiverse!
+          But hey, don't forget to double-check your cart before blasting off!
+          Make sure your loot's as awesome as a portal gun before you embark on this cosmic adventure of checkout!
+          Wubba lubba dub dub, and happy shopping across dimensions! 🛒🌌🚀
+        </Typography>
+        <Box py={5}><Divider orientation="horizontal" /></Box>
         <Grid container spacing={2}>
           <Grid item xs={8}>
             {cartItems.map((item) => (
@@ -104,7 +115,7 @@ function Cart() {
   return (
     <Authenticator>
       {({ signOut, user }) => (
-        <Box my={5}>
+        <Box>
           <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
             Your Shopping Cart
           </Typography>
