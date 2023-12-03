@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Button,
-  FormControl,
-  InputLabel,
-  Input,
   Stack,
   Box,
   Typography,
   Divider,
-  Grid
+  Grid,
+  TextField
 } from '@mui/material';
 import CartSummaryPanel from '../components/CartSummaryPanel';
 
@@ -26,6 +24,12 @@ function Payment() {
     cvvCode: '',
     cardHolderName: '',
   });
+  const [errorObj, setErrorObj] = useState({
+    cardNumber: false,
+    expirationDate: false,
+    cvvCode: false,
+    cardHolderName: false,
+  })
 
   const handleUpdatePayment = (field) => (e) => {
     setPaymentData({
@@ -39,9 +43,19 @@ function Payment() {
   };
 
   const handleSubmit = () => {
-    navigate('/purchase/summary', {
-      state: { payment: paymentData, shipping: shippingData },
-    })
+    const currentError = {
+      cardNumber: !paymentData.cardNumber,
+      expirationDate: !paymentData.expirationDate,
+      cvvCode: !paymentData.cvvCode,
+      cardHolderName: !paymentData.cardHolderName,
+    };
+    setErrorObj(currentError);
+    if (!currentError.cardNumber && !currentError.expirationDate && !currentError.cvvCode
+      && !currentError.cardHolderName) {
+      navigate('/purchase/summary', {
+        state: { payment: paymentData, shipping: shippingData },
+      })
+    }
   };
 
   return (
@@ -69,34 +83,42 @@ function Payment() {
           <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
             <Typography variant='subtitle1'>Pay with credit or debit card</Typography>
             <Stack spacing={2}>
-              <FormControl required>
-                <InputLabel>Card Number</InputLabel>
-                <Input
-                  value={paymentData.cardNumber}
-                  onChange={handleUpdatePayment('cardNumber')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>Expiration Date</InputLabel>
-                <Input
-                  value={paymentData.expirationDate}
-                  onChange={handleUpdatePayment('expirationDate')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>CVV Code</InputLabel>
-                <Input
-                  value={paymentData.cvvCode}
-                  onChange={handleUpdatePayment('cvvCode')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>Card Holder Name</InputLabel>
-                <Input
-                  value={paymentData.cardHolderName}
-                  onChange={handleUpdatePayment('cardHolderName')}
-                />
-              </FormControl>
+              <TextField
+                required
+                label="Card Number"
+                variant='standard'
+                value={paymentData.cardNumber}
+                onChange={handleUpdatePayment('cardNumber')}
+                error={errorObj.cardNumber}
+                helperText={errorObj.cardNumber ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="Expiration Date"
+                variant='standard'
+                value={paymentData.expirationDate}
+                onChange={handleUpdatePayment('expirationDate')}
+                error={errorObj.expirationDate}
+                helperText={errorObj.expirationDate ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="CVV Code"
+                variant='standard'
+                value={paymentData.cvvCode}
+                onChange={handleUpdatePayment('cvvCode')}
+                error={errorObj.cvvCode}
+                helperText={errorObj.cvvCode ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="Card Holder Name"
+                variant='standard'
+                value={paymentData.cardHolderName}
+                onChange={handleUpdatePayment('cardHolderName')}
+                error={errorObj.cardHolderName}
+                helperText={errorObj.cardHolderName ? "Please fill in this field." : null}
+              />
             </Stack>
             <Stack direction="row" justifyContent="space-between" mt={2}>
               <Button variant="outlined" onClick={handleGoBack}>
