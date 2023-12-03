@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Grid } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Grid, useTheme, useMediaQuery } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Auth } from 'aws-amplify';
 
@@ -8,6 +8,8 @@ function NavBar({ numberOfCartItems }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     checkCurrentUser();
@@ -39,6 +41,26 @@ function NavBar({ numberOfCartItems }) {
       console.error('Error signing out: ', error);
     }
   };
+
+  const navLinks = (
+    <List sx={{ display: 'flex' }}>
+      <ListItem button onClick={() => handleNavLinkClick('/home')}>
+        <ListItemText primary="Home" />
+      </ListItem>
+      <ListItem button onClick={() => handleNavLinkClick('/about')}>
+        <ListItemText primary="About" />
+      </ListItem>
+      <ListItem button onClick={() => handleNavLinkClick('/purchase')}>
+        <ListItemText primary="Purchase" />
+      </ListItem>
+      <ListItem button onClick={() => handleNavLinkClick('/cart')}>
+        <ListItemText primary="Cart" />
+      </ListItem>
+      <ListItem button onClick={() => handleNavLinkClick('/admin')}>
+        <ListItemText primary="Admin" />
+      </ListItem>
+    </List>
+  );
 
   return (
     <AppBar position="static" sx={{ backgroundColor: '#000', minHeight: '80px' }}>
