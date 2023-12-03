@@ -30,17 +30,17 @@ function OrderSummary() {
         // Other parameters such as headers, query parameters can be added here
       };
   
-      const response = await API.post('placeOrder', '/route', lambdaParams);
-      console.log('Lambda function invoked:', response);
+      // const response = await API.post('placeOrder', '/route', lambdaParams);
+      // console.log('Lambda function invoked:', response);
       // // Process the response from the Lambda function
 
-      // navigate('/purchase/confirmation', {
-      //   state: {
-      //     order: cartItems,
-      //     total: total,
-      //     shipping: shippingData
-      //   },
-      // });
+      navigate('/purchase/confirmation', {
+        state: {
+          order: cartItems,
+          total: total,
+          shipping: shippingData
+        },
+      });
     } catch (error) {
       console.error('Error invoking Lambda function:', error);
     }
@@ -70,7 +70,7 @@ function OrderSummary() {
         Let's make sure it's all perfectly aligned across dimensions!
         Thanks for double-checking! 🚀🔍🌌
       </Typography>
-      <Box py={4}><Divider orientation="horizontal" /></Box>
+      <Box py={5}><Divider orientation="horizontal" /></Box>
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Stack direction="column" divider={<Divider orientation="horizontal" flexItem />} spacing={2}>

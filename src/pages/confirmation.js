@@ -47,7 +47,7 @@ function Confirmation() {
             alt=""
             loading="lazy"
           />
-          <Box py={4}><Divider orientation="horizontal" /></Box>
+          <Box py={5}><Divider orientation="horizontal" /></Box>
           <Box flex={1} p={4} sx={{ backgroundColor: (theme) => theme.palette.grey["100"] }} borderRadius={1}>
             <Box mb={3}>
               <Typography

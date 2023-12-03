@@ -67,7 +67,7 @@ function Shipping() {
         Let's get those coordinates in for smooth shipping across the multiverse!
         Dimensional shipping awaits! 🚀🌍📦
       </Typography>
-      <Box py={4}><Divider orientation="horizontal" /></Box>
+      <Box py={5}><Divider orientation="horizontal" /></Box>
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>

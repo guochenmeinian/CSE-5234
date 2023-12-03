@@ -63,7 +63,7 @@ function Payment() {
         Let's handle the payment like pros so you can get your hands on those cool goodies from across the cosmos!
         It's payment time, Morty! 💳💸🌌
       </Typography>
-      <Box py={4}><Divider orientation="horizontal" /></Box>
+      <Box py={5}><Divider orientation="horizontal" /></Box>
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
