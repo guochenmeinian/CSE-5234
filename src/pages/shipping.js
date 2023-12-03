@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
-  FormControl,
-  InputLabel,
-  Input,
   Stack,
   Box,
   Typography,
   Divider,
-  Grid
+  Grid,
+  TextField
 } from '@mui/material';
 import CartSummaryPanel from '../components/CartSummaryPanel';
 
@@ -28,6 +26,16 @@ function Shipping() {
     email: '',
     phoneNumber: '',
   });
+  const [errorObj, setErrorObj] = useState({
+    name: false,
+    country: false,
+    addressLine1: false,
+    postalCode: false,
+    state: false,
+    city: false,
+    email: false,
+    phoneNumber: false,
+  })
 
   const handleUpdateShipping = (field) => (e) => {
     setShippingData({
@@ -41,11 +49,26 @@ function Shipping() {
   };
 
   const handleSubmit = () => {
-    navigate('/purchase/payment', {
-      state: {
-        shipping: shippingData,
-      },
-    })
+    const currentError = {
+      name: !shippingData.name,
+      country: !shippingData.country,
+      addressLine1: !shippingData.addressLine1,
+      postalCode: !shippingData.postalCode,
+      state: !shippingData.state,
+      city: !shippingData.city,
+      email: !shippingData.email,
+      phoneNumber: !shippingData.phoneNumber,
+    };
+    setErrorObj(currentError);
+    if (!currentError.name && !currentError.country && !currentError.addressLine1
+      && !currentError.postalCode && !currentError.state && !currentError.city
+      && !currentError.email && !currentError.phoneNumber) {
+      navigate('/purchase/payment', {
+        state: {
+          shipping: shippingData,
+        },
+      })
+    }
   };
 
   return (
@@ -72,69 +95,84 @@ function Shipping() {
         <Grid item xs={8}>
           <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
             <Stack spacing={2}>
-              <FormControl required>
-                <InputLabel>Name</InputLabel>
-                <Input
-                  value={shippingData.name}
-                  onChange={handleUpdateShipping('name')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>Country</InputLabel>
-                <Input
-                  value={shippingData.country}
-                  onChange={handleUpdateShipping('country')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>Address</InputLabel>
-                <Input
-                  value={shippingData.addressLine1}
-                  onChange={handleUpdateShipping('addressLine1')}
-                />
-              </FormControl>
-              <FormControl>
-                <InputLabel>Apt No./Build No./Office Name</InputLabel>
-                <Input
-                  value={shippingData.addressLine2}
-                  onChange={handleUpdateShipping('addressLine2')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>Postal Code</InputLabel>
-                <Input
-                  value={shippingData.postalCode}
-                  onChange={handleUpdateShipping('postalCode')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>State</InputLabel>
-                <Input
-                  value={shippingData.state}
-                  onChange={handleUpdateShipping('state')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>City</InputLabel>
-                <Input
-                  value={shippingData.city}
-                  onChange={handleUpdateShipping('city')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>Email</InputLabel>
-                <Input
-                  value={shippingData.email}
-                  onChange={handleUpdateShipping('email')}
-                />
-              </FormControl>
-              <FormControl required>
-                <InputLabel>Phone Number</InputLabel>
-                <Input
-                  value={shippingData.phoneNumber}
-                  onChange={handleUpdateShipping('phoneNumber')}
-                />
-              </FormControl>
+              <TextField
+                required
+                label="Name"
+                variant='standard'
+                value={shippingData.name}
+                onChange={handleUpdateShipping('name')}
+                error={errorObj.name}
+                helperText={errorObj.name ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="Country"
+                variant='standard'
+                value={shippingData.country}
+                onChange={handleUpdateShipping('country')}
+                error={errorObj.country}
+                helperText={errorObj.country ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="Address"
+                variant='standard'
+                value={shippingData.addressLine1}
+                onChange={handleUpdateShipping('addressLine1')}
+                error={errorObj.addressLine1}
+                helperText={errorObj.addressLine1 ? "Please fill in this field." : null}
+              />
+              <TextField
+                label="Apt No./Build No./Office Name"
+                variant='standard'
+                value={shippingData.addressLine2}
+                onChange={handleUpdateShipping('addressLine2')}
+              />
+              <TextField
+                required
+                label="Postal Code"
+                variant='standard'
+                value={shippingData.postalCode}
+                onChange={handleUpdateShipping('postalCode')}
+                error={errorObj.postalCode}
+                helperText={errorObj.postalCode ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="State"
+                variant='standard'
+                value={shippingData.state}
+                onChange={handleUpdateShipping('state')}
+                error={errorObj.state}
+                helperText={errorObj.state ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="City"
+                variant='standard'
+                value={shippingData.city}
+                onChange={handleUpdateShipping('city')}
+                error={errorObj.city}
+                helperText={errorObj.city ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="Email"
+                variant='standard'
+                value={shippingData.email}
+                onChange={handleUpdateShipping('email')}
+                error={errorObj.email}
+                helperText={errorObj.email ? "Please fill in this field." : null}
+              />
+              <TextField
+                required
+                label="Phone Number"
+                variant='standard'
+                value={shippingData.phoneNumber}
+                onChange={handleUpdateShipping('phoneNumber')}
+                error={errorObj.phoneNumber}
+                helperText={errorObj.phoneNumber ? "Please fill in this field." : null}
+              />
               <Stack direction="row" justifyContent="space-between" mt={2}>
                 <Button variant="outlined" onClick={handleGoBack}>
                   Go Back
