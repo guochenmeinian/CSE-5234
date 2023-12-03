@@ -76,7 +76,7 @@ const AboutUs = () => {
                 <CardActionArea>
                   <CardMedia
                     component="img"
-                    height="140"
+                    height="260"
                     image={member.image}
                     alt={member.name}
                   />
