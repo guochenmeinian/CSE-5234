@@ -1,133 +1,120 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box,
   Grid,
   Typography,
   Button,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
   Stack,
+  Divider
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { CartContext } from '../context/cartContext';
+import InternalServerErrorPage from '../components/InternalServerErrorPage';
+import CartSummaryPanel from '../components/CartSummaryPanel';
+// todo: remove this in the future
+import { v4 as uuidv4 } from 'uuid';
 
 
 function OrderSummary() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { order: orderData, payment: paymentData, shipping: shippingData } = location.state || {};
+  const { cartItems, total } = useContext(CartContext);
 
-  const getTotalPrice = () => {
-    return orderData.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2);
+  const { payment: paymentData, shipping: shippingData } = location.state || {};
+
+  const handleConfirmOrder = async () => {
+    try {
+      const lambdaParams = {
+        body: { /* Your payload data */ },
+        // Other parameters such as headers, query parameters can be added here
+      };
+
+      // todo: add api gateway and get order number
+      const orderNumber = uuidv4();
+
+      navigate('/purchase/confirmation', {
+        state: {
+          order: orderNumber,
+          total: total,
+          shipping: shippingData
+        },
+      });
+    } catch (error) {
+      console.error('Error invoking Lambda function:', error);
+    }
   };
 
-  const handleConfirmOrder = () => {
-    navigate('/purchase/confirmation', {
-      state: {
-        order: orderData,
-        payment: paymentData,
-        shipping: shippingData,
-      },
-    });
-  };
+  if (!paymentData || !shippingData) {
+    return <InternalServerErrorPage />
+  }
 
   return (
-    <Box my={5}>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-        sx={{ m: 4 }}
-      >
-        <Typography
-          variant="h3"
-          align="center"
-          gutterBottom
-          sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
-          Review Your Order
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-              <Typography variant="h6">Products:</Typography>
-              <ImageList cols={5}>
-                {orderData.map((item) => (
-                  <Link key={item.id} to={`/products/${item.id}`}
-                    style={{
-                      textDecoration: 'none',
-                      color: 'black',
-                      border: "1px solid #f5f5f5",
-                      whiteSpace: "normal",
-                      overflow: "hidden"
-                    }}>
-                    <ImageListItem key={item.id}>
-                      <img
-                        srcSet={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format&dpr=2 2x`}
-                        src={`${item.image || '/other-images/placeholder-image.png'}?fit=crop&auto=format`}
-                        alt={item.title}
-                        loading="lazy"
-                      />
-                      <ImageListItemBar
-                        title={item.title}
-                        subtitle={`$${item.price}`}
-                        position="below"
-                      />
-                    </ImageListItem>
-                  </Link>
-                ))}
-              </ImageList>
+    <Box>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+        Review Your Order
+      </Typography>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom>
+        Hey there, dimension-hopper!
+        Before you blast off with your order, take a moment to check out your loot!
+        It's time to review your interstellar haul before we send it zooming through the cosmic pathways.
+        Make sure everything's as epic as a Rick invention before you hit that 'Place Order' button.
+        Let's make sure it's all perfectly aligned across dimensions!
+        Thanks for double-checking! 🚀🔍🌌
+      </Typography>
+      <Box py={5}><Divider orientation="horizontal" /></Box>
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <Stack direction="column" divider={<Divider orientation="horizontal" flexItem />} spacing={2}>
+            <Box >
+              <Typography
+                variant="h4"
+                align="start"
+                gutterBottom
+                sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+                Shipping
+              </Typography>
+              <Typography variant="h4" align="start" gutterBottom>Name: {shippingData.name}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Address: {shippingData.addressLine1} {shippingData.addressLine2}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>City: {shippingData.city}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>State: {shippingData.state}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Postal Code: {shippingData.postalCode}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Country: {shippingData.country}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Email: {shippingData.email}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>Phone Number: {shippingData.phoneNumber}</Typography>
             </Box>
-          </Grid>
-          <Grid item xs={4}>
-            <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-              <Typography variant="h5">Total:</Typography>
-              <Typography variant="h5">{getTotalPrice()}</Typography>
+            <Box >
+              <Typography
+                variant="h4"
+                align="start"
+                gutterBottom
+                sx={{ fontWeight: 'bold', color: (theme) => theme.palette.primary.main }}>
+                Payment
+              </Typography>
+              <Typography variant="h4" align="start" gutterBottom>Card Holder Name: {paymentData.cardHolderName}</Typography>
+              <Typography variant="h4" align="start" gutterBottom>
+                Credit Card: **** **** **** {paymentData.cardNumber.slice(-4)}
+              </Typography>
             </Box>
-          </Grid>
-          <Grid item xs={6}>
-            {paymentData ? (
-              <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-                <Typography variant="h6">Payment Details:</Typography>
-                <Typography>
-                  Card Holder Name: {paymentData.cardHolderName}
-                </Typography>{' '}
-                <br />
-                <Typography>
-                  Credit Card: **** **** ****{' '}
-                  {paymentData.cardNumber.slice(-4)}
-                </Typography>
-              </Box>
-            ) : (
-              <Typography>No payment information provided.</Typography>
-            )}
-          </Grid>
-          <Grid item xs={6}>
-            {shippingData ? (
-              <Box flex={1} p={2} border="1px solid gray" borderRadius={2}>
-                <Typography variant="h6">Shipping Details:</Typography>
-                <Typography>Name: {shippingData.name}</Typography>
-                <Typography>Address: {shippingData.addressLine1} {shippingData.addressLine2}</Typography>
-                <Typography>City: {shippingData.city}</Typography>
-                <Typography>State: {shippingData.state}</Typography>
-                <Typography>Postal Code: {shippingData.postalCode}</Typography>
-                <Typography>Country: {shippingData.country}</Typography>
-                <Typography>Email: {shippingData.email}</Typography>
-                <Typography>Phone Number: {shippingData.phoneNumber}</Typography>
-              </Box>
-            ) : (
-              <Typography>No shipping information provided.</Typography>
-            )}
-          </Grid>
-          <Grid item xs={12}>
-            <Button variant="contained" onClick={handleConfirmOrder}>
-              Confirm Order
-            </Button>
-          </Grid>
+          </Stack>
         </Grid>
-      </Stack>
+        <Grid item xs={4}>
+          <CartSummaryPanel />
+        </Grid>
+        <Grid item xs={8}></Grid>
+        <Grid item xs={4} display="flex" flexWrap="wrap" alignContent="flex-end">
+          <Button variant="contained" onClick={handleConfirmOrder} fullWidth>
+            Place Order
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

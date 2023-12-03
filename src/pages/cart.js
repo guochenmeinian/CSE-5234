@@ -9,6 +9,7 @@ import {
   IconButton,
   CardMedia,
   Stack,
+  Divider
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CartContext } from '../context/cartContext';
@@ -40,61 +41,81 @@ function Cart() {
 
   function renderCartItems() {
     return (
-      <>
-        {cartItems.map((item) => (
-          <Card key={item.id} sx={{ display: 'flex', mb: 2 }}>
-            <CardMedia
-              component="img"
-              image={item.image || '/other-images/placeholder-image.png'}
-              alt={item.title}
-              sx={{ width: '100px', height: '100px', objectFit: 'cover' }}
-            />
-            <Grid container>
-              <Grid item xs>
-                <Box sx={{ padding: 2 }}>
-                  <Typography variant="h6">{item.title}</Typography>
-                  <Typography variant="body1">Price: ${item.price}</Typography>
-                  <Typography variant="body1">Amount: {item.amount}</Typography>
-                </Box>
-              </Grid>
-              <Grid item>
-                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: '100%' }}>
-                  <Button onClick={() => increaseAmount(item.id)}>+</Button>
-                  <Button onClick={() => decreaseAmount(item.id, item.amount)}>-</Button>
-                  <IconButton onClick={() => decreaseAmount(item.id, 1)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </Box>
-              </Grid>
-            </Grid>
-          </Card>
-        ))}
-        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
-          <Typography variant="h5">Total: ${total}</Typography>
-          <Box>
-            <Button
-              variant="contained"
-              sx={{ mt: 2 }}
-              onClick={() => navigate('/purchase/payment', { state: { order: cartItems } })}>
-              Proceed to Payment
-            </Button>
-            <Button
-              variant="outlined"
-              color="error"
-              sx={{ ml: 2, mt: 2 }}
-              onClick={clearCart}>
-              Clear Cart
-            </Button>
-          </Box>
-        </Box>
-      </>
+      <Box minHeight="500px">
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom>
+          Hey there, interdimensional shopper!
+          Your shopping cart is a bit like Rick's garage – filled with incredible gadgets and oddities from across the multiverse!
+          But hey, don't forget to double-check your cart before blasting off!
+          Make sure your loot's as awesome as a portal gun before you embark on this cosmic adventure of checkout!
+          Wubba lubba dub dub, and happy shopping across dimensions! 🛒🌌🚀
+        </Typography>
+        <Box py={5}><Divider orientation="horizontal" /></Box>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            {cartItems.map((item) => (
+              <Card key={item.id} sx={{ display: 'flex', mb: 2 }}>
+                <CardMedia
+                  component="img"
+                  image={item.image || '/other-images/placeholder-image.png'}
+                  alt={item.title}
+                  sx={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                />
+                <Grid container>
+                  <Grid item xs>
+                    <Box sx={{ padding: 2 }}>
+                      <Typography variant="h6">{item.title}</Typography>
+                      <Typography variant="body1">Price: ${item.price}</Typography>
+                      <Typography variant="body1">Amount: {item.amount}</Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: '100%' }}>
+                      <Button onClick={() => increaseAmount(item.id)}>+</Button>
+                      <Button onClick={() => decreaseAmount(item.id, item.amount)}>-</Button>
+                      <IconButton onClick={() => decreaseAmount(item.id, 1)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Card>
+            ))}
+          </Grid>
+          <Grid item xs={4}>
+            <Stack direction="column" divider={<Divider orientation="horizontal" flexItem />} spacing={2}>
+              <Box display="flex" justifyContent="space-between">
+                <Typography variant="h4" component="span">Total</Typography>
+                <Typography variant="h4" component="span">${total}</Typography>
+              </Box>
+              <Box display="flex" justifyContent="space-between">
+                <Button
+                  variant="contained"
+                  sx={{ mt: 2 }}
+                  onClick={() => navigate('/purchase/shipping')}>
+                  Proceed to Payment
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  sx={{ ml: 2, mt: 2 }}
+                  onClick={clearCart}>
+                  Clear Cart
+                </Button>
+              </Box>
+            </Stack>
+          </Grid>
+        </Grid>
+      </Box>
     )
   }
 
   return (
     <Authenticator>
       {({ signOut, user }) => (
-        <Box my={5}>
+        <Box>
           <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
             Your Shopping Cart
           </Typography>
