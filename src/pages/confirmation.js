@@ -82,7 +82,7 @@ function Confirmation() {
                 sx={{ fontWeight: 'bold' }}>
                 Order Summary
               </Typography>
-              <Typography variant="h5" align="start" gutterBottom>Order Number: ???</Typography>
+              <Typography variant="h5" align="start" gutterBottom>Order Number: {order}</Typography>
               <Typography variant="h5" align="start" gutterBottom>Order Total: ${total}</Typography>
             </Box>
           </Box>

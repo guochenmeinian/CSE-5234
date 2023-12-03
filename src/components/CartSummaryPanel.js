@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import {
-  Stack,
-  Box,
-  Typography,
-  Divider,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
+    Stack,
+    Box,
+    Typography,
+    Divider,
+    ImageList,
+    ImageListItem,
+    ImageListItemBar,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/cartContext';
@@ -40,7 +40,12 @@ const CartSummaryPanel = () => {
                                 />
                                 <ImageListItemBar
                                     title={item.title}
-                                    subtitle={`$${item.price}`}
+                                    subtitle={
+                                        <Box>
+                                            <Box> Price: ${item.price} </Box>
+                                            <Box> Amount: {item.amount}</Box>
+                                        </Box>
+                                    }
                                     position="below"
                                 />
                             </ImageListItem>

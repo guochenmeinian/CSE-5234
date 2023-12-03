@@ -10,8 +10,9 @@ import {
 } from '@mui/material';
 import { CartContext } from '../context/cartContext';
 import InternalServerErrorPage from '../components/InternalServerErrorPage';
-import { API } from 'aws-amplify';
 import CartSummaryPanel from '../components/CartSummaryPanel';
+// todo: remove this in the future
+import { v4 as uuidv4 } from 'uuid';
 
 
 function OrderSummary() {
@@ -24,19 +25,17 @@ function OrderSummary() {
 
   const handleConfirmOrder = async () => {
     try {
-      // Replace 'YOUR_LAMBDA_FUNCTION_NAME' with your Lambda function name
       const lambdaParams = {
         body: { /* Your payload data */ },
         // Other parameters such as headers, query parameters can be added here
       };
-  
-      // const response = await API.post('placeOrder', '/route', lambdaParams);
-      // console.log('Lambda function invoked:', response);
-      // // Process the response from the Lambda function
+
+      // todo: add api gateway and get order number
+      const orderNumber = uuidv4();
 
       navigate('/purchase/confirmation', {
         state: {
-          order: cartItems,
+          order: orderNumber,
           total: total,
           shipping: shippingData
         },
