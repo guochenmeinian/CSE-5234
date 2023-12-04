@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { API, graphqlOperation } from "aws-amplify";
-import { Box, Typography, Button, Paper } from '@mui/material';
+import { Box, Typography, Button, Paper, Container } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { getProduct } from "../api/queries";
 import { CartContext } from '../context/cartContext';
 import { Authenticator } from '@aws-amplify/ui-react';
+import InternalServerErrorPage from '../components/InternalServerErrorPage';
+
 
 function Product() {
   const { addToCart } = useContext(CartContext);
@@ -27,10 +29,10 @@ function Product() {
     addToCart(item);
   }
 
-  return (
-    <Authenticator>
-      {({ signOut, user }) => (
-        <Paper elevation={3} sx={{ p: 2, display: 'flex', margin: 'auto', maxWidth: 900 }}>
+  function renderProductItem() {
+    return (
+      <Container component="main" maxWidth="md">
+        <Paper elevation={3} sx={{ p: 2, display: 'flex', margin: 'auto' }}>
           <Box sx={{ flex: 1 }}>
             <img
               src={item.image || '/other-images/placeholder-image.png'}
@@ -59,6 +61,14 @@ function Product() {
             </Box>
           </Box>
         </Paper>
+      </Container>
+    )
+  }
+
+  return (
+    <Authenticator>
+      {({ signOut, user }) => (
+        Object.keys(item).length ? renderProductItem() : <InternalServerErrorPage />
       )}
     </Authenticator>
   );
