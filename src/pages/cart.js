@@ -11,9 +11,12 @@ import {
   Stack,
   Divider
 } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CartContext } from '../context/cartContext';
 import { Authenticator } from '@aws-amplify/ui-react';
+
 
 function Cart() {
   const { cartItems, total, increaseAmount, decreaseAmount, clearCart } = useContext(CartContext);
@@ -73,8 +76,12 @@ function Cart() {
                   </Grid>
                   <Grid item>
                     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', height: '100%' }}>
-                      <Button onClick={() => increaseAmount(item.id)}>+</Button>
-                      <Button onClick={() => decreaseAmount(item.id, item.amount)}>-</Button>
+                      <IconButton color="primary" onClick={() => increaseAmount(item.id)}>
+                        <AddCircleOutlineIcon />
+                      </IconButton>
+                      <IconButton color="primary" onClick={() => decreaseAmount(item.id, item.amount)}>
+                        <RemoveCircleOutlineIcon />
+                      </IconButton>
                       <IconButton onClick={() => decreaseAmount(item.id, 1)}>
                         <DeleteIcon />
                       </IconButton>

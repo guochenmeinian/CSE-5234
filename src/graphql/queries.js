@@ -12,10 +12,6 @@ export const getProduct = /* GraphQL */ `
       price
       quantity
       lastUpdated
-      orders {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
