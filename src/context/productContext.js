@@ -11,7 +11,7 @@ const ProductProvider = ({ children }) => {
   const [onSale, setOnSale] = useState([]);
 
   useEffect(() => {
-    fetchAllProducts();
+    fetchProducts();
   }, []);
 
   const checkout = async (orderDetails) => {
@@ -27,7 +27,7 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const fetchAllProducts = async () => {
+  const fetchProducts = async () => {
     try {
       // authMode doc: https://docs.amplify.aws/lib/graphqlapi/authz/q/platform/js/#using-amplify-graphql-client
       const response = await API.graphql(graphqlOperation(listProducts, { authMode: "API_KEY" }));
@@ -58,14 +58,14 @@ const ProductProvider = ({ children }) => {
 
         // Then delete the product
         await API.graphql(graphqlOperation(deleteProduct, { input: { id: productId } }));
-        fetchAllProducts(); // Refresh the list after deletion
+        fetchProducts(); // Refresh the list after deletion
       } catch (err) {
           console.error("Error deleting product:", err);
       }
   };
 
   return (
-    <ProductContext.Provider value={{ products, onSale, checkout, deleteSelectedProduct }}>
+    <ProductContext.Provider value={{ products, fetchProducts, onSale, checkout, deleteSelectedProduct }}>
       {children}
     </ProductContext.Provider>
   );
