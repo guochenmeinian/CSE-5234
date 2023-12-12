@@ -1,11 +1,11 @@
 {
     "appName": "cse5234",
-    "roleName": "pinpointLambdaRole2cb3d269",
-    "cloudformationPolicyName": "cloudformationPolicy2cb3d269",
-    "cloudWatchPolicyName": "cloudWatchPolicy2cb3d269",
-    "pinpointPolicyName": "pinpointPolicy2cb3d269",
-    "authPolicyName": "pinpoint_amplify_2cb3d269",
-    "unauthPolicyName": "pinpoint_amplify_2cb3d269",
+    "roleName": "pinpointLambdaRolee93e68bc",
+    "cloudformationPolicyName": "cloudformationPolicye93e68bc",
+    "cloudWatchPolicyName": "cloudWatchPolicye93e68bc",
+    "pinpointPolicyName": "pinpointPolicye93e68bc",
+    "authPolicyName": "pinpoint_amplify_e93e68bc",
+    "unauthPolicyName": "pinpoint_amplify_e93e68bc",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },

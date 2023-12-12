@@ -14,7 +14,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "cse523486eead97": {
+    "cse52347bf99f65": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -48,7 +48,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "productImages": {
+    "productImage": {
       "BucketName": "string",
       "Region": "string"
     }

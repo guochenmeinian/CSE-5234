@@ -13,7 +13,7 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "cse523486eead97"
+          "resourceName": "cse52347bf99f65"
         }
       ],
       "output": {
@@ -22,13 +22,15 @@
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authcse523486eead97"
+                "userPoolId": "authcse52347bf99f65"
               }
             }
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDate": "2024-12-11T21:36:32.063Z",
+              "apiKeyExpirationDays": 365,
+              "description": ""
             },
             "authenticationType": "API_KEY"
           }
@@ -39,7 +41,7 @@
     }
   },
   "auth": {
-    "cse523486eead97": {
+    "cse52347bf99f65": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -81,37 +83,7 @@
       "service": "Lambda"
     }
   },
-  "notifications": {
-    "cse5234": {
-      "channels": [],
-      "service": "Pinpoint"
-    }
-  },
   "parameters": {
-    "AMPLIFY_analytics_Pinpoint_Id": {
-      "usedBy": [
-        {
-          "category": "analytics",
-          "resourceName": "Pinpoint"
-        }
-      ]
-    },
-    "AMPLIFY_analytics_Pinpoint_Name": {
-      "usedBy": [
-        {
-          "category": "analytics",
-          "resourceName": "Pinpoint"
-        }
-      ]
-    },
-    "AMPLIFY_analytics_Pinpoint_Region": {
-      "usedBy": [
-        {
-          "category": "analytics",
-          "resourceName": "Pinpoint"
-        }
-      ]
-    },
     "AMPLIFY_function_placeOrder_deploymentBucketName": {
       "usedBy": [
         {
@@ -159,34 +131,10 @@
           "resourceName": "processShipping"
         }
       ]
-    },
-    "AMPLIFY_notifications_Pinpoint_Id": {
-      "usedBy": [
-        {
-          "category": "notifications",
-          "resourceName": "Pinpoint"
-        }
-      ]
-    },
-    "AMPLIFY_notifications_Pinpoint_Name": {
-      "usedBy": [
-        {
-          "category": "notifications",
-          "resourceName": "Pinpoint"
-        }
-      ]
-    },
-    "AMPLIFY_notifications_Pinpoint_Region": {
-      "usedBy": [
-        {
-          "category": "notifications",
-          "resourceName": "Pinpoint"
-        }
-      ]
     }
   },
   "storage": {
-    "productImages": {
+    "productImage": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"

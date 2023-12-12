@@ -20,6 +20,10 @@ export const createProduct = /* GraphQL */ `
       price
       quantity
       lastUpdated
+      orders {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -40,6 +44,10 @@ export const updateProduct = /* GraphQL */ `
       price
       quantity
       lastUpdated
+      orders {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -60,6 +68,10 @@ export const deleteProduct = /* GraphQL */ `
       price
       quantity
       lastUpdated
+      orders {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename

@@ -1,91 +1,42 @@
 {
-  "cse": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-cse5234-cse-183340-authRole",
-      "UnauthRoleArn": "arn:aws:iam::231247894294:role/amplify-cse5234-cse-183340-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::231247894294:role/amplify-cse5234-cse-183340-authRole",
+      "AuthRoleName": "amplify-cse5234-dev-161847-authRole",
+      "UnauthRoleArn": "arn:aws:iam::231247894294:role/amplify-cse5234-dev-161847-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::231247894294:role/amplify-cse5234-dev-161847-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-cse5234-cse-183340-deployment",
-      "UnauthRoleName": "amplify-cse5234-cse-183340-unauthRole",
-      "StackName": "amplify-cse5234-cse-183340",
-      "StackId": "arn:aws:cloudformation:us-east-2:231247894294:stack/amplify-cse5234-cse-183340/13b0a290-827d-11ee-9a0c-022e2089d305",
-      "AmplifyAppId": "dor2izrbuao8w"
+      "DeploymentBucketName": "amplify-cse5234-dev-161847-deployment",
+      "UnauthRoleName": "amplify-cse5234-dev-161847-unauthRole",
+      "StackName": "amplify-cse5234-dev-161847",
+      "StackId": "arn:aws:cloudformation:us-east-2:231247894294:stack/amplify-cse5234-dev-161847/0a5c3bf0-9934-11ee-9412-0ac305cf458f",
+      "AmplifyAppId": "d3og35m6b202fa"
     },
     "categories": {
-      "auth": {
-        "cse523486eead97": {}
-      },
       "function": {
-        "processPayment": {
-          "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
-          "s3Key": "amplify-builds/processPayment-66584b715a4455614677-build.zip"
-        },
         "placeOrder": {
-          "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
-          "s3Key": "amplify-builds/placeOrder-3574464f42746c336a32-build.zip"
+          "deploymentBucketName": "amplify-cse5234-dev-161847-deployment",
+          "s3Key": "amplify-builds/placeOrder-4134494f2b4e6c367676-build.zip"
+        },
+        "processPayment": {
+          "deploymentBucketName": "amplify-cse5234-dev-161847-deployment",
+          "s3Key": "amplify-builds/processPayment-584e654c2f624357442b-build.zip"
         },
         "processShipping": {
-          "deploymentBucketName": "amplify-cse5234-cse-183340-deployment",
-          "s3Key": "amplify-builds/processShipping-6d6f446d674e6c676742-build.zip"
+          "deploymentBucketName": "amplify-cse5234-dev-161847-deployment",
+          "s3Key": "amplify-builds/processShipping-6b2f424d2f5047415a72-build.zip"
         }
+      },
+      "auth": {
+        "cse52347bf99f65": {}
+      },
+      "storage": {
+        "productImage": {}
+      },
+      "analytics": {
+        "cse5234": {}
       },
       "api": {
         "cse5234": {}
-      },
-      "storage": {
-        "productImages": {}
-      },
-      "analytics": {
-        "cse5234": {},
-        "Pinpoint": {
-          "Name": "cse5234-cse",
-          "Id": "422f9f7be09f41a3a959d7d2fb736f35",
-          "Region": "us-east-2"
-        }
-      },
-      "notifications": {
-        "Pinpoint": {
-          "Name": "cse5234-cse",
-          "Id": "422f9f7be09f41a3a959d7d2fb736f35",
-          "Region": "us-east-2"
-        }
-      }
-    }
-  },
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-cse5234-dev-22938-authRole",
-      "UnauthRoleArn": "arn:aws:iam::231247894294:role/amplify-cse5234-dev-22938-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::231247894294:role/amplify-cse5234-dev-22938-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-cse5234-dev-22938-deployment",
-      "UnauthRoleName": "amplify-cse5234-dev-22938-unauthRole",
-      "StackName": "amplify-cse5234-dev-22938",
-      "StackId": "arn:aws:cloudformation:us-east-2:231247894294:stack/amplify-cse5234-dev-22938/131bd4a0-8064-11ee-b3b5-02b4787fd51b",
-      "AmplifyAppId": "dor2izrbuao8w"
-    },
-    "categories": {
-      "auth": {
-        "cse523413cdfa6e": {},
-        "cse52341a8c5561": {}
-      },
-      "function": {
-        "processPayment": {
-          "deploymentBucketName": "amplify-cse5234-dev-22938-deployment",
-          "s3Key": "amplify-builds/processPayment-793846334261622b3247-build.zip"
-        },
-        "createOrder": {
-          "deploymentBucketName": "amplify-cse5234-dev-22938-deployment",
-          "s3Key": "amplify-builds/createOrder-45796a6e503558584f6c-build.zip"
-        }
-      },
-      "storage": {
-        "productImages": {},
-        "ItemImages": {}
-      },
-      "api": {
-        "CSE5234": {},
-        "RMstore": {}
       }
     }
   }
