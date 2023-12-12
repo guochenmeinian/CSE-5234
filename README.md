@@ -1,7 +1,7 @@
 # CSE 5234 E-commerce Application
 
 Welcome to our e-commerce application for the CSE 5234 course. We built this full-stack application using Node.js and AWS Amplify for the backend and React.js for the frontend.
-The deployment is available [here](https://main.dor2izrbuao8w.amplifyapp.com). 
+The deployment is available [here](https://main.d3og35m6b202fa.amplifyapp.com). 
 
 
 ## Project Overview
