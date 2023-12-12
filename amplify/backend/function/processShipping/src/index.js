@@ -3,7 +3,7 @@ const documentClient = new AWS.DynamoDB.DocumentClient();
 const sns = new AWS.SNS();
 const ses = new AWS.SES({ region: 'us-east-2' });
 
-const ORDER_TABLE = 'Order-ddgqbfwy6zhwnkfzuc6hcwsaqm-cse';
+const ORDER_TABLE = 'Order-5omvot7ybzgrti3of3ipbicle4-dev';
 const SNS_TOPIC_ARN = 'arn:aws:sns:us-east-2:231247894294:ShippingTopic';
 
 

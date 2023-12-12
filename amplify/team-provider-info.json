@@ -15,7 +15,7 @@
       "function": {
         "placeOrder": {
           "deploymentBucketName": "amplify-cse5234-dev-161847-deployment",
-          "s3Key": "amplify-builds/placeOrder-4134494f2b4e6c367676-build.zip"
+          "s3Key": "amplify-builds/placeOrder-79686e486970676d316e-build.zip"
         },
         "processPayment": {
           "deploymentBucketName": "amplify-cse5234-dev-161847-deployment",
@@ -23,7 +23,7 @@
         },
         "processShipping": {
           "deploymentBucketName": "amplify-cse5234-dev-161847-deployment",
-          "s3Key": "amplify-builds/processShipping-6b2f424d2f5047415a72-build.zip"
+          "s3Key": "amplify-builds/processShipping-416b37424f6c41535450-build.zip"
         }
       },
       "auth": {
