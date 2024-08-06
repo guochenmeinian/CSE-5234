@@ -27,14 +27,7 @@ const teamMembers = [
     description:
       'Jiaqian has a vast experience in tech and has been pivotal to our technical strategies.',
     website: 'https://github.com/authordottle',
-  },
-  {
-    name: 'Hannes Scutt',
-    title: 'COO',
-    image: '/avatar-icons/morty.png',
-    description:
-      'Hannes ensures smooth operations and the execution of our day-to-day activities.',
-  },
+  }
 ];
 
 const AboutUs = () => {

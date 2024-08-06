@@ -26,7 +26,7 @@ const Home = () => {
       {/* Video Section */}
       <Box my={5} display="flex" justifyContent="center">
         <Box maxWidth="960px" >
-          <ReactPlayer url="https://www.youtube.com/watch?v=BKYJ5AIOU9I" controls={true} width="100%" />
+          <ReactPlayer url="https://www.youtube.com/watch?v=MTMbw3zKAfY" controls={true} width="100%" />
           <Typography variant="subtitle1" color="text.secondary" mt={2}>
             Immerse yourself in the latest interdimensional escapades with Rick and Morty in this featured episode.
           </Typography>
