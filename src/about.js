@@ -27,6 +27,14 @@ const teamMembers = [
     description:
       'Jiaqian has a vast experience in tech and has been pivotal to our technical strategies.',
     website: 'https://github.com/authordottle',
+  },
+  {
+    name: 'Johannes Scutt',
+    title: 'CFO',
+    image: '/avatar-icons/jerry.png',
+    description:
+      'Johannes is responsible for managing and leading the financial initiatives of our team.',
+    website: 'https://github.com/hannesscutt',
   }
 ];
 
